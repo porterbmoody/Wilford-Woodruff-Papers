@@ -102,40 +102,95 @@ sentence_algo.display_score()
 
 
 # %%
-import random
+
+import numpy as np
 
 class NeuralNetwork:
-    
-    def __init__(self, inputs, outputs) -> None:
-        self.inputs = inputs
-        self.outputs = outputs
-        self.weights = [random.random() for i in range(4)]
 
-    def train(self):
-        print('training')
-        hidden_layer = NeuralNetwork.dot(self.inputs, self.weights)
-        print(hidden_layer)
+    def __init__(self, inputs, outputs):
+        self.inputs = np.array(inputs)
+        self.outputs = np.array(outputs)
+        self.hidden_layer_size = 2
+        self.weights1 = np.random.rand(self.hidden_layer_size, len(self.inputs))
+        self.weights2 = np.random.rand(len(self.outputs), self.hidden_layer_size)
 
-    def update_weights(self):
-        for weight in self.weights:
-            continue
+    def feed_forward(self):
+        print('Feeding Forward:')
+        print('computing hidden layer...')
+        print('W.x:', self.weights1, self.inputs)
+        self.hidden_layer = np.dot(self.weights1, self.inputs)
+        print(self.hidden_layer)
+        print()
+        print('computing predictions...')
+        self.predictions = np.dot(self.weights2, self.hidden_layer)
+        print('Predictions:', self.predictions)
+        loss = self.compute_loss()
+        print(loss)
 
-    def dot(v1, v2):
-        y = []
-        for x1, x2 in zip(v1, v2):
-            y.append(x1*x2)
-        return y
+    def back_propagate(self):
+        errors = self.outputs - self.predictions
+        gradients = errors * self.inputs
+        self.weights += gradients
+
+    def compute_loss(self):
+        errors = np.array((self.outputs - self.predictions) ** 2)
+        print('errors', errors)
+        return np.sum(errors)
 
     def display(self):
-        print(self.inputs)
-        print(self.outputs)
-        print(self.weights)
+        print('Inputs:', self.inputs)
+        print('Outputs:', self.outputs)
+        print('Weights1:', self.weights1)
+        print('Weights2:', self.weights2)
+        # print('Loss:', self.compute_loss())
 
-inputs = [1,2,3,4,5]
-outputs = [1,0,1,0,0]
+inputs = [1, 2, 3, 1, 2]
+outputs = [1, 0, 1, 0, 0]
 
 neural_network = NeuralNetwork(inputs, outputs)
+neural_network.feed_forward()
+# neural_network.back_propagate()
 # neural_network.display()
-neural_network.train()
 
 
+#%%
+
+import pandas as pd
+from termcolor import colored
+import altair as alt
+
+
+scriptures = 'C:/Users/porte/Desktop/coding/hackathon23_winner/data/lds-scriptures.csv'
+data_scriptures = pd.read_csv(scriptures)
+
+# wwp_raw_url = 'https://github.com/wilfordwoodruff/DSS-W23-Project/blob/master/raw_data/wwp.csv'
+# wwp_journals = 'https://github.com/wilfordwoodruff/hackathon23_winner/blob/main/data/journals.csv'
+# journal_entries_from_1836_to_1895 = 'https://raw.githubusercontent.com/wilfordwoodruff/Consult_S23_WWP/master/data/derived/papers.csv?token=GHSAT0AAAAAACB5DCILP5SNGHVTVWFZJALWZC36VIA'
+raw_entries_clean = 'data/raw_entries_clean.csv'
+data_journals = pd.read_csv(raw_entries_clean)
+
+data_scriptures
+
+#%%
+from gensim.test.utils import common_texts
+from gensim.models import Word2Vec
+
+model_path = "models/word2vec.model"
+model = Word2Vec(sentences=common_texts, vector_size=100, window=5, min_count=1, workers=4)
+model.save(model_path)
+
+
+#%%
+model = Word2Vec.load(model_path)
+model.train([["lds", "church"]], total_examples=1, epochs=1)
+model
+
+#%%
+vector = model.wv['mormon']  # get numpy vector of a word
+vector
+
+#%%
+sims = model.wv.most_similar('church', topn=10)
+sims
+
+# %%
