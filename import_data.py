@@ -39,19 +39,20 @@ alt.Chart(data_journals_grouped_1840, title = 'Wilford Woodruff year 1847').enco
     y = 'word_count'
 ).mark_line()
 #%%
-# 1847
+# 1847 word count
 data_journals_grouped_1847 = (data_journals
                          .query('year == 1847')
                          .groupby('month').agg(sum).reset_index())
 data_journals_grouped_1847
 
 #%%
-
+# by month
 alt.Chart(data_journals_grouped_1847, title = 'Wilford Woodruff year 1847').encode(
     x = 'month',
     y = 'word_count'
 ).mark_line()
 #%%
+# by year
 alt.Chart(data_journals.query('year == 1847 & month==4'), title = 'Wilford Woodruff year 1847').encode(
     x = 'date',
     y = 'word_count'
@@ -59,17 +60,3 @@ alt.Chart(data_journals.query('year == 1847 & month==4'), title = 'Wilford Woodr
 
 
 #%%
-# 1847 word count
-
-#%%
-data_journals.query('month == 4')
-
-#%%
-alt.Chart(data_journals_1840_dec, title = 'Wilford Woodruff papers december 1840 word count').encode(
-    x = 'date',
-    y = 'word_count'
-).mark_line()
-
-
-#%%
-

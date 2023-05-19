@@ -6,6 +6,7 @@ journal_entries = 'data/wwp_journal_entries_from1836_to1895.csv'
 raw_entries = 'data/raw_entries.csv'
 raw_entries_clean = 'data/raw_entries_clean.csv'
 
+
 data_journals <- read_csv(raw_entries_clean)
 data_journals %>% view
 data_journals
