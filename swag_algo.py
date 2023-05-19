@@ -128,9 +128,17 @@ class NeuralNetwork:
         print(loss)
 
     def back_propagate(self):
-        errors = self.outputs - self.predictions
-        gradients = errors * self.inputs
-        self.weights += gradients
+        print('updating weights1...')
+        print(self.weights1)
+        rows, cols = self.weights1.shape
+        for i in range(rows):
+            for j in range(cols):
+                element = self.weights1[i, j]
+                print(element)
+
+        # errors = self.outputs - self.predictions
+        # gradients = errors * self.inputs
+        # self.weights1 += gradients
 
     def compute_loss(self):
         errors = np.array((self.outputs - self.predictions) ** 2)
@@ -149,7 +157,7 @@ outputs = [1, 0, 1, 0, 0]
 
 neural_network = NeuralNetwork(inputs, outputs)
 neural_network.feed_forward()
-# neural_network.back_propagate()
+neural_network.back_propagate()
 # neural_network.display()
 
 
@@ -169,7 +177,7 @@ data_scriptures = pd.read_csv(scriptures)
 raw_entries_clean = 'data/raw_entries_clean.csv'
 data_journals = pd.read_csv(raw_entries_clean)
 
-data_scriptures
+data_journals
 
 #%%
 from gensim.test.utils import common_texts
