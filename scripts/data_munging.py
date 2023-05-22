@@ -4,53 +4,120 @@ from termcolor import colored
 import altair as alt
 import re
 
+scriptures = '../data/lds-scriptures.csv'
+raw_entries_clean = '../data/raw_entries_clean.csv'
 
-scriptures = 'C:/Users/porte/Desktop/coding/hackathon23_winner/data/lds-scriptures.csv'
 data_scriptures = pd.read_csv(scriptures)
-
-# wwp_raw_url = 'https://github.com/wilfordwoodruff/DSS-W23-Project/blob/master/raw_data/wwp.csv'
-# wwp_journals = 'https://github.com/wilfordwoodruff/hackathon23_winner/blob/main/data/journals.csv'
-# journal_entries_from_1836_to_1895 = 'https://raw.githubusercontent.com/wilfordwoodruff/Consult_S23_WWP/master/data/derived/papers.csv?token=GHSAT0AAAAAACB5DCILP5SNGHVTVWFZJALWZC36VIA'
-raw_entries_clean = 'data/raw_entries_clean.csv'
 data_journals = pd.read_csv(raw_entries_clean)
 
+data_clean = data_journals.copy()
+data_sample = data_journals.head(50)
 data_scriptures
 data_journals
-#%%
-def clean_suggestions(string):
-    """
-    This function takes in a string and finds all occurences of '[[some words|some other words]]'.
-    Then it does an exact match replacement in the passed in string of the words to the left of the '|'
-    input: str
-    output: str
-
-    for example: 
-    if the input string = 'sdaf yo bruh homie dude bruh [[bro|b]] sdvsaf  sadf sdfaasdf as [[some words|asf]]'
-    the output string will find the words 'bro' and 'some words' and replace them and return the string
-    sdaf yo bruh homie dude bruh bro sdvsaf  sadf sdfaasdf as some words
-    """
-    pattern = r'\[\[(.*?)\]\]'
-    suggestions = re.findall(pattern, string)
-    print('suggestions found', len(suggestions))
-    for suggestion in suggestions:
-        # get characters to the left of |
-        replacement = suggestion.split('|')[0]
-        # add the [[ and ]] back in to do an exact match replacement on [[some words|some other words]]
-        suggestion = '[[' + suggestion + ']]'
-        print('suggestion:', suggestion)
-        print('replacement:', replacement)
-        print('replacing...')
-        string = string.replace(suggestion, replacement)
-
-    return string
-
-string = 'sdaf yo bruh homie dude bruh [[bro|b]] sdvsaf  sadf sdfaasdf as [[some words|asf]]'
-print(string)
-print()
-clean_string = clean_suggestions(string)
-print()
-print(clean_string)
 
 #%%
+# loading all entries into one string
+# text_sample = ''
+# for index, row in data_clean.head(10).iterrows():
+#     text_sample += row['text']
+# text_sample
 
-clean_suggestions(text)
+text = ''
+for index, row in data_clean.iterrows():
+    text += row['text']
+text
+#%%
+# pattern = r'\[\[(.*?)\]\]'
+pattern = r'\&amp;'
+len(re.findall(pattern, text))
+
+#%%
+class WWPDataCleaning:
+    # first clean all the '\n' new line places
+    @staticmethod
+    def remove_new_lines(string):
+        return re.sub(r'\n', r' ', string)
+
+    # clean suggestions
+    @staticmethod
+    def clean_suggestions(string):
+        pattern = r'\[\[(.*?)\]\]'
+        suggestions = re.findall(pattern, string)
+        for suggestion in suggestions:
+            replacement = suggestion.split('|')[0]
+            suggestion_exact_match = '[[' + suggestion + ']]'
+            string = string.replace(suggestion_exact_match, replacement)
+        return string
+
+    @staticmethod
+    def clean_ampersands(string):
+        return re.sub(r'\&amp;', r'and', string)
+string = 'I picked Peaches &amp; Plums &amp; hoed in the garden'
+
+WWPDataCleaning.clean_ampersands(string)
+
+#%%
+
+
+data_clean['text'] = data_clean['text'].apply(WWPDataCleaning.remove_new_lines)
+data_clean['text'] = data_clean['text'].apply(WWPDataCleaning.clean_suggestions)
+data_clean['text'] = data_clean['text'].apply(WWPDataCleaning.clean_ampersands)
+data_clean.to_csv('../data/journal_entries_clean.csv')
+
+
+#%%
+data_sample['text'] = data_sample['text'].apply(clean_suggestions)
+data_sample
+
+# data_clean['text'] = data_clean['text'].apply(clean_suggestions)
+# data_clean
+# data_clean.to_csv('../data/journal_entries_clean.csv')
+
+#%%
+
+
+#%%
+# data_journals['book_of_mormon_frequency'] = data_journals['text'].str.count('book of mormon')
+
+# (data_journals['text'].str.count('book of mormon').
+#  .sort_values(by = 'book_of_mormon_frequency', ascending=False)
+#  .groupby('book_of_mormon_frequency').count())
+
+# #%%
+
+
+# data1 = data_journals
+# # data1['text'].apply(' '.join).reset_index()
+# # data1
+# text = ''
+# for index, row in data1.head(3).iterrows():
+#     text += row['text']
+#     # words = re.split(r' ', text)
+#     # print(words)
+# print(text)
+
+# #%%
+# data1['text'].str.contains('prophet', case=False, regex = True).value_counts()
+# data1['text'].str.contains('(book of mormon)', case=False, regex = True).value_counts()
+# import re
+# import pandas as pd
+
+# def clean_suggestions(string):
+#     pattern = r'\[\[(.*?)\]\]'
+#     suggestions = re.findall(pattern, string)
+#     for suggestion in suggestions:
+#         replacement = suggestion.split('|')[0]
+#         suggestion = '[[' + suggestion + ']]'
+#         string = string.replace(suggestion, replacement)
+#     return string
+
+# # Create a sample DataFrame
+# data = {'text': ['sdaf yo bruh [[bro|b]] sdvsaf', '[[hello|greeting]] world', 'some [[text|words]]']}
+# df = pd.DataFrame(data)
+# print(df)
+
+# # Apply the clean_suggestions function to each cell in the 'text' column
+# df['text'] = df['text'].apply(clean_suggestions)
+
+# # Print the modified DataFrame
+# df
