@@ -202,3 +202,6 @@ sims = model.wv.most_similar('church', topn=10)
 sims
 
 # %%
+
+
+gospel_words = ['atonement', 'book of mormon', 'gospel', 'bible', 'new testament']
