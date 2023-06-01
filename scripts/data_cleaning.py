@@ -121,3 +121,29 @@ data_clean.to_csv('../data/journal_entries_clean.csv')
 
 # # Print the modified DataFrame
 # df
+
+#%%
+from gensim.models import Word2Vec
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Sample sentences
+sentences = [["bible", "faith", "god"],
+             ["quran", "meditate"],
+             ["prayer", "meditation", 'jesus', 'christ']]
+
+# Train Word2Vec model
+model = Word2Vec(sentences, min_count=1, vector_size=10)
+
+# Get word vectors
+word1 = "god"
+word2 = "jesus"
+vector1 = model.wv[word1]
+vector2 = model.wv[word2]
+
+# Compute cosine similarity
+similarity = cosine_similarity([vector1], [vector2])[0][0]
+print(f"Cosine similarity between '{word1}' and '{word2}': {similarity}")
+
+  
+
+# %%
