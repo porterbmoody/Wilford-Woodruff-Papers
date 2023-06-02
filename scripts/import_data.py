@@ -1,9 +1,6 @@
 #%%
 import pandas as pd
 from termcolor import colored
-import altair as alt
-import re
-import nltk
 
 scriptures = '../data/lds-scriptures.csv'
 data_scriptures = pd.read_csv(scriptures)

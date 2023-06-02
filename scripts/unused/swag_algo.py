@@ -202,6 +202,11 @@ sims = model.wv.most_similar('church', topn=10)
 sims
 
 # %%
+<<<<<<< HEAD:swag_algo.py
+
+
+gospel_words = ['atonement', 'book of mormon', 'gospel', 'bible', 'new testament']
+=======
 import io
 import re
 import string
@@ -211,3 +216,4 @@ import numpy as np
 
 import tensorflow as tf
 from tensorflow.keras import layers
+>>>>>>> 5340b2cd069455669cf4bf4790c559a796215420:scripts/unused/swag_algo.py
