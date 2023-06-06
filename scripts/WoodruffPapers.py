@@ -11,6 +11,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import plotly.express as px
 from termcolor import colored
 pd.set_option('display.max_rows', 100)
+pd.options.display.max_colwidth = 200
 pd.options.mode.chained_assignment = None
 # this powers the word_tokenize function
 nltk.download('punkt')
@@ -36,9 +37,6 @@ class WoodruffPapers:
     def __init__(self, data_woodruff, data_scriptures) -> None:
         self.data_woodruff = data_woodruff
         self.data_scriptures = data_scriptures
-
-    def clean_scriptures(self):
-        self.data_scriptures = self.data_scriptures.query('volume_title in ["New Testament","Book of Mormon", "Docrtine and Covenants"]')
 
     # clean suggestions
     @staticmethod
@@ -66,7 +64,6 @@ class WoodruffPapers:
 
     @staticmethod
     def split_string(string):
-        print(string)
         words = string.split(' ')
         return words
 
@@ -114,7 +111,12 @@ class WoodruffPapers:
     def regex_filter(dataframe, column, regex):
         return dataframe[dataframe[column].str.contains(regex) == False]
 
-    def clean(self):
+    def clean_scriptures(self):
+        books = ["New Testament","Book of Mormon", "Docrtine and Covenants", "Pearl of Great Price"]
+        self.data_scriptures = self.data_scriptures.query('volume_title == @books')
+        self.data_scriptures['scripture_text'] = self.data_scriptures['scripture_text'].str.lower()
+
+    def clean_woodruff(self):
         # rename Text Only Transcript to 'text'
         self.data_woodruff = self.data_woodruff.rename(columns={"Text Only Transcript": "text"})
         self.data_woodruff['text'] = self.data_woodruff['text'].apply(WoodruffPapers.replace_regex, regex = r'\[(\w+)\]')
@@ -124,8 +126,18 @@ class WoodruffPapers:
         self.data_woodruff['text'] = self.data_woodruff['text'].apply(WoodruffPapers.remove_new_lines)
         self.data_woodruff['text'] = self.data_woodruff['text'].apply(WoodruffPapers.clean_suggestions)
         self.data_woodruff['text'] = self.data_woodruff['text'].apply(WoodruffPapers.clean_ampersands)
-
-        typos = {'sacrafice':'sacrifice'}
+        # TODO: implement typos and symbols
+        typos = {'sacrafice':'sacrifice',
+                 'discours':'discourse'}
+        symbols = {
+                'b. 1795':'',
+                '<U+25CA>':'',
+                '&amp;':'and',
+                '&amp;c':'and',
+                '&apos;':"'",
+                '[FIGURE]':'',
+                'discours':'discourse'
+            }
         things_to_remove = ['WW 1841-2',
                             'Front cover',
                             'THE SECOND BOOK OF WILLFORD FOR 1839',
@@ -135,20 +147,22 @@ class WoodruffPapers:
                             "Willford Woodruff's Journal Containing an Account Of my life and travels from the time of my first connextion with the Church of Jesus Christ of Latter-day Saints",
                             'THE FIRST BOOK OF WILLFORD VOL\. 2\. FOR 1838',
                             r"WILLFORD\. WOORUFF's DAILY JOURNAL AND TRAVELS",
-                            r"\^?FIGURES\^?"]
+                            r"(\^?FIGURES?\^?)"]
 
         for regex in things_to_remove:
             self.data_woodruff = self.regex_filter(self.data_woodruff, column = 'text', regex=regex)
+        # lowercase all entries
+        self.data_woodruff['text'] = self.data_woodruff['text'].str.lower()
 
     @staticmethod
-    def compute_match_percentage(text_woodruff, text_scriptures):
+    def compute_match_percentage(text_woodruff, text_scripture):
         words_woodruff = WoodruffPapers.split_string(text_woodruff)
-        words_scriptures = WoodruffPapers.split_string(text_scriptures)
+        words_scripture = WoodruffPapers.split_string(text_scripture)
         vectorizer = TfidfVectorizer()
         ### vectorize words
         # Compute TF-IDF matrices
         tfidf_matrix_woodruff = vectorizer.fit_transform(words_woodruff)
-        tfidf_matrix_verse = vectorizer.transform(words_scriptures)
+        tfidf_matrix_verse = vectorizer.transform(words_scripture)
 
         similarity_scores = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_verse)
         vectorizer.get_feature_names_out()
@@ -159,7 +173,7 @@ class WoodruffPapers:
 
 
 woodruff_papers = WoodruffPapers(data_woodruff, data_scriptures)
-woodruff_papers.clean()
+woodruff_papers.clean_woodruff()
 woodruff_papers.clean_scriptures()
 woodruff_papers.data_woodruff
 
@@ -177,31 +191,9 @@ freq = WoodruffPapers.create_frequency_distribution(text_woodruff)
 print(freq.head(100))
 freq.tail(100)
 #%%
-# WoodruffPapers.count_word_frequency(search_word='god')
-# woodruff_papers.data_woodruff
-
-
-#%%
-## EDA
-chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
-chart.show()
-
-chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
-chart.show()
-
-chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
-chart.show()
-
-
-#%%
-# for i in range(0, 50, 10):
-#     for j in range(0, 100, 10):
-#         current_words_woodruff = words_woodruff[i : i + 10]
-#         current_words_scriptures = words_verse[j : j + 20]
-#         compute_match_percentage(current_words_woodruff, current_words_scriptures)
 
 # extract verse
-data_sample = woodruff_papers.data_woodruff.sample(50)
+data_sample = woodruff_papers.data_woodruff.sample(500)
 verses = []
 
 text = 'for Christ sake trusting in him for the recompence of reward. May the Lord give me a safe return to my family which favor I ask in the name of JESUS CHRIST'
@@ -218,45 +210,50 @@ def split_string_into_list(text, n):
 data_sample['phrase'] = data_sample['text'].apply(split_string_into_list, n = 15)
 
 data_sample = data_sample.explode('phrase')
+
+# remove rows with phrases with less than 5 words
+# data_sample['word_count'] = data_sample['phrase'].apply(lambda x: len(str(x).split()))
+
+# data_sample = data_sample[data_sample['word_count'] >= 2].drop('word_count', axis=1)
 data_sample
 
-#%%
-verse = list(woodruff_papers.data_scriptures['verse_title'])[2]
-text_scriptures = list(woodruff_papers.data_scriptures.query('verse_title == @verse')['scripture_text'])[0]
-text_scriptures
-print('comparing:', verse)
-
-data_sample[verse] = (data_sample['phrase'].apply(WoodruffPapers.compute_match_percentage,
-                                                    text_scriptures=text_scriptures))
-
-
 
 #%%
+from tqdm import tqdm
+results = pd.DataFrame()
 
-for i in range(30):
+for i in tqdm(range(50), desc='processing'):
     verse = list(woodruff_papers.data_scriptures['verse_title'])[i]
-    text_scriptures = list(woodruff_papers.data_scriptures.query('verse_title == @verse')['scripture_text'])[0]
-    text_scriptures
-    print('comparing:', verse)
+    text_scripture = list(woodruff_papers.data_scriptures.query('verse_title == @verse')['scripture_text'])[0]
+    text_scripture
+    # print('comparing:', verse)
 
+    data_sample['text_scripture'] = text_scripture
+    data_sample['percentage_match'] = (data_sample['phrase'].apply(WoodruffPapers.compute_match_percentage,
+                                                        text_scripture=text_scripture))
+    data_sample.sort_values(by = 'percentage_match', ascending=False)
 
-    data_sample[verse] = (data_sample['text'].apply(WoodruffPapers.compute_match_percentage,
-                                                    text_scriptures=text_scriptures))
-    verses.append(verse)
-    print(data_sample[verse].max())
-    # print(data_sample[data_sample[verse] > 20])
+    if data_sample['percentage_match'].max() > 50:
+        print(colored('attaching results', 'green'), data_sample['percentage_match'].max())
+        top_3_rows = data_sample.nlargest(3, 'percentage_match')[['phrase', 'text_scripture', 'percentage_match']]
+        results = pd.concat([results, top_3_rows])
 
-    if data_sample[verse].max() > 20:
-        print()
-        print(colored('top matches:', 'green'))
-        # print('verse:', text_scriptures)
-        print(data_sample.sort_values(by = verse, ascending=False)[[verse, 'text']].head(6))
-
-print(verses)
-
-#%%
 
 #%%
 data_sample.to_csv('sample.csv', index = False)
 
 
+
+#%%
+## EDA
+chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
+chart.show()
+
+chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
+chart.show()
+
+chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
+chart.show()
+
+
+#%%
