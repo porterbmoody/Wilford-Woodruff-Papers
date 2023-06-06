@@ -66,6 +66,7 @@ class WoodruffPapers:
 
     @staticmethod
     def split_string(string):
+        print(string)
         words = string.split(' ')
         return words
 
@@ -200,13 +201,33 @@ chart.show()
 #         compute_match_percentage(current_words_woodruff, current_words_scriptures)
 
 # extract verse
-data_sample = woodruff_papers.data_woodruff.sample(1000)
+data_sample = woodruff_papers.data_woodruff.sample(50)
 verses = []
 
+text = 'for Christ sake trusting in him for the recompence of reward. May the Lord give me a safe return to my family which favor I ask in the name of JESUS CHRIST'
+
+text
+# explode dataset so each row contains a single 15 word phrase
 def split_string_into_list(text, n):
     words = text.split()
     result = [' '.join(words[i:i+n]) for i in range(0, len(words), n)]
     return result
+
+
+
+data_sample['phrase'] = data_sample['text'].apply(split_string_into_list, n = 15)
+
+data_sample = data_sample.explode('phrase')
+data_sample
+
+#%%
+verse = list(woodruff_papers.data_scriptures['verse_title'])[2]
+text_scriptures = list(woodruff_papers.data_scriptures.query('verse_title == @verse')['scripture_text'])[0]
+text_scriptures
+print('comparing:', verse)
+
+data_sample[verse] = (data_sample['phrase'].apply(WoodruffPapers.compute_match_percentage,
+                                                    text_scriptures=text_scriptures))
 
 
 
