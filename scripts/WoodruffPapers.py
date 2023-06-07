@@ -22,9 +22,13 @@ nltk.download('punkt')
 #%%
 # read in data
 url_scriptures = 'https://github.com/wilfordwoodruff/wilford_woodruff_hack23/raw/main/data/lds-scriptures.csv'
-raw_dat = pd.read_csv("https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv")
+url_woodruff = "https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv"
+
+
 data_scriptures = pd.read_csv(url_scriptures)
-data_woodruff = raw_dat.query("`Document Type` == 'Journals'")
+data_woodruff = pd.read_csv(url_woodruff)
+
+data_woodruff = data_woodruff.query("`Document Type` == 'Journals'")
 
 # data_woodruff2 = pd.read_csv('../data/data_woodruff.csv')
 data_scriptures
@@ -38,7 +42,7 @@ class Scriptures:
     def __init__(self, data_scriptures) -> None:
         self.data_scriptures = data_scriptures
 
-    def clean_scriptures(self):
+    def clean(self):
         books = ["New Testament","Book of Mormon", "Docrtine and Covenants", "Pearl of Great Price"]
         self.data_scriptures = self.data_scriptures.query('volume_title == @books')
         self.data_scriptures['scripture_text'] = self.data_scriptures['scripture_text'].str.lower()
@@ -46,13 +50,11 @@ class Scriptures:
 
 class WoodruffPapers:
 
-    def __init__(self, data_woodruff, data_scriptures, sample = True) -> None:
+    def __init__(self, data_woodruff, sample = True) -> None:
         if sample:
             self.data_woodruff = data_woodruff.sample(100)
         else:
             self.data_woodruff = data_woodruff
-
-        self.data_scriptures = data_scriptures
 
     # clean suggestions
     @staticmethod
@@ -79,17 +81,8 @@ class WoodruffPapers:
         return string
 
     @staticmethod
-    def fix_typos(self):
-        self.data_woodruff = re.sub(self.data_woodruff)
-        print(self.data_woodruff)
-
-    @staticmethod
-    def count_word_frequency(search_word):
-        print(search_word)
-
-    @staticmethod
     def fix_typos(string):
-        WoodruffPapers.replace_regex('travling', regex = r'', replacement = r'')
+        DataUtility.replace_regex('travling', regex = r'', replacement = r'')
 
     def clean(self):
         # rename Text Only Transcript to 'text'
@@ -125,14 +118,14 @@ class WoodruffPapers:
                             r"(\^?FIGURES?\^?)"]
 
         for regex in things_to_remove:
-            self.data_woodruff = self.regex_filter(self.data_woodruff, column = 'text', regex=regex)
+            self.data_woodruff = DataUtility.regex_filter(self.data_woodruff, column = 'text', regex=regex)
         # lowercase all entries
         self.data_woodruff['text'] = self.data_woodruff['text'].str.lower()
 
-    def preprocess_data(self):
-        self.data_sample = self.data_woodruff
-        self.data_sample['phrase'] = self.data_sample['text'].apply(DataUtility.split_string_into_list, n = 15)
-        self.data_sample = self.data_sample.explode('phrase')
+    def preprocess(self):
+        self.data_woodruff['phrase'] = self.data_woodruff['text'].apply(DataUtility.split_string_into_list, n = 15)
+        # explode dataset so each row contains a single 15 word phrase
+        self.data_woodruff = self.data_woodruff.explode('phrase')
 
     @staticmethod
     def compute_match_percentage(text_woodruff, text_scripture):
@@ -151,24 +144,20 @@ class WoodruffPapers:
         percent_match_woodruff    = round(len(woodruff_word_match_ids) * 100 / len(words_woodruff), 2)
         return percent_match_woodruff
 
-woodruff_papers = WoodruffPapers(data_woodruff, data_scriptures)
+woodruff_papers = WoodruffPapers(data_woodruff, sample = True)
+woodruff_papers.clean()
+
 scriptures = Scriptures(data_scriptures)
-woodruff_papers.clean()
-woodruff_papers.clean()
+scriptures.clean()
+
+scriptures.data_scriptures
 woodruff_papers.data_woodruff
 
 
 #%%
-# extract verse
 
-text = 'for Christ sake trusting in him for the recompence of reward. May the Lord give me a safe return to my family which favor I ask in the name of JESUS CHRIST. ok bro so whats '
+woodruff_papers.preprocess()
 
-# explode dataset so each row contains a single 15 word phrase
-
-#%%
-
-data_sample = woodruff_papers.data_woodruff.sample(500)
-woodruff_papers.preprocess_data()
 woodruff_papers.data_woodruff
 
 #%%

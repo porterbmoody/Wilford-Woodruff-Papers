@@ -45,11 +45,16 @@ class DataUtility:
         return string
 
     @staticmethod
-    def split_string_into_list(text, n):
-        words = text.split()
+    def split_string_into_list(string, n):
+        """ Basically converts a string of text into a list of strings of text
+        each element containing n words.
+        Except the last few words get attatched on the end of the last element of the list,
+        but only if the number of remaining words is > n/2 or more than half of n
+        """
+        words = string.split()
         result = []
         for i in range(0, len(words), n):
-            if i + n < len(words) + round(n/2):
+            if i + n < len(words) + round(n/2) and len(result) > 0:
                 phrase = ' '.join(words[i : i + n])
                 result.append(phrase)
             else:
