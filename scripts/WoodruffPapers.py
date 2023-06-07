@@ -17,14 +17,15 @@ pd.options.mode.chained_assignment = None
 nltk.download('punkt')
 
 
+
 #%%
 # read in data
 url_scriptures = 'https://github.com/wilfordwoodruff/wilford_woodruff_hack23/raw/main/data/lds-scriptures.csv'
-raw_dat = pd.read_csv("https://github.com/wilfordwoodruff/Public_Stories/raw/main/data/derived/derived_data.csv")
+raw_dat = pd.read_csv("https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv")
 data_scriptures = pd.read_csv(url_scriptures)
 data_woodruff = raw_dat.query("`Document Type` == 'Journals'")
 
-data_woodruff2 = pd.read_csv('../data/data_woodruff.csv')
+# data_woodruff2 = pd.read_csv('../data/data_woodruff.csv')
 data_scriptures
 data_woodruff
 
@@ -222,7 +223,7 @@ data_sample
 from tqdm import tqdm
 results = pd.DataFrame()
 
-for i in tqdm(range(50), desc='processing'):
+for i in tqdm(range(50,100), desc='processing'):
     verse = list(woodruff_papers.data_scriptures['verse_title'])[i]
     text_scripture = list(woodruff_papers.data_scriptures.query('verse_title == @verse')['scripture_text'])[0]
     text_scripture
@@ -246,14 +247,14 @@ data_sample.to_csv('sample.csv', index = False)
 
 #%%
 ## EDA
-chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
-chart.show()
+# chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
+# chart.show()
 
-chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
-chart.show()
+# chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
+# chart.show()
 
-chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
-chart.show()
+# chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
+# chart.show()
 
 
 #%%
