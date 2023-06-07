@@ -222,19 +222,11 @@ woodruff_papers.data_woodruff
 from tqdm import tqdm
 results = pd.DataFrame()
 
-<<<<<<< HEAD
-for i in tqdm(range(50,100), desc='processing'):
-    verse = list(woodruff_papers.data_scriptures['verse_title'])[i]
-    text_scripture = list(woodruff_papers.data_scriptures.query('verse_title == @verse')['scripture_text'])[0]
-    text_scripture
-    # print('comparing:', verse)
-=======
 for i in tqdm(range(10), desc='processing'):
     verse_title = list(woodruff_papers.data_scriptures['verse_title'])[i]
     text_scripture = list(woodruff_papers.data_scriptures.query('verse_title == @verse_title')['scripture_text'])[0]
 
     # print('comparing:', verse_title)
->>>>>>> dc026c20203b3718bc181edf0ab7f0c4078c7188
 
     data_sample['text_scripture'] = text_scripture
     data_sample['percentage_match'] = (data_sample['phrase'].apply(WoodruffPapers.compute_match_percentage,
@@ -254,10 +246,6 @@ data_sample.to_csv('sample.csv', index = False)
 
 #%%
 ## EDA
-<<<<<<< HEAD
-# chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
-# chart.show()
-=======
 text_woodruff = WoodruffPapers.combine_rows(woodruff_papers.data_woodruff.head(1000)['text'])
 text_verse = WoodruffPapers.combine_rows(woodruff_papers.data_scriptures.head(1000)['scripture_text'])
 
@@ -269,7 +257,6 @@ freq.tail(100)
 
 chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
 chart.show()
->>>>>>> dc026c20203b3718bc181edf0ab7f0c4078c7188
 
 # chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
 # chart.show()
