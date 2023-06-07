@@ -34,9 +34,12 @@ data_woodruff
 ## class with static utilities for cleaning the entries
 class WoodruffPapers:
 
+    def __init__(self, data_woodruff, data_scriptures, sample = True) -> None:
+        if sample:
+            self.data_woodruff = data_woodruff.sample(100)
+        else:
+            self.data_woodruff = data_woodruff
 
-    def __init__(self, data_woodruff, data_scriptures) -> None:
-        self.data_woodruff = data_woodruff
         self.data_scriptures = data_scriptures
 
     # clean suggestions
@@ -156,6 +159,24 @@ class WoodruffPapers:
         self.data_woodruff['text'] = self.data_woodruff['text'].str.lower()
 
     @staticmethod
+    def split_string_into_list(text, n):
+        words = text.split()
+        result = []
+        for i in range(0, len(words), n):
+            if i + n < len(words) + round(n/2):
+                phrase = ' '.join(words[i : i + n])
+                result.append(phrase)
+            else:
+                phrase = ' '.join(words[i : i + n])
+                result[-1] += ' ' + phrase
+        return result
+
+    def preprocess_data(self):
+        self.data_sample = self.data_woodruff
+        self.data_sample['phrase'] = self.data_sample['text'].apply(WoodruffPapers.split_string_into_list, n = 15)
+        self.data_sample = self.data_sample.explode('phrase')
+
+    @staticmethod
     def compute_match_percentage(text_woodruff, text_scripture):
         words_woodruff = WoodruffPapers.split_string(text_woodruff)
         words_scripture = WoodruffPapers.split_string(text_scripture)
@@ -178,56 +199,42 @@ woodruff_papers.clean_woodruff()
 woodruff_papers.clean_scriptures()
 woodruff_papers.data_woodruff
 
-#%%
-# x = "WILLFORD WOODRUFF'S JOURNAL VOL. 2. AND A SYNOPSIS OF VOL. 1."
-# woodruff_papers.data_woodruff.query("text == @x")
 
 #%%
-text_woodruff = WoodruffPapers.combine_rows(woodruff_papers.data_woodruff.head(1000)['text'])
-text_verse = WoodruffPapers.combine_rows(woodruff_papers.data_scriptures.head(1000)['scripture_text'])
 
-print(text_verse)
-print(text_woodruff)
-freq = WoodruffPapers.create_frequency_distribution(text_woodruff)
-print(freq.head(100))
-freq.tail(100)
 #%%
 
 # extract verse
-data_sample = woodruff_papers.data_woodruff.sample(500)
-verses = []
 
-text = 'for Christ sake trusting in him for the recompence of reward. May the Lord give me a safe return to my family which favor I ask in the name of JESUS CHRIST'
 
-text
+text = 'for Christ sake trusting in him for the recompence of reward. May the Lord give me a safe return to my family which favor I ask in the name of JESUS CHRIST. ok bro so whats '
+
 # explode dataset so each row contains a single 15 word phrase
-def split_string_into_list(text, n):
-    words = text.split()
-    result = [' '.join(words[i:i+n]) for i in range(0, len(words), n)]
-    return result
 
 
+#%%
 
-data_sample['phrase'] = data_sample['text'].apply(split_string_into_list, n = 15)
-
-data_sample = data_sample.explode('phrase')
-
-# remove rows with phrases with less than 5 words
-# data_sample['word_count'] = data_sample['phrase'].apply(lambda x: len(str(x).split()))
-
-# data_sample = data_sample[data_sample['word_count'] >= 2].drop('word_count', axis=1)
-data_sample
-
+data_sample = woodruff_papers.data_woodruff.sample(500)
+woodruff_papers.preprocess_data()
+woodruff_papers.data_woodruff
 
 #%%
 from tqdm import tqdm
 results = pd.DataFrame()
 
+<<<<<<< HEAD
 for i in tqdm(range(50,100), desc='processing'):
     verse = list(woodruff_papers.data_scriptures['verse_title'])[i]
     text_scripture = list(woodruff_papers.data_scriptures.query('verse_title == @verse')['scripture_text'])[0]
     text_scripture
     # print('comparing:', verse)
+=======
+for i in tqdm(range(10), desc='processing'):
+    verse_title = list(woodruff_papers.data_scriptures['verse_title'])[i]
+    text_scripture = list(woodruff_papers.data_scriptures.query('verse_title == @verse_title')['scripture_text'])[0]
+
+    # print('comparing:', verse_title)
+>>>>>>> dc026c20203b3718bc181edf0ab7f0c4078c7188
 
     data_sample['text_scripture'] = text_scripture
     data_sample['percentage_match'] = (data_sample['phrase'].apply(WoodruffPapers.compute_match_percentage,
@@ -235,7 +242,7 @@ for i in tqdm(range(50,100), desc='processing'):
     data_sample.sort_values(by = 'percentage_match', ascending=False)
 
     if data_sample['percentage_match'].max() > 50:
-        print(colored('attaching results', 'green'), data_sample['percentage_match'].max())
+        # print(colored('attaching results', 'green'), data_sample['percentage_match'].max())
         top_3_rows = data_sample.nlargest(3, 'percentage_match')[['phrase', 'text_scripture', 'percentage_match']]
         results = pd.concat([results, top_3_rows])
 
@@ -247,8 +254,22 @@ data_sample.to_csv('sample.csv', index = False)
 
 #%%
 ## EDA
+<<<<<<< HEAD
 # chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
 # chart.show()
+=======
+text_woodruff = WoodruffPapers.combine_rows(woodruff_papers.data_woodruff.head(1000)['text'])
+text_verse = WoodruffPapers.combine_rows(woodruff_papers.data_scriptures.head(1000)['scripture_text'])
+
+print(text_verse)
+print(text_woodruff)
+freq = WoodruffPapers.create_frequency_distribution(text_woodruff)
+print(freq.head(100))
+freq.tail(100)
+
+chart = px.bar(freq.head(100), x='frequency', y='word', text_auto='.2s',orientation='h')
+chart.show()
+>>>>>>> dc026c20203b3718bc181edf0ab7f0c4078c7188
 
 # chart = px.bar(freq.tail(100), x='frequency', y='word', text_auto='.2s',orientation='h')
 # chart.show()
