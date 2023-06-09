@@ -14,6 +14,7 @@ class DataUtil:
         r' is ' : ' ',
         r'\-\-' : ' ',
         ' and ' : ' ',
+        r' there ' : ' ',
         r' the ' : ' ',
         ' that ' : ' ',
         ' of ' : ' ',
@@ -29,13 +30,32 @@ class DataUtil:
         ' my ' : ' ',
         ' his ' : ' ',
         ' you ' : ' ',
+        r' which ' : ' ',
+        r' given ' : ' ',
+        r' he ' : ' ',
+        r' while ' : r' ',
+        r' them ' : r' ',
+        r' and ' : ' ',
+        r' this ' : ' ',
+        r' an ' : ' ',
+        r' your ' : ' ',
         r' be ' : ' ',
         r' it ' : ' ',
+        r' all ' : ' ',
+        r' but ' : ' ',
+        r' are ' : ' ',
+        r' a ' : ' ',
+        r' have ' : r' ',
+        r' then ' : ' ',
+        r' me ': ' ',
         r'\.' : '',
         r' i ' : ' ',
         r'\,' : '',
         r'\d+' : ' ',
         r'\:' : '',
+        r'\*\*' : '',
+        r'\£' : ' ',
+        r'joseph smith jun' : 'joseph smith jr',
         }
 
     @staticmethod
@@ -61,15 +81,33 @@ class DataUtil:
 
     @staticmethod
     def str_replace(string, regex, replacement):
+        """ Pass in string, regex pattern, and replacement string
+            it finds all occurences of regex pattern in the string and replaces them
+            with replacement string
+        """
         return re.sub(regex, replacement, string)
 
     @staticmethod
     def str_extract(string, regex):
+        """ Returns first and only first match. If no matches, returns empty string
+        """
+        matches = re.findall(regex, string)
+        if len(matches) > 0:
+            return matches[0]
+        return ''
+
+    @staticmethod
+    def str_extract_all(string, regex):
+        """ Returns list of regex match patterns
+        """
         return re.findall(regex, string)
 
     @staticmethod
     def str_count_occurrences(string, word):
-        return DataUtil.str_extract(string, word)
+        """ Counts ocurrences of a certain keyword within string and
+            returns int
+        """
+        return len(DataUtil.str_extract_all(string, word))
 
     @staticmethod
     def str_remove(string, regex):

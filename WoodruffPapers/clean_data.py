@@ -24,7 +24,6 @@ path_woodruff = '../data/data_woodruff_raw.csv'
 woodruff_data = WoodruffData(path_woodruff)
 
 
-
 woodruff_data.data_raw
 # woodruff_data.data_raw.to_csv(path_woodruff)
 
@@ -58,12 +57,11 @@ DataUtil.create_frequency_dist(text_sample).head(100)
 #%%
 
 ## run verse matching algorithm
-data_sample = woodruff_data.data_preprocessed.head(500)
-
+data_sample = woodruff_data.data_preprocessed.head(600)
 
 results = pd.DataFrame()
 
-for index, row in scripture_data.data.iloc[300 : 500].iterrows():
+for index, row in scripture_data.data.iloc[300 : 400].iterrows():
     verse_title    = row['verse_title']
     scripture_text = row['scripture_text']
 
@@ -76,19 +74,30 @@ for index, row in scripture_data.data.iloc[300 : 500].iterrows():
     print()
     print(verse_title, 'max match:', max_match[0])
     print(scripture_text)
-    if data_sample['percentage_match'].max() > .3:
-        print(colored('max match: '+ str(max_match), 'green'))
+    print('woodruff:', max_match[1])
+
     # print('mean percentage', data_sample['percentage_match'].mean())
 
-    if data_sample['percentage_match'].max() > .3:
+    if data_sample['percentage_match'].max() >= .3:
+        print(colored('max match: '+ str(max_match), 'green'))
+
+        print(list(data_sample.columns))
         # print(colored('attaching results', 'green'), data_sample['percentage_match'].max())
-        top_3_rows = data_sample.nlargest(3, 'percentage_match')[['phrase', 'scripture_text', 'percentage_match']]
+        top_3_rows = data_sample.nlargest(3, 'percentage_match')[['phrase', 'scripture_text', 'percentage_match', 'text']]
+        top_3_rows['verse_title'] = verse_title
         # add top 3 percentage match rows to results dataframe
         results = pd.concat([results, top_3_rows])
 
-results.sort_values(by = 'percentage_match', ascending=True)
+
+results.sort_values(by = 'percentage_match', ascending=False)
+
 
 
 # %%
 
 results.sort_values(by = 'percentage_match', ascending=False)
+
+
+
+# %%
+

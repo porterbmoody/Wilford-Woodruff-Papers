@@ -82,13 +82,15 @@ class WoodruffData:
         self.data = self.data_raw
         self.data = self.data.rename(columns={"Text Only Transcript": "text"})
 
-        columns = ['Document Type', 'Parent Name', 'text']
+        columns = ['Document Type', 'Parent Name', 'text', 'First Date']
         self.data = self.data[columns]
 
+        # fix date column idk what the heck is wrong with it but well use regex
+        date_regex = r"\b\w+\s\d{1,2},\s\d{4}\b"
+        self.data['date'] = self.data['First Date'].apply(DataUtil.str_extract_all)
 
         self.data['text'] = self.data['text'].replace(self.typos, regex=True)
         self.data['text'] = self.data['text'].replace(self.symbols, regex=True)
-
         # loop through entries and remove rows that have regex match in entry
         for entry in self.entries_to_remove:
             self.data = DataUtil.regex_filter(self.data, 'text', entry)

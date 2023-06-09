@@ -85,3 +85,46 @@ alt.Chart(data_journals.query('year == 1847 & month==4'), title = 'Wilford Woodr
     y = 'word_count'
 ).mark_line()
 
+
+
+#%%
+
+import pandas as pd
+from DataUtil import DataUtil
+
+data = pd.DataFrame({
+    'col1' : ['gathering of israel','book of mormon pizza pizza','god lord jesus christ pizza'],
+})
+
+word = 'pizza'
+
+
+data
+
+#%%
+
+from WoodruffData import WoodruffData
+import altair as alt
+from DataUtil import DataUtil
+
+# read woodruff data
+url_woodruff = "https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv"
+path_woodruff = '../data/data_woodruff_raw.csv'
+woodruff_data = WoodruffData(path_woodruff)
+
+
+woodruff_data.clean_data()
+
+word = 'god'
+woodruff_data.data['count_god'] = woodruff_data.data['text'].apply(DataUtil.str_count_occurrences,
+                                                                       word=word)
+
+
+woodruff_data.data.value_counts('count_god')
+
+alt.Chart(woodruff_data.data).encode(
+    x ='First Date',
+    y = 'count_god',
+).mark_point()
+
+# %%
