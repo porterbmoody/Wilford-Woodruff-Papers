@@ -1,5 +1,6 @@
 import pandas as pd
 from DataUtil import DataUtil
+from datetime import datetime
 
 
 class WoodruffData:
@@ -73,8 +74,9 @@ class WoodruffData:
         ]
 
     def __init__(self, path) -> None:
-        self.data_raw = pd.read_csv(path).query("`Document Type` == 'Journals'")
-
+        self.data_raw = pd.read_csv(path)
+        if "`Document Type`" in self.data_raw.columns:
+            self.data_raw = self.data_raw.query("`Document Type` == 'Journals'")
 
     def clean_data(self):
         ## data cleaning
@@ -82,19 +84,33 @@ class WoodruffData:
         self.data = self.data_raw
         self.data = self.data.rename(columns={"Text Only Transcript": "text"})
 
-        columns = ['Document Type', 'Parent Name', 'text', 'First Date']
-        self.data = self.data[columns]
+
+        # columns = ['Document Type', 'Parent Name', 'text']
+        # self.data = self.data[columns]
 
         # fix date column idk what the heck is wrong with it but well use regex
-        date_regex = r"\b\w+\s\d{1,2},\s\d{4}\b"
-        self.data['date'] = self.data['First Date'].apply(DataUtil.str_extract_all)
+        # date_regex = r"1[98]\d{2}"
 
         self.data['text'] = self.data['text'].replace(self.typos, regex=True)
         self.data['text'] = self.data['text'].replace(self.symbols, regex=True)
+
         # loop through entries and remove rows that have regex match in entry
         for entry in self.entries_to_remove:
             self.data = DataUtil.regex_filter(self.data, 'text', entry)
+
+        # lowercase all text
+        self.data['text'] = self.data['text'].str.lower()
+
+        self.data = self.data.dropna(subset=['date'])
+
+        regex_year =r'\d{4}'
+        # date_format = "%B %d, %Y"
+        # self.data['date'] = pd.to_datetime(self.data['date'], format=date_format)
+        self.data['year'] = self.data['date'].apply(DataUtil.str_extract, regex=regex_year)
             # data[data['text'].str.contains(entry) == False]
+        # date_regex = r"\w+\s\d{1,2}\,\s\d{4}|\w+\s\d{4}"
+
+        # self.data['date'] = self.data['Parent Name'].apply(DataUtil.str_extract, regex = date_regex)
 
 
     def preprocess_data(self):
@@ -108,10 +124,6 @@ class WoodruffData:
         # So that each row contains a single 15 word phrase of an entry
         # """
         self.data_preprocessed = self.data
-
-
-        # lowercase all text
-        self.data_preprocessed['text'] = self.data_preprocessed['text'].str.lower()
 
         # remove stopwords
         self.data['text'] = self.data['text'].replace(DataUtil.stop_words, regex=True)

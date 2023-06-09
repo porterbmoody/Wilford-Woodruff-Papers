@@ -94,12 +94,24 @@ from DataUtil import DataUtil
 
 data = pd.DataFrame({
     'col1' : ['gathering of israel','book of mormon pizza pizza','god lord jesus christ pizza'],
+    'First Date': ['Journal (December 29, 1833 – January 3, 1838)',
+                   'Journal (December 29, 1833 – January 3, 1838)',
+                   'Journal (January 1893 – April 1897)']
 })
 
 word = 'pizza'
 
+date_regex = r"\b\w+\s\d{4}\b"
+date_regex = r"\w+?\s?\d{1,2}?,?\s?\d{4}"
+date_regex = r"1[98]\d{2}"
+
+
+## bro if its working here why aint it working over there
+data['year'] = data['First Date'].apply(DataUtil.str_extract, regex = date_regex)
 
 data
+
+# DataUtil.str_extract('Journal (December 29, 1833 – January 3, 1838)', date_regex)
 
 #%%
 
@@ -110,21 +122,48 @@ from DataUtil import DataUtil
 # read woodruff data
 url_woodruff = "https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv"
 path_woodruff = '../data/data_woodruff_raw.csv'
+path_woodruff = '../data/raw_entries.csv'
 woodruff_data = WoodruffData(path_woodruff)
 
 
 woodruff_data.clean_data()
 
-word = 'god'
-woodruff_data.data['count_god'] = woodruff_data.data['text'].apply(DataUtil.str_count_occurrences,
+woodruff_data.data
+
+
+
+word = 'the'
+woodruff_data.data['count_'+word] = woodruff_data.data['text'].apply(DataUtil.str_count_occurrences,
                                                                        word=word)
 
+woodruff_data.data
 
-woodruff_data.data.value_counts('count_god')
 
-alt.Chart(woodruff_data.data).encode(
-    x ='First Date',
-    y = 'count_god',
-).mark_point()
+
+data = woodruff_data.data.groupby(['year', 'count_'+word]).agg(sum).reset_index()
+
+data
+
+
+
+
+
+# woodruff_data.data.value_counts('count_'+word)
+
+alt.Chart(data, title = 'mentions of the word '+word).encode(
+    x ='year',
+    y = 'count_'+word,
+).mark_boxplot()
+
 
 # %%
+
+
+string = "Journal (December 29, 1833 – January 3, 1838)"
+
+date_regex = r"\b\w+\s\d{1,2},\s\d{4}\b"
+
+
+DataUtil.str_extract(string, regex = date_regex)
+
+
