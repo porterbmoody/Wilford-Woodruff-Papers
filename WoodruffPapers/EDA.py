@@ -132,7 +132,7 @@ woodruff_data.data
 
 
 
-word = 'the'
+word = 'book of mormon'
 woodruff_data.data['count_'+word] = woodruff_data.data['text'].apply(DataUtil.str_count_occurrences,
                                                                        word=word)
 
