@@ -9,8 +9,39 @@ class DataUtil:
     """ Utility class for cleaning the data
     """
 
+    stop_words = {
+        ' as ' : ' ',
+        r' is ' : ' ',
+        r'\-\-' : ' ',
+        ' and ' : ' ',
+        r' the ' : ' ',
+        ' that ' : ' ',
+        ' of ' : ' ',
+        ' to ' : ' ',
+        ' with ' : ' ',
+        ' at ' : ' ',
+        ' by ' : ' ',
+        ' in ' : ' ',
+        ' on ' : ' ',
+        ' for ' : ' ',
+        ' us ' : ' ',
+        ' we ' : ' ',
+        ' my ' : ' ',
+        ' his ' : ' ',
+        ' you ' : ' ',
+        r' be ' : ' ',
+        r' it ' : ' ',
+        r'\.' : '',
+        r' i ' : ' ',
+        r'\,' : '',
+        r'\d+' : ' ',
+        r'\:' : '',
+        }
+
     @staticmethod
     def str_split(string, remove_duplicates = True):
+        if type(string) == float:
+            print(string)
         words = string.split(' ')
         if remove_duplicates:
             words = list(set(words))
@@ -45,10 +76,29 @@ class DataUtil:
         return re.sub(regex, r'', string)
 
     @staticmethod
+    def str_detect(string, regex):
+        return bool(re.search(pattern = regex, string=string))
+
+    @staticmethod
     def str_remove_list(string, regex_list):
         for regex in regex_list:
             string = re.sub(regex, '', string)
         return string
+
+    @staticmethod
+    def str_replace_list(string, regex_list, replacement):
+        for regex in regex_list:
+            if regex == r'\s\d+\s' and DataUtil.str_detect(string, regex):
+                print("PIZZA")
+                print(string)
+                print(re.sub(regex, replacement, string))
+            string = re.sub(regex, replacement, string)
+        return string
+
+    @staticmethod
+    def remove_stop_words(string):
+
+        return DataUtil.str_replace_list(string, regex_list = stop_words, replacement = ' ')
 
     @staticmethod
     def split_string_into_list(string, n):

@@ -34,6 +34,7 @@ class WoodruffData:
         r'fals'        : r'false',
         r'Aprail'      : r'April',
         r'untill'      : r'until',
+        r'sumwhat'      : r'somewhat',
         }
 
     symbols = {
@@ -49,7 +50,7 @@ class WoodruffData:
             r'\[(\w+)\]'            : r'',
             r'\n'                   : r' ',
             r'\[\[(.*?)\|(.*?)\]\]' : r'\1',
-            r'\- '                  : r'',
+            r'\-\s'                  : r'',
             r'- ng '                 : r'ng ',
             r' ng '                 : r'ng ',
             r' ed '                 : r'ed ',
@@ -72,25 +73,26 @@ class WoodruffData:
         ]
 
     def __init__(self, path) -> None:
-        self.data_woodruff_raw = pd.read_csv(path).query("`Document Type` == 'Journals'")
+        self.data_raw = pd.read_csv(path).query("`Document Type` == 'Journals'")
 
 
     def clean_data(self):
         ## data cleaning
         # rename text column to just 'text'
-        self.data_woodruff = self.data_woodruff_raw.rename(columns={"Text Only Transcript": "text"})
+        self.data = self.data_raw
+        self.data = self.data.rename(columns={"Text Only Transcript": "text"})
 
         columns = ['Document Type', 'Parent Name', 'text']
-        self.data_woodruff = self.data_woodruff[columns]
+        self.data = self.data[columns]
 
 
-        self.data_woodruff['text'] = self.data_woodruff['text'].replace(self.typos, regex=True)
-        self.data_woodruff['text'] = self.data_woodruff['text'].replace(self.symbols, regex=True)
+        self.data['text'] = self.data['text'].replace(self.typos, regex=True)
+        self.data['text'] = self.data['text'].replace(self.symbols, regex=True)
 
         # loop through entries and remove rows that have regex match in entry
         for entry in self.entries_to_remove:
-            data_woodruff = DataUtil.regex_filter(data_woodruff, 'text', entry)
-            # data_woodruff[data_woodruff['text'].str.contains(entry) == False]
+            self.data = DataUtil.regex_filter(self.data, 'text', entry)
+            # data[data['text'].str.contains(entry) == False]
 
 
     def preprocess_data(self):
@@ -103,33 +105,27 @@ class WoodruffData:
         # Then it explodes the dataframe so that each element of the list is mapped to its own row
         # So that each row contains a single 15 word phrase of an entry
         # """
-        self.data_woodruff_preprocessed = self.data_woodruff
+        self.data_preprocessed = self.data
+
+
+        # lowercase all text
+        self.data_preprocessed['text'] = self.data_preprocessed['text'].str.lower()
 
         # remove stopwords
-        stop_words = [' and ', r' the', ' that ',
-                    ' of ', ' to ',
-                    ' with ', ' at ', ' by ', ' in ',
-                    ' on ',
-                    ' for ',
-                    ' us ',
-                    ' we ',
-                    ' my ',
-                    ' his ',
-                    r' \. ',
-                    r' i '
-                    r' \, ']
+        self.data['text'] = self.data['text'].replace(DataUtil.stop_words, regex=True)
 
-        self.data_woodruff_preprocessed['text'] = self.data_woodruff_preprocessed['text'].apply(DataUtil.str_replace_list, regex_list = stop_words, replacement = ' ')
-        # lowercase all text
-        self.data_woodruff_preprocessed['text'] = self.data_woodruff_preprocessed['text'].str.lower()
-
-        self.data_woodruff_preprocessed['phrase'] = self.data_woodruff_preprocessed['text'].apply(DataUtil.split_string_into_list, n = 15)
-        self.data_woodruff_preprocessed = self.data_woodruff_preprocessed.explode('phrase')
-
+        # explode each entry into a separate row of 15 words
+        self.data_preprocessed['phrase'] = self.data_preprocessed['text'].apply(DataUtil.split_string_into_list, n = 15)
+        self.data_preprocessed = self.data_preprocessed.explode('phrase')
+        self.data_preprocessed = self.data_preprocessed.dropna(subset=['phrase'])
+        print(self.data_preprocessed['phrase'])
+        # for pizza in list(self.data_preprocessed['phrase']):
+            # print(pizza)
+        # print(self.data_preprocessed.info())
         # count number of words in 'text'
-        self.data_woodruff_preprocessed['word_count'] = self.data_woodruff_preprocessed['phrase'].apply(DataUtil.count_words)
+        self.data_preprocessed['word_count'] = self.data_preprocessed['phrase'].apply(DataUtil.count_words)
 
-        # we'll just remove all these cuz they're weird
-        self.data_woodruff_preprocessed.query('word_count < 5').head(100)
+        # we'll just remove all phrases with less than 5 words cuz they're weird
+        self.data_preprocessed.query('word_count < 5').head(100)
 
-        self.data_woodruff_preprocessed = self.data_woodruff_preprocessed.query('word_count > 5')
+        self.data_preprocessed = self.data_preprocessed.query('word_count > 5')
