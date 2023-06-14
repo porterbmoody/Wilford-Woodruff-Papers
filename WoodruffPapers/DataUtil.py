@@ -31,6 +31,12 @@ class DataUtil:
         ' his ' : ' ',
         ' you ' : ' ',
         r' which ' : ' ',
+        r' any ' : ' ',
+        r' not ' : ' ',
+        r' if ' : ' ',
+        r' thus ' : ' ',
+        r' so ' : ' ',
+        r' was ' : ' ',
         r' given ' : ' ',
         r' he ' : ' ',
         r' while ' : r' ',
@@ -47,6 +53,7 @@ class DataUtil:
         r' a ' : ' ',
         r' have ' : r' ',
         r' then ' : ' ',
+        r' unto ' : ' ',
         r' me ': ' ',
         r'\.' : '',
         r' i ' : ' ',
@@ -55,7 +62,6 @@ class DataUtil:
         r'\:' : '',
         r'\*\*' : '',
         r'\£' : ' ',
-        r'joseph smith jun' : 'joseph smith jr',
         }
 
     @staticmethod

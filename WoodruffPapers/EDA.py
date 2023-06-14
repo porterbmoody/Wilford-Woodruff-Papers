@@ -114,10 +114,11 @@ data
 # DataUtil.str_extract('Journal (December 29, 1833 – January 3, 1838)', date_regex)
 
 #%%
-
+######################################################
 from WoodruffData import WoodruffData
 import altair as alt
 from DataUtil import DataUtil
+import pandas as pd
 
 # read woodruff data
 url_woodruff = "https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv"
@@ -128,42 +129,160 @@ woodruff_data = WoodruffData(path_woodruff)
 
 woodruff_data.clean_data()
 
-woodruff_data.data
+
+words = [
+    'god',
+    'lord',
+    'jesus christ',
+    # 'holy spirit',
+    'holy ghost',
+    # 'jesus'
+    ]
+data = pd.DataFrame()
+
+
+def add_count_of_word(woodruff_data, word, data):
+    woodruff_data['word'] = word
+    woodruff_data['count'] = woodruff_data['text'].apply(DataUtil.str_count_occurrences,
+                                                                        word=word)
+
+    data_grouped = woodruff_data.groupby(['year', 'count', 'word']).agg(sum).reset_index()
+    data = pd.concat([data_grouped, data])
+
+    return data
+for word in words:
+    data = add_count_of_word(woodruff_data.data, word, data)
 
 
 
-word = 'book of mormon'
-woodruff_data.data['count_'+word] = woodruff_data.data['text'].apply(DataUtil.str_count_occurrences,
-                                                                       word=word)
 
-woodruff_data.data
-
-
-
-data = woodruff_data.data.groupby(['year', 'count_'+word]).agg(sum).reset_index()
-
-data
+# group by every 5 years
+data1 = data.assign(
+    years_5 = lambda x: x['year'].astype(int) - x['year'].astype(int) % 5
+).groupby(['years_5', 'word']).agg(sum).reset_index()
 
 
-
-
-
-# woodruff_data.data.value_counts('count_'+word)
-
-alt.Chart(data, title = 'mentions of the word '+word).encode(
-    x ='year',
-    y = 'count_'+word,
-).mark_boxplot()
+alt.Chart(data1, title = 'mentions of divinity by Wilford Woodruff').encode(
+    x ='years_5:N',
+    y = 'count',
+    color='word'
+).mark_line()
 
 
 # %%
+# graphing some more words
+words = [
+    'book of mormon',
+    'bible',
+    # 'pearl of great price',
+    'new testament',
+    'gathering of israel',
+    ]
+data = pd.DataFrame()
 
 
-string = "Journal (December 29, 1833 – January 3, 1838)"
+def add_count_of_word(woodruff_data, word, data):
+    woodruff_data['word'] = word
+    woodruff_data['count'] = woodruff_data['text'].apply(DataUtil.str_count_occurrences,
+                                                                        word=word)
 
-date_regex = r"\b\w+\s\d{1,2},\s\d{4}\b"
+    data_grouped = woodruff_data.groupby(['year', 'count', 'word']).agg(sum).reset_index()
+    data = pd.concat([data_grouped, data])
+
+    return data
+for word in words:
+    data = add_count_of_word(woodruff_data.data, word, data)
 
 
-DataUtil.str_extract(string, regex = date_regex)
+#%%
+
+# group by every 5 years
+data1 = data.assign(
+    years_5 = lambda x: x['year'].astype(int) - x['year'].astype(int) % 5
+).groupby(['years_5', 'word']).agg(sum).reset_index()
 
 
+alt.Chart(data1, title = 'mentions of various words by Wilford Woodruff every 5 years').encode(
+    x ='years_5:N',
+    y = 'count',
+    color='word'
+).mark_line()
+
+# %%
+# graphing some more words
+words = [
+    'joseph smith jr',
+    # 'parley pratt',
+    'brigham young',
+    'john taylor',
+    ]
+data = pd.DataFrame()
+
+
+def add_count_of_word(woodruff_data, word, data):
+    woodruff_data['word'] = word
+    woodruff_data['count'] = woodruff_data['text'].apply(DataUtil.str_count_occurrences,
+                                                                        word=word)
+
+    data_grouped = woodruff_data.groupby(['year', 'count', 'word']).agg(sum).reset_index()
+    data = pd.concat([data_grouped, data])
+
+    return data
+for word in words:
+    data = add_count_of_word(woodruff_data.data, word, data)
+
+
+
+# group by every 5 years
+data1 = data.assign(
+    years_5 = lambda x: x['year'].astype(int) - x['year'].astype(int) % 5
+).groupby(['years_5', 'word']).agg(sum).reset_index()
+
+
+alt.Chart(data1, title = 'mentions of prophets by Wilford Woodruff').encode(
+    x ='years_5:N',
+    y = 'count',
+    color='word'
+).mark_line()
+# %%
+# graphing some more words
+words = [
+    # 'death',
+    # 'died',
+    # 'sad',
+    # 'blessed',
+    'inspiration',
+    'inspired',
+    'satan',
+    # 'repentance',
+    # 'faith',
+    # 'batism',
+    # 'batize',
+    # 'endure to the end',
+    ]
+data = pd.DataFrame()
+
+
+def add_count_of_word(woodruff_data, word, data):
+    woodruff_data['word'] = word
+    woodruff_data['count'] = woodruff_data['text'].apply(DataUtil.str_count_occurrences,
+                                                                        word=word)
+
+    data_grouped = woodruff_data.groupby(['year', 'count', 'word']).agg(sum).reset_index()
+    data = pd.concat([data_grouped, data])
+
+    return data
+for word in words:
+    data = add_count_of_word(woodruff_data.data, word, data)
+
+# group by every 5 years
+data1 = data.assign(
+    years_5 = lambda x: x['year'].astype(int) - x['year'].astype(int) % 5
+).groupby(['years_5', 'word']).agg(sum).reset_index()
+
+
+alt.Chart(data1, title = 'mentions of prophets by Wilford Woodruff').encode(
+    x ='years_5:N',
+    y = 'count',
+    color='word'
+).mark_line()
