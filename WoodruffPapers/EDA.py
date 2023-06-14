@@ -114,7 +114,7 @@ data
 # DataUtil.str_extract('Journal (December 29, 1833 – January 3, 1838)', date_regex)
 
 #%%
-
+import pandas as pd
 from WoodruffData import WoodruffData
 import altair as alt
 from DataUtil import DataUtil
@@ -142,8 +142,6 @@ woodruff_data.data
 
 data = woodruff_data.data.groupby(['year', 'count_' + word]).agg(sum).reset_index()
 
-
-df = pd.Series([11,16,21]).apply(lambda x: custom_round(x, base=5))
 
 # group by every 5 years
 data.groupby(data['year'])['count_'+word].sum()
