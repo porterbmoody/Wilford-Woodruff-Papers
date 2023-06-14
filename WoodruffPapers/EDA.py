@@ -132,6 +132,7 @@ woodruff_data.data
 
 
 
+#%%
 word = 'book of mormon'
 woodruff_data.data['count_'+word] = woodruff_data.data['text'].apply(DataUtil.str_count_occurrences,
                                                                        word=word)
@@ -139,13 +140,16 @@ woodruff_data.data['count_'+word] = woodruff_data.data['text'].apply(DataUtil.st
 woodruff_data.data
 
 
-
-data = woodruff_data.data.groupby(['year', 'count_'+word]).agg(sum).reset_index()
-
-data
+data = woodruff_data.data.groupby(['year', 'count_' + word]).agg(sum).reset_index()
 
 
+df = pd.Series([11,16,21]).apply(lambda x: custom_round(x, base=5))
 
+# group by every 5 years
+data.groupby(data['year'])['count_'+word].sum()
+
+
+#%%
 
 
 # woodruff_data.data.value_counts('count_'+word)
