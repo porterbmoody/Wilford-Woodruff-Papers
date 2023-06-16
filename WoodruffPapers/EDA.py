@@ -114,7 +114,11 @@ data
 # DataUtil.str_extract('Journal (December 29, 1833 – January 3, 1838)', date_regex)
 
 #%%
+<<<<<<< HEAD
 ######################################################
+=======
+import pandas as pd
+>>>>>>> ca922576f6a9b0bfdcd36162172a0cd3aa1b294b
 from WoodruffData import WoodruffData
 import altair as alt
 from DataUtil import DataUtil
@@ -146,20 +150,39 @@ def add_count_of_word(woodruff_data, word, data):
     woodruff_data['count'] = woodruff_data['text'].apply(DataUtil.str_count_occurrences,
                                                                         word=word)
 
+<<<<<<< HEAD
     data_grouped = woodruff_data.groupby(['year', 'count', 'word']).agg(sum).reset_index()
     data = pd.concat([data_grouped, data])
 
     return data
 for word in words:
     data = add_count_of_word(woodruff_data.data, word, data)
+=======
+#%%
+word = 'book of mormon'
+woodruff_data.data['count_'+word] = woodruff_data.data['text'].apply(DataUtil.str_count_occurrences,
+                                                                       word=word)
+
+woodruff_data.data
 
 
+data = woodruff_data.data.groupby(['year', 'count_' + word]).agg(sum).reset_index()
+>>>>>>> ca922576f6a9b0bfdcd36162172a0cd3aa1b294b
 
 
+# group by every 5 years
+data.groupby(data['year'])['count_'+word].sum()
+
+
+<<<<<<< HEAD
 # group by every 5 years
 data1 = data.assign(
     years_5 = lambda x: x['year'].astype(int) - x['year'].astype(int) % 5
 ).groupby(['years_5', 'word']).agg(sum).reset_index()
+=======
+#%%
+
+>>>>>>> ca922576f6a9b0bfdcd36162172a0cd3aa1b294b
 
 
 alt.Chart(data1, title = 'mentions of divinity by Wilford Woodruff').encode(
