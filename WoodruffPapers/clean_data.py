@@ -95,7 +95,6 @@ results.sort_values(by = 'percentage_match', ascending=False)
 
 # %%
 
-results.sort_values(by = 'percentage_match', ascending=False)
 
 
 
