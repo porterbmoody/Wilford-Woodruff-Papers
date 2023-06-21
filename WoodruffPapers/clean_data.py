@@ -8,6 +8,7 @@ from WoodruffData import WoodruffData
 from ScriptureData import ScriptureData
 from DataUtil import DataUtil
 from AISwag import AISwag
+from multiprocessing import Pool
 
 
 pd.set_option('display.max_rows', 100)
@@ -27,12 +28,10 @@ woodruff_data = WoodruffData(path_woodruff)
 woodruff_data.data_raw
 # woodruff_data.data_raw.to_csv(path_woodruff)
 
-
-#%%
 woodruff_data.clean_data()
 # woodruff_data.data = woodruff_data.data.head(1)
-
 woodruff_data.preprocess_data()
+woodruff_data.data_preprocessed
 
 #%%
 
@@ -57,11 +56,11 @@ DataUtil.create_frequency_dist(text_sample).head(100)
 #%%
 
 ## run verse matching algorithm
-data_sample = woodruff_data.data_preprocessed.head(600)
+data_sample = woodruff_data.data_preprocessed.head(1000)
 
 results = pd.DataFrame()
 
-for index, row in scripture_data.data.iloc[300 : 400].iterrows():
+for index, row in scripture_data.data.iterrows(): #.iloc[100 : 2000]
     verse_title    = row['verse_title']
     scripture_text = row['scripture_text']
 
@@ -83,20 +82,54 @@ for index, row in scripture_data.data.iloc[300 : 400].iterrows():
 
         print(list(data_sample.columns))
         # print(colored('attaching results', 'green'), data_sample['percentage_match'].max())
-        top_3_rows = data_sample.nlargest(3, 'percentage_match')[['phrase', 'scripture_text', 'percentage_match', 'text']]
+        top_3_rows = data_sample.nlargest(3, 'percentage_match')[['phrase', 'scripture_text', 'percentage_match', 'text', 'Text Only Transcript']]
         top_3_rows['verse_title'] = verse_title
         # add top 3 percentage match rows to results dataframe
         results = pd.concat([results, top_3_rows])
 
 
+
+
+#%%
 results.sort_values(by = 'percentage_match', ascending=False)
 
+# results
 
 
 # %%
 
+# results.sort_values(by = 'percentage_match', ascending=False)
+from AISwag import AISwag
+AISwag.compute_match_percentage('yo my name is porter commandment eternity',
+                                'yo whats up commandment eternity')
+
 
 
 
 # %%
 
+<<<<<<< HEAD
+=======
+import time
+>>>>>>> 538d91a8121644b575e3e699172270396392ce46
+
+# Create a list of texts to update
+texts = ["Loading", "Updating", "Processing", "Saving"]
+
+# Create a progress bar using tqdm
+from tqdm import tqdm
+progress_bar = tqdm(total=len(texts), desc="Progress", unit="step")
+
+# Iterate through the texts
+for text in texts:
+    # Update the progress bar description
+    progress_bar.set_description(text)
+
+    # Simulate some work being done
+    time.sleep(1)
+
+    # Increment the progress bar
+    progress_bar.update(1)
+
+# Close the progress bar
+progress_bar.close()

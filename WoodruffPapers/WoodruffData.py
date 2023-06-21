@@ -36,6 +36,8 @@ class WoodruffData:
         r'Aprail'      : r'April',
         r'untill'      : r'until',
         r'sumwhat'      : r'somewhat',
+        r'joseph smith jun' : r'joseph smith jr',
+        r'miricle' : r'miracle',
         }
 
     symbols = {
@@ -82,16 +84,16 @@ class WoodruffData:
         ## data cleaning
         # rename text column to just 'text'
         self.data = self.data_raw
-        self.data = self.data.rename(columns={"Text Only Transcript": "text"})
+        # self.data = self.data.rename(columns={"Text Only Transcript": "text"})
 
 
-        # columns = ['Document Type', 'Parent Name', 'text']
-        # self.data = self.data[columns]
+        self.data['text'] = self.data['Text Only Transcript']
+        columns = ['Document Type', 'Parent Name','Name',  'text','Text Only Transcript']
+        self.data = self.data[columns]
 
         # fix date column idk what the heck is wrong with it but well use regex
         # date_regex = r"1[98]\d{2}"
-
-        self.data['text'] = self.data['text'].replace(self.typos, regex=True)
+        self.data['text'] = self.data['Text Only Transcript'].replace(self.typos, regex=True)
         self.data['text'] = self.data['text'].replace(self.symbols, regex=True)
 
         # loop through entries and remove rows that have regex match in entry
@@ -101,16 +103,16 @@ class WoodruffData:
         # lowercase all text
         self.data['text'] = self.data['text'].str.lower()
 
-        self.data = self.data.dropna(subset=['date'])
+        # self.data = self.data.dropna(subset=['date'])
 
-        regex_year =r'\d{4}'
+        # regex_year =r'\d{4}'
         # date_format = "%B %d, %Y"
         # self.data['date'] = pd.to_datetime(self.data['date'], format=date_format)
-        self.data['year'] = self.data['date'].apply(DataUtil.str_extract, regex=regex_year)
+        # self.data['year'] = self.data['date'].apply(DataUtil.str_extract, regex=regex_year)
             # data[data['text'].str.contains(entry) == False]
-        # date_regex = r"\w+\s\d{1,2}\,\s\d{4}|\w+\s\d{4}"
+        date_regex = r"\w+\s\d{1,2}\,\s\d{4}|\w+\s\d{4}"
 
-        # self.data['date'] = self.data['Parent Name'].apply(DataUtil.str_extract, regex = date_regex)
+        self.data['date'] = self.data['Parent Name'].apply(DataUtil.str_extract, regex = date_regex)
 
 
     def preprocess_data(self):
@@ -125,8 +127,10 @@ class WoodruffData:
         # """
         self.data_preprocessed = self.data
 
+
+
         # remove stopwords
-        self.data['text'] = self.data['text'].replace(DataUtil.stop_words, regex=True)
+        self.data_preprocessed['text'] = self.data_preprocessed['text'].replace(DataUtil.stop_words, regex=True)
 
         # explode each entry into a separate row of 15 words
         self.data_preprocessed['phrase'] = self.data_preprocessed['text'].apply(DataUtil.split_string_into_list, n = 15)
