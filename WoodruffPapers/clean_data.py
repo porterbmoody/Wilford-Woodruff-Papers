@@ -69,12 +69,19 @@ scripture_strings
 
 #%%
 
-vectorizer = TfidfVectorizer()
-# Compute TF-IDF matrices
-tfidf_matrix_woodruff = vectorizer.fit_transform(words_woodruff)
-tfidf_matrix_verse = vectorizer.transform(words_scripture)
+vectorizer = TfidfVectorizer(stop_words='english')
 
-similarity_scores = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_verse)
+
+# words_woodruff = DataUtil.str_split(text_woodruff)
+# words_scripture = DataUtil.str_split(scripture_text)
+
+# Compute TF-IDF matrices
+tfidf_matrix_woodruff = vectorizer.fit_transform(woodruff_strings)
+# tfidf_matrix_verse = vectorizer.transform(woodruff_strings)
+df_idf = pd.DataFrame(vectorizer, index=vectorizer.get_feature_names(),columns=["idf_weights"]) 
+df_idf
+# similarity_scores = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_verse)
+# similarity_scores
 
 # vectorizer.get_feature_names_out()
 # woodruff_word_match_ids   = np.unique(np.where(similarity_scores == 1)[0])
