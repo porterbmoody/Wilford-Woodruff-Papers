@@ -9,6 +9,8 @@ from ScriptureData import ScriptureData
 from DataUtil import DataUtil
 from AISwag import AISwag
 from multiprocessing import Pool
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 pd.set_option('display.max_rows', 100)
@@ -29,14 +31,15 @@ woodruff_data.data_raw
 # woodruff_data.data_raw.to_csv(path_woodruff)
 
 woodruff_data.clean_data()
+woodruff_data.data
+
+
 # woodruff_data.data = woodruff_data.data.head(1)
-woodruff_data.preprocess_data()
-woodruff_data.data_preprocessed
+# woodruff_data.preprocess_data()
 
 #%%
 
-text_sample = DataUtil.combine_rows(woodruff_data.data['text'].head(10))
-DataUtil.create_frequency_dist(text_sample).head(100)
+
 
 #%%
 # read scripture data
@@ -45,7 +48,49 @@ path_scriptures = '../data/scriptures.csv'
 scripture_data = ScriptureData(path_scriptures)
 
 scripture_data.clean_data()
-scripture_data.preprocess_data()
+
+scripture_data.data
+#%%
+text_sample = DataUtil.combine_rows(woodruff_data.data['text'].head(10))
+DataUtil.create_frequency_dist(text_sample).head(100)
+
+# woodruff_strings = DataUtil.split_string_into_list(text_sample, n = 15)
+# DataUtil.create_frequency_dist(text_sample).head(100)
+
+woodruf_text = DataUtil.combine_rows(woodruff_data.data['text'].head(10))
+woodruff_strings = DataUtil.split_string_into_list(woodruf_text, n = 15)
+woodruff_strings
+
+
+scripture_text = DataUtil.combine_rows(woodruff_data.data['text'].head(20))
+scripture_strings = DataUtil.split_string_into_list(scripture_text, n = 15)
+scripture_strings
+
+
+#%%
+
+vectorizer = TfidfVectorizer()
+# Compute TF-IDF matrices
+tfidf_matrix_woodruff = vectorizer.fit_transform(words_woodruff)
+tfidf_matrix_verse = vectorizer.transform(words_scripture)
+
+similarity_scores = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_verse)
+
+# vectorizer.get_feature_names_out()
+# woodruff_word_match_ids   = np.unique(np.where(similarity_scores == 1)[0])
+# scriptures_word_match_ids = np.unique(np.where(similarity_scores == 1)[1])
+# percent_match_woodruff    = round(len(woodruff_word_match_ids) / len(words_woodruff), 4)
+# percent_match_scripture    = round(len(scriptures_word_match_ids) / len(words_scripture), 4)
+# return percent_match_woodruff
+
+#%%
+
+
+
+#%%
+
+# scripture_data.preprocess_data()
+
 
 
 scripture_data.data.head(100)
@@ -108,10 +153,7 @@ AISwag.compute_match_percentage('yo my name is porter commandment eternity',
 
 # %%
 
-<<<<<<< HEAD
-=======
 import time
->>>>>>> 538d91a8121644b575e3e699172270396392ce46
 
 # Create a list of texts to update
 texts = ["Loading", "Updating", "Processing", "Saving"]

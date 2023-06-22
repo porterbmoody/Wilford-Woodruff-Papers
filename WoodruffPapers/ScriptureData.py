@@ -11,7 +11,7 @@ class ScriptureData:
     def clean_data(self):
         print('cleaning scripture data...')
         books = ["Book of Mormon", "Doctrine and Covenants", "Pearl of Great Price"]#"New Testament",
-        # books = ['Doctrine and Covenants']
+        books = ['Book of Mormon']
         # filter down to only certain books
         self.data = self.data_raw[self.data_raw['volume_title'].isin(books)]
         self.data['scripture_text'] = self.data['scripture_text'].str.lower()
