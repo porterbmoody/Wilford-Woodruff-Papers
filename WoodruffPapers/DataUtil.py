@@ -2,6 +2,7 @@ import pandas as pd
 import re
 from nltk.tokenize import word_tokenize
 from nltk.probability import FreqDist
+import numpy as np
 
 
 
@@ -65,7 +66,7 @@ class DataUtil:
         }
 
     @staticmethod
-    def str_split(string, remove_duplicates = True):
+    def str_split(string, remove_duplicates = True, stop_words = None):
         if type(string) == float:
             print(string)
         words = string.split(' ')
@@ -109,11 +110,22 @@ class DataUtil:
         return re.findall(regex, string)
 
     @staticmethod
-    def str_count_occurrences(string, word):
+    def str_count_occurrences(string, regex):
         """ Counts ocurrences of a certain keyword within string and
             returns int
         """
-        return len(DataUtil.str_extract_all(string, word))
+        return len(DataUtil.str_extract_all(string, regex))
+
+    @staticmethod
+    def remove_duplicate_words(string):
+        # Split the string into individual words
+        words = string.split()
+
+        # Use a set to remove duplicates while preserving the order
+        unique_words = list(set(words))
+
+        # Join the unique words back into a string
+        return ' '.join(unique_words)
 
     @staticmethod
     def str_remove(string, regex):
