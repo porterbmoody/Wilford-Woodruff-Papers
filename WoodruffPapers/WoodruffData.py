@@ -18,6 +18,7 @@ class WoodruffData:
         r'sumthing'      : r'something',
         r' els '         : r' else ',
         r'savio saviour' : r'saviour',
+        r'arived' : r'arrived',
         r'intirely    ' : r'entirely',
         r'phylosophers' : r'philosophers',
         r'baptised'     : r'baptized',
@@ -38,6 +39,7 @@ class WoodruffData:
         r'sumwhat'      : r'somewhat',
         r'joseph smith jun' : r'joseph smith jr',
         r'miricle' : r'miracle',
+        r'procedings' : r'proceedings',
         }
 
     symbols = {
@@ -75,6 +77,93 @@ class WoodruffData:
         r'Pgs 172\–288 are blank',
         ]
 
+    religious_words = ['joseph smith jr',
+             'eternity',
+             'book of mormon',
+             'heaven',
+             'brigham young',
+             'priesthood',
+             'babylon',
+             'bible',
+             'new testament',
+             'commandment',
+             'gospel',
+             'new testament',
+             'dispensation',
+             'commanded',
+            'god',
+            'lord',
+            'book',
+            'hearken',
+            'inhabitants',
+            'man',
+            'earth',
+            'baptized',
+            'baptism',
+            'alexander',
+            'monday',
+            'kentucky',
+            'county',
+            'day',
+            'faith',
+            'bless',
+            'blessing',
+            'blessed',
+            'jesus christ',
+            'christ',
+            'jesus',
+            'elder',
+            'elders',
+            'ordinances',
+            'temples',
+            'house of the lord',
+            'abide',
+            'repentance',
+            'repent',
+            'repents',
+            'holy ghost',
+            'spirit',
+            'miracle',
+            'miracles',
+            'spoken',
+            'spoke',
+            'spake',
+            'kingdom',
+            'witness',
+            'strength',
+            'celestial',
+            'power',
+            'earnest',
+            'preach the gospel',
+            'preach',
+            'inspired',
+            'satan',
+            'console',
+            'account',
+            'sunday',
+            'church',
+            'restored church',
+            'church of jesus christ of latter day saints',
+            'salvation',
+            'lamanites',
+            'nephites',
+            'lehi',
+            'nephi',
+            'righteous',
+            'holy',
+            'daniel',
+            'worthy',
+            'prophecy',
+            'ohio',
+            'revelations',
+            'savior',
+            '2nd coming',
+            'glory',
+            'true',
+            'chaste',
+            'god rules',
+            ]
+
     def __init__(self, path) -> None:
         self.data_raw = pd.read_csv(path)
         if "`Document Type`" in self.data_raw.columns:
@@ -86,33 +175,22 @@ class WoodruffData:
         self.data = self.data_raw
         # self.data = self.data.rename(columns={"Text Only Transcript": "text"})
 
-
-        self.data['text'] = self.data['Text Only Transcript']
-        columns = ['Document Type', 'Parent Name','Name',  'text','Text Only Transcript']
-        self.data = self.data[columns]
-
-        # fix date column idk what the heck is wrong with it but well use regex
-        # date_regex = r"1[98]\d{2}"
-        self.data['text'] = self.data['Text Only Transcript'].replace(self.typos, regex=True)
-        self.data['text'] = self.data['text'].replace(self.symbols, regex=True)
-
-        # loop through entries and remove rows that have regex match in entry
-        for entry in self.entries_to_remove:
-            self.data = DataUtil.regex_filter(self.data, 'text', entry)
-
-        # lowercase all text
-        self.data['text'] = self.data['text'].str.lower()
+        # self.data['text'] = self.data['Text Only Transcript']
+        # columns = ['Document Type', 'Parent Name','Name',  'text','Text Only Transcript']
 
         # self.data = self.data.dropna(subset=['date'])
 
-        # regex_year =r'\d{4}'
         # date_format = "%B %d, %Y"
         # self.data['date'] = pd.to_datetime(self.data['date'], format=date_format)
-        # self.data['year'] = self.data['date'].apply(DataUtil.str_extract, regex=regex_year)
             # data[data['text'].str.contains(entry) == False]
-        date_regex = r"\w+\s\d{1,2}\,\s\d{4}|\w+\s\d{4}"
 
-        self.data['date'] = self.data['Parent Name'].apply(DataUtil.str_extract, regex = date_regex)
+        # for url
+        # regex_year =r'\d{4}'
+        # self.data['year'] = self.data['date'].apply(DataUtil.str_extract, regex=regex_year)
+
+        # for raw_entries
+        # date_regex = r"\w+\s\d{1,2}\,\s\d{4}|\w+\s\d{4}"
+        # self.data['date'] = self.data['Parent Name'].apply(DataUtil.str_extract, regex = date_regex)
 
 
     def preprocess_data(self):
