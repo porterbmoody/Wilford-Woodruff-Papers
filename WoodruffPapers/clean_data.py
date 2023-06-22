@@ -8,13 +8,7 @@ from WoodruffData import WoodruffData
 from ScriptureData import ScriptureData
 from DataUtil import DataUtil
 from multiprocessing import Pool
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import CountVectorizer
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from tqdm import tqdm
+
 
 pd.set_option('display.max_rows', 100)
 pd.set_option('max_colwidth', 400)
@@ -324,19 +318,21 @@ v2 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.2802187187492852, 0.0, 0.0, 0.2802187187492852,
 cosine_similarity(v1, v2)
 # woodruff_data.data_raw.to_csv(path_woodruff)
 
+woodruff_data.clean_data()
 # woodruff_data.data = woodruff_data.data.head(1)
-# woodruff_data.preprocess_data()
-# woodruff_data.data_preprocessed
+woodruff_data.preprocess_data()
+woodruff_data.data_preprocessed
 
 #%%
 
-# text_sample = DataUtil.combine_rows(woodruff_data.data['text'].head(10))
-# DataUtil.create_frequency_dist(text_sample).head(100)
+text_sample = DataUtil.combine_rows(woodruff_data.data['text'].head(10))
+DataUtil.create_frequency_dist(text_sample).head(100)
 
 #%%
 # read scripture data
 
-# scripture_data.preprocess_data()
+scripture_data.clean_data()
+scripture_data.preprocess_data()
 
 
 # scripture_data.data.head(100)
