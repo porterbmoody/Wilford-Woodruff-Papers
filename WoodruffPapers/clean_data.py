@@ -158,7 +158,6 @@ len(matches)
 matches
 
 #%%
-pd.DataFrame(matches)
 
 #%%
 
