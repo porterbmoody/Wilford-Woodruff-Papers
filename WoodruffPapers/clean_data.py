@@ -27,8 +27,7 @@ path_woodruff = '../data/data_woodruff_raw.csv'
 woodruff_data = WoodruffData(path_woodruff)
 
 
-woodruff_data.data_raw
-# woodruff_data.data_raw.to_csv(path_woodruff)
+s# woodruff_data.data_raw.to_csv(path_woodruff)
 
 woodruff_data.clean_data()
 woodruff_data.data
