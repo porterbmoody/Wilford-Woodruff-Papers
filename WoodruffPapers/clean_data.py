@@ -27,7 +27,7 @@ path_woodruff = '../data/data_woodruff_raw.csv'
 woodruff_data = WoodruffData(path_woodruff)
 
 
-s# woodruff_data.data_raw.to_csv(path_woodruff)
+# woodruff_data.data_raw.to_csv(path_woodruff)
 
 woodruff_data.clean_data()
 woodruff_data.data
@@ -36,9 +36,6 @@ woodruff_data.data
 # woodruff_data.data = woodruff_data.data.head(1)
 # woodruff_data.preprocess_data()
 
-#%%
-
-s
 
 #%%
 # read scripture data

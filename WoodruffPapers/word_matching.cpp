@@ -68,14 +68,14 @@ void find_matches(const std::vector<std::vector<std::string>>& data)
         for (const std::string& word : woodruff_words) {
             std::cout << word << " ";
         }
-        // std::cout << "\nwoodruff text...\n";
-        // std::cout << row[0] << "\n\n";
-        // std::cout << "scripture text...\n";
-        // std::cout << row[1];
-        // for (const auto& cell : row)
-        // {
-            // std::cout << cell << "\n";
-        // }
+        std::cout << "\nwoodruff text...\n";
+        std::cout << row[0] << "\n\n";
+        std::cout << "scripture text...\n";
+        std::cout << row[1];
+        for (const auto& cell : row)
+        {
+            std::cout << cell << "\n";
+        }
     }
 }
 
