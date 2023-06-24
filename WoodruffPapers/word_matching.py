@@ -14,6 +14,7 @@ import tqdm
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from tqdm import tqdm
 pd.set_option('display.max_colwidth', None)
 
 nltk.download('stopwords')
@@ -161,8 +162,8 @@ phrases_scriptures
 #%%
 
 # number_of_documents = 2000
-phrases_woodruff = phrases_woodruff[:110000]
-phrases_scriptures = phrases_scriptures[:3000]
+phrases_woodruff = phrases_woodruff
+phrases_scriptures = phrases_scriptures[:3600]
 
 
 vectorizer = TfidfVectorizer()
@@ -176,7 +177,7 @@ similarity_matrix = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_script
 similarity_matrix
 
 #%%
-threshold = 0.5  # Adjust this threshold based on your preference
+threshold = 0.6  # Adjust this threshold based on your preference
 similarity_scores = []
 top_phrases_woodruff = []
 top_phrases_scriptures = []
@@ -191,7 +192,7 @@ for i, phrase_woodruff in enumerate(phrases_woodruff):
             top_phrases_scriptures.append(phrase_scriptures)
             similarity_scores.append(similarity_score)
 
-
+progress_bar.close()
 # len(top_phrases_woodruff)
 # len(top_phrases_scriptures)
 # len(similarity_scores)
