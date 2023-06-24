@@ -14,10 +14,85 @@ import tqdm
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+pd.set_option('display.max_colwidth', None)
 
 nltk.download('stopwords')
 
+entries_to_remove = [
+    r'WW 1841-2',
+    r'Front cover',
+    r'THE SECOND BOOK OF WILLFORD FOR 1839',
+    r'W\. WOODRUFFs DAILY JOURNAL AND HISTORY IN 1842',
+    r"WILFORD WOODRUFF's DAILY JOURNAL AND HISTORY IN 1843",
+    r"WILLFORD WOODRUFF'S JOURNAL VOL\. 2\. AND A SYNOPSIS OF VOL\. 1\.",
+    r"Willford Woodruff's Journal Containing an Account Of my life and travels from the time of my first connextion with the Church of Jesus Christ of Latter-day Saints",
+    r'THE FIRST BOOK OF WILLFORD VOL\. 2\. FOR 1838',
+    r"WILLFORD\. WOORUFF's DAILY JOURNAL AND TRAVELS",
+    r'Pgs 172\–288 are blank',
+    ]
 
+symbols = {
+        # 'b\. 1795':'',
+        r'(, b\.)'              : r'',
+        r'\<U\+25CA\>'          : r'',
+        r'\&amp;c?'             : r"and",
+        r'\&apos;'              : r"'",
+        r"(\^?FIGURES?\^?)"     : r'',
+        r'[\{\}\~]'             : r'',
+        r'\s{2}'                : r' ',
+        r','                    : r'',
+        r'\[(\w+)\]'            : r'',
+        r'\n'                   : r' ',
+        r'\[\[(.*?)\|(.*?)\]\]' : r'\1',
+        r'\-\s'                  : r'',
+        r'- ng '                 : r'ng ',
+        r' ng '                 : r'ng ',
+        r' ed '                 : r'ed ',
+        r'\n'                 : r' ',
+        r'\s+'                 : r' ',
+        r'\.'                 : r'',
+        r'\.|\:|\;|\,|\-|\(|\)|\?|wo'                 : r'',
+    }
+
+typos = {
+        r'sacrafice'    : r'sacrifice',
+        r'discours'     : r'discourse',
+        r'travling'      : r'traveling',
+        r'oclock'       : r'oclock',
+        r'[Ww]\. [Ww]oodruff' : r'Wilford Woodruff',
+        r'any\s?whare'    : r'anywhere',
+        r'some\s?whare'     : r'somewhere',
+        r'whare'         : r'where',
+        r'sumthing'      : r'something',
+        r' els '         : r' else ',
+        r'savio saviour' : r'saviour',
+        r'arived' : r'arrived',
+        r'intirely    ' : r'entirely',
+        r'phylosophers' : r'philosophers',
+        r'baptised'     : r'baptized',
+        r'benef\- it'   : r'benefit',
+        r'preachi \-ng'      : r'preaching',
+        r'oppor- tunities' : r'opportunities',
+        r'vary'         : r'very',
+        r'Councellor'   : r'Counselor',
+        r'councellor'   : r'counselor',
+        r'sircumstances' : r'circumstances',
+        r'Preasent'    : r'present',
+        r'Sept\.'      : r'September',
+        r'Sacramento Sacramento' : r'Sacramento',
+        r'tryed'       : r'tried',
+        r'fals'        : r'false',
+        r'Aprail'      : r'April',
+        r'untill'      : r'until',
+        r'sumwhat'      : r'somewhat',
+        r'joseph smith jun' : r'joseph smith jr',
+        r'miricle' : r'miracle',
+        r'procedings' : r'proceedings',
+        r'w odruff' : r'woodruff',
+        r'prefered' : r'preferred',
+        r'traveling' : r'pizza',
+        r'esspecially' : r'especially',
+        }
 #%%
 url_woodruff = "https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv"
 path_woodruff = '../data/raw_entries.csv'
@@ -25,26 +100,36 @@ data_woodruff = pd.read_csv(path_woodruff)
 
 data_woodruff
 
+
 columns = ['date', 'text']
 data_woodruff = data_woodruff[columns]
 
-# clean woodruff data
-data_woodruff['text'] = data_woodruff['text'].replace(WoodruffData.symbols, regex=True)
-
-# loop through entries and remove rows that have regex match in entry
-for entry in WoodruffData.entries_to_remove:
-    data_woodruff = DataUtil.regex_filter(data_woodruff, 'text', entry)
 
 # lowercase all text
 data_woodruff['text'] = data_woodruff['text'].str.lower()
-# remove stop words
-stop_words = list(stopwords.words('english'))
-regex_remove = '\.|\:|\;|\,|\-|\(|\)|\?|wo'
-data_woodruff['text_clean'] = data_woodruff['text'].apply(lambda x: DataUtil.str_remove(x, regex_remove))
-data_woodruff['text_clean'] = data_woodruff['text_clean'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_words)]))
-data_woodruff['text_clean'] = data_woodruff['text_clean'].apply(lambda x: DataUtil.remove_duplicate_words(x))
 
-data_woodruff
+# clean woodruff data
+data_woodruff['text'] = data_woodruff['text'].replace(symbols, regex=True)
+data_woodruff['text'] = data_woodruff['text'].replace(typos, regex=True)
+
+# loop through entries and remove rows that have regex match in entry
+for entry in entries_to_remove:
+    data_woodruff = DataUtil.regex_filter(data_woodruff, 'text', entry)
+
+
+data_woodruff.to_csv('test.csv', index = False)
+
+text_woodruff = DataUtil.combine_rows(data_woodruff['text'])
+phrases_woodruff = DataUtil.split_string_into_list(text_woodruff, n = 15)
+
+print('scripture woodruff:', len(phrases_woodruff))
+phrases_woodruff
+
+# remove stop words
+# stop_words = list(stopwords.words('english'))
+# data_woodruff['text_clean'] = data_woodruff['text_clean'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_words)]))
+# remove duplicate words
+# data_woodruff['text_clean'] = data_woodruff['text_clean'].apply(lambda x: DataUtil.remove_duplicate_words(x))
 
 #%%
 url_scriptures = 'https://github.com/wilfordwoodruff/wilford_woodruff_hack23/raw/main/data/lds-scriptures.csv'
@@ -54,21 +139,68 @@ data_scriptures = pd.read_csv(path_scriptures)
 # clean scripture data
 books = ["Book of Mormon", "Doctrine and Covenants", "New Testament"]#"New Testament",
 books = ['Book of Mormon']
+
 # filter down to only certain books
 data_scriptures = data_scriptures[data_scriptures['volume_title'].isin(books)]
 data_scriptures['scripture_text'] = data_scriptures['scripture_text'].str.lower()
+data_scriptures['scripture_text'] = data_scriptures['scripture_text'].replace(typos, regex=True)
 
 # select only relevant columns
 data_scriptures = data_scriptures[['volume_title', 'verse_title', 'scripture_text']]
 
-data_scriptures['text_clean'] = data_scriptures['scripture_text'].apply(lambda x: DataUtil.str_remove(x, regex_remove))
-data_scriptures['text_clean'] = data_scriptures['text_clean'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_words)]))
-data_scriptures['text_clean'] = data_scriptures['text_clean'].apply(lambda x: DataUtil.remove_duplicate_words(x))
+# data_scriptures['text_clean'] = data_scriptures['text_clean'].apply(lambda x: ' '.join([word for word in x.split() if word not in (stop_words)]))
+# data_scriptures['text_clean'] = data_scriptures['text_clean'].apply(lambda x: DataUtil.remove_duplicate_words(x))
 data_scriptures
 
+text_scriptures = DataUtil.combine_rows(data_scriptures['scripture_text'])
+phrases_scriptures = DataUtil.split_string_into_list(text_scriptures, n = 15)
+print('scripture phrases:', len(phrases_scriptures))
+phrases_scriptures
+
+
+#%%
+
+# number_of_documents = 2000
+phrases_woodruff = phrases_woodruff[:110000]
+phrases_scriptures = phrases_scriptures[:3000]
+
+
+vectorizer = TfidfVectorizer()
+tfidf_matrix_woodruff = vectorizer.fit_transform(phrases_woodruff)
+tfidf_matrix_scriptures = vectorizer.transform(phrases_scriptures)
+tfidf_matrix_woodruff
 
 
 
+similarity_matrix = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_scriptures)
+similarity_matrix
+
+#%%
+threshold = 0.5  # Adjust this threshold based on your preference
+similarity_scores = []
+top_phrases_woodruff = []
+top_phrases_scriptures = []
+progress_bar = tqdm(total=len(phrases_woodruff), unit='item')
+
+for i, phrase_woodruff in enumerate(phrases_woodruff):
+    progress_bar.update(1)
+    for j, phrase_scriptures in enumerate(phrases_scriptures):
+        similarity_score = similarity_matrix[i][j]
+        if similarity_score > threshold:
+            top_phrases_woodruff.append(phrase_woodruff)
+            top_phrases_scriptures.append(phrase_scriptures)
+            similarity_scores.append(similarity_score)
+
+
+# len(top_phrases_woodruff)
+# len(top_phrases_scriptures)
+# len(similarity_scores)
+data = pd.DataFrame({'phrase_woodruff':top_phrases_woodruff,
+              'phrases_scriptures':top_phrases_scriptures,
+              'similarity_scores' : similarity_scores}).sort_values(by='similarity_scores',ascending=False)
+data.to_csv('top_matches.csv', index = False)
+
+data
 #%%
 
 string_woodruff = DataUtil.combine_rows(data_woodruff['text_clean'])
@@ -93,6 +225,8 @@ def percentage_match(phrase_woodruff, phrase_scripture):
         if word_woodruff in words_scripture and word_woodruff:
             count += 1
     return count / len(phrase_woodruff)
+
+#%%
     # transformer = TfidfTransformer()
     # tfidf_matrix_woodruff = transformer.fit_transform(phrase_woodruff)
     # tfidf_matrix_verse = transformer.transform(words_scripture)
@@ -139,11 +273,16 @@ def extract_matches(string_woodruff, string_scriptures):
 string_woodruff = DataUtil.combine_rows(phrases_woodruff)[:300]
 string_scriptures = DataUtil.combine_rows(phrases_scriptures)[:300]
 
-import os
-if os.path.exists("test1.csv"):
-    os.remove("test1.csv")
-with open("test1.csv", 'a') as f:
-    f.write(string_woodruff + ',' + string_scriptures)
+# import os
+filename = 'woodruff_full_strings.csv'
+data = pd.DataFrame({'text_woodruff':[string_woodruff], 'text_scriptures':[string_scriptures]})
+data.to_csv(filename, index=False)
+data
+
+# if os.path.exists(filename):
+#     os.remove(filename)
+# with open(filename, 'a') as f:
+#     f.write(string_woodruff + ',' + string_scriptures)
 
 
 #%%
@@ -299,19 +438,8 @@ for woodruff_phrase in woodruff_words[:2]:
 
 
 #%%
-for verse_text in scripture_data.data.head(2)['scripture_text']:
-    print('='*50)
-    verse_split = DataUtil.split_string_into_list(verse_text, 15)
-    tr_idf_model  = TfidfVectorizer()
-    verse_vector = tr_idf_model.fit_transform(verse_split).toarray()
-    verse_tf_idf = pd.DataFrame(tf_idf_array, columns = words_set)
 
-    # print(verse_tf_idf)
-    for index, row in verse_tf_idf.iterrows():
-        verse_vector = list(row)
-        print(verse_vector)
+
 
 #%%
-v1 = [0.28680742049286617, 0.0, 0.28680742049286617, 0.21812443587607397, 0.28680742049286617, 0.0, 0.0, 0.28680742049286617, 0.0, 0.0, 0.0, 0.21812443587607397, 0.28680742049286617, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.28680742049286617, 0.28680742049286617, 0.0, 0.0, 0.0, 0.0, 0.28680742049286617, 0.0, 0.0, 0.0, 0.0, 0.28680742049286617, 0.28680742049286617, 0.28680742049286617, 0.0]
-v2 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.2802187187492852, 0.0, 0.0, 0.2802187187492852, 0.2802187187492852, 0.0, 0.21311355837330712, 0.0, 0.2802187187492852, 0.2802187187492852, 0.0, 0.2802187187492852, 0.0, 0.0, 0.2802187187492852, 0.0, 0.0, 0.21311355837330712, 0.2802187187492852, 0.2802187187492852, 0.0, 0.0, 0.21311355837330712, 0.2802187187492852, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2802187187492852]
-cosine_similarity(v1, v2)
+# testing

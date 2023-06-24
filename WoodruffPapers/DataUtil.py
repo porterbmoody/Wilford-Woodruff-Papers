@@ -145,8 +145,8 @@ class DataUtil:
     def str_replace_list(string, regex_list, replacement):
         for regex in regex_list:
             if regex == r'\s\d+\s' and DataUtil.str_detect(string, regex):
-                print("PIZZA")
-                print(string)
+                # print("PIZZA")
+                # print(string)
                 print(re.sub(regex, replacement, string))
             string = re.sub(regex, replacement, string)
         return string
