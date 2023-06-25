@@ -5,13 +5,6 @@ from datetime import datetime
 
 class WoodruffData:
 
-    pizza = {'traveling':'pizza'}
-
-
-
-
-
-
     religious_words = ['joseph smith jr',
              'eternity',
              'book of mormon',

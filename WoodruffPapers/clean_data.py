@@ -178,3 +178,150 @@ for text in texts:
 
 # Close the progress bar
 progress_bar.close()
+
+
+#%%
+
+all_matches = pd.DataFrame()
+phrases_woodruff1 = phrases_woodruff
+progress_bar = tqdm(total=len(phrases_woodruff1), unit='item')
+phrases_scriptures
+for phrase_woodruff in phrases_woodruff1:
+    for phrase_scripture in phrases_scriptures:
+        # words_woodruff, words_scripture = DataUtil.str_split(phrase_woodruff), DataUtil.str_split(phrase_scripture)
+        similarity = percentage_match(phrase_woodruff, phrase_scripture)
+        if similarity > .1:
+            print(similarity)
+            print(phrase_woodruff)
+            print(phrase_scripture)
+            # print(colored('match: '+str(similarity), 'green'))
+            top_matches = pd.DataFrame({'similarity': similarity,
+                                        'phrase_woodruff':phrase_woodruff,
+                                        'phrase_scripture': phrase_scripture,
+                                        },index=[0])
+            all_matches = pd.concat([all_matches, top_matches]).sort_values(by='similarity',ascending=False)
+    # progress_bar.set_description(phrase_scripture[:5] + 'match count:')
+    progress_bar.update(1)
+progress_bar.close()
+all_matches
+
+#%%
+
+top_matches = pd.DataFrame({'similarity': similarity,
+                            'phrase_woodruff':phrase_woodruff,
+                            'phrase_scripture': phrase_scripture,
+                            },index=0)
+# all_matches = pd.concat([all_matches, top_matches])
+top_matches
+#%%
+
+# s1 = 'hello pizza pizza ok poop, pie'
+# s2 = 'hello pizza swag'
+# compute_similarity(phrases_woodruff[0], phrases_scriptures[0])
+# compute_similarity(s1, s2)
+
+
+
+
+
+#%%
+data_scriptures1 = data_scriptures
+
+progress_bar = tqdm(total=len(data_scriptures1), unit='item')
+# loop through each entry and extract words contained in verses
+all_matches = pd.DataFrame()
+for verse, verse_title in zip(data_scriptures1['text_clean'], data_scriptures1['verse_title']):
+    # progress_bar.set_description(verse_title)
+    progress_bar.update(1)
+    verse_words = DataUtil.str_split(verse)
+    # iterate through words and count occurence of each word within entry
+    for verse_word in verse_words:
+        if verse_word in religious_words:
+            data_woodruff['matches'] = data_woodruff['text_clean'].apply(lambda x: DataUtil.str_extract_all(x, regex = r' '+verse_word))
+            data_woodruff['match_count'] = data_woodruff['text_clean'].apply(lambda x: DataUtil.str_count_occurrences(x, regex = r' '+verse_word ))
+            # print(verse_word)
+            if data_woodruff['match_count'].max() > 1:
+                top_matches = data_woodruff.nlargest(1, 'match_count')
+                top_matches['verse'] = verse_title
+                # print(top_matches)
+                all_matches = pd.concat([all_matches, top_matches]).sort_values(by = 'match_count', ascending=False)
+                progress_bar.set_description(verse_title + 'match count:'+str(len(all_matches)))
+# all_matches.to_csv('pizza.csv')
+all_matches
+
+# for entry in data_woodruff['text_clean'][:3]:
+    # print(entry)
+    # woodruff_data.data['scripture_word_matches'] = woodruff_data.data['text'].apply(lambda x: [word for word in x.split() if word in (verse)])
+# woodruff_data.data
+
+
+#%%
+
+# create woodruff tfidf
+# tr_idf_model  = TfidfVectorizer()
+# tf_idf_vector = tr_idf_model.fit_transform(woodruff_words)
+
+# # print(type(tf_idf_vector), tf_idf_vector.shape)
+# tf_idf_array = tf_idf_vector.toarray()
+
+
+# woodruff_tf_idf = pd.DataFrame(tf_idf_array, columns = tr_idf_model.get_feature_names_out())
+# woodruff_tf_idf
+
+# #%%
+
+# # scripture_text = scripture_data.data['scripture_text'].head(10)
+# # create scripture tfidf
+# tr_idf_model  = TfidfVectorizer()
+# tf_idf_vector = tr_idf_model.fit_transform(scripture_words)
+
+# # print(type(tf_idf_vector), tf_idf_vector.shape)
+# tf_idf_array = tf_idf_vector.toarray()
+
+
+# scripture_tf_idf = pd.DataFrame(tf_idf_array, columns = tr_idf_model.get_feature_names_out())
+# scripture_tf_idf
+
+#%%
+# def vectorize(string):
+#     tr_idf_model  = TfidfVectorizer()
+#     tf_idf_vector = tr_idf_model.fit_transform(scripture_words)
+#     tf_idf_array = tf_idf_vector.toarray()
+#     scripture_tf_idf = pd.DataFrame(tf_idf_array, columns = tr_idf_model.get_feature_names_out())
+#     return scripture_tf_idf
+
+# loop through list of 10 word entry phrases
+for woodruff_phrase in woodruff_words[:2]:
+    woodruff_score = 0
+    # loop through list of 10 word scripture phrases
+    for scripture_phrase in scripture_words:
+        woodruff_words_split = DataUtil.str_split(woodruff_phrase)
+        scripture_words_split = DataUtil.str_split(scripture_phrase)
+
+        # remove stop words
+        stop_words = list(set(stopwords.words('english')))
+        woodruff_words_split = [word for word in woodruff_words_split if not word.lower() in stop_words]
+        scripture_words_split = [word for word in scripture_words_split if not word.lower() in stop_words]
+
+        # print('woodruff phrase:', woodruff_words_split)
+        # print('scripture phrase', scripture_words_split)
+        for woodruff_word in woodruff_words_split:
+            if woodruff_word in scripture_words_split:
+                print(woodruff_word)
+                woodruff_score += 1
+
+
+#%%
+
+
+# similarity_score = cosine_similarity(woodruff_vector, verse_vector)
+# print(similarity_score)
+# print(cosine)
+
+
+#%%
+
+
+
+#%%
+# testing
