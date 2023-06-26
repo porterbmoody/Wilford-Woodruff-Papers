@@ -7,10 +7,10 @@
 
 
 ### Scriture matches
-- [Book of Mormon Matches](top_matches/Book of Mormon.csv)
-- [Doctrine and Covenants Matches](./top_matches/top_matches_Doctrine and Covenants.csv)
-- [New Testament Matches](./top_matches/top_matches_New Testament.csv)
-- [Pearl of Great Price Matches](./top_matches/top_matches_Pearl of Great Price.csv)
+- [Book of Mormon Matches](top_matches/Book%20of%20Mormon.csv)
+- [Doctrine and Covenants Matches](./top_matches/Doctrine%20and%20Covenants.csv)
+- [New Testament Matches](./top_matches/top_matches_New%20Testament.csv)
+- [Pearl of Great Price Matches](./top_matches/Pearl%20of%20Great%20Price.csv)
 
 
 ### Code
