@@ -1,0 +1,38 @@
+
+## Woodruff Papers Scripture Matches
+
+
+<!-- ### Original Data -->
+<!-- - [Raw journal entries](raw_entries.csv) -->
+
+
+### Scripture matches
+
+```{python}
+#| label: tbl-planets
+#| tbl-cap: Planets
+from IPython.display import Markdown
+from tabulate import tabulate
+import pandas as pd
+
+top_matches = pd.read_csv("data/matches/top_matches.csv").head(10)
+Markdown(tabulate(
+  top_matches,
+  headers=list(top_matches)
+))
+
+```
+
+: Demonstration of pipe table syntax
+
+<!-- - [Book of Mormon Matches](data/top_matches/Book%20of%20Mormon.csv)
+- [Doctrine and Covenants Matches](data/top_matches/Doctrine%20and%20Covenants.csv)
+- [New Testament Matches](data/top_matches/top_matches_New%20Testament.csv)
+- [Pearl of Great Price Matches](data/top_matches/Pearl%20of%20Great%20Price.csv) -->
+
+
+<!-- ### Code
+- [Python matching script](scripture_matching.py)
+- [DataUtil](DataUtil.py) python utility class with a few data wrangling and general python utility functions. -->
+
+

@@ -1,16 +1,14 @@
 #%%
 import pandas as pd
-import numpy as np
 from termcolor import colored
 from DataUtil import DataUtil
-from multiprocessing import Pool
+# import cupy as cp
+# from cupy.sparse import csr_matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import tqdm
-import nltk
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
 from tqdm import tqdm
+from numba import jit, float64, typeof
+import os
 pd.set_option('display.max_colwidth', None)
 
 # nltk.download('stopwords')
@@ -58,6 +56,7 @@ replacements = {
         r'whare'         : r'where',
         r'sumthing'      : r'something',
         r' els '         : r' else ',
+        r' wil '         : r' will ',
         r'savio saviour' : r'saviour',
         r'arived' : r'arrived',
         r'intirely    ' : r'entirely',
@@ -89,10 +88,27 @@ replacements = {
         }
 
 #%%
-url_woodruff = "https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv"
-path_woodruff = '../data/raw_entries.csv'
-data_woodruff = pd.read_csv(path_woodruff)
+os.chdir('C:/Users/porte/Desktop/coding/Wilford-Woodruff-Papers/')
 
+# local data
+path_data_woodruff_raw = 'data/raw/data_woodruff_raw.csv'
+path_data_woodruff_clean = 'data/raw/data_woodruff_clean.csv'
+path_data_scriptures = 'data/raw/data_scriptures.csv'
+path_matches = 'data/matches/top_matches.csv'
+
+# url data
+url_woodruff = "https://github.com/wilfordwoodruff/Main-Data/raw/main/data/derived/derived_data.csv"
+url_scriptures = 'https://github.com/wilfordwoodruff/wilford_woodruff_hack23/raw/main/data/lds-scriptures.csv'
+
+# load data
+data_woodruff = pd.read_csv(path_data_woodruff_raw)
+data_woodruff
+
+data_scriptures = pd.read_csv(path_data_scriptures)
+data_scriptures
+
+
+#%%
 # lowercase all text
 data_woodruff['text'] = data_woodruff['text'].str.lower()
 
@@ -103,15 +119,17 @@ data_woodruff['text'] = data_woodruff['text'].replace(replacements, regex=True)
 for entry in entries_to_remove:
     data_woodruff = DataUtil.regex_filter(data_woodruff, 'text', entry)
 
-data_woodruff.to_csv('../data/data_woodruff_clean.csv', index = False)
+# output this just to check if cleaned data is really clean
+data_woodruff.to_csv(path_data_woodruff_clean, index = False)
 data_woodruff
 
-#%%
-url_scriptures = 'https://github.com/wilfordwoodruff/wilford_woodruff_hack23/raw/main/data/lds-scriptures.csv'
-path_scriptures = '../data/scriptures.csv'
-data_scriptures = pd.read_csv(path_scriptures)
+text_woodruff = DataUtil.combine_rows(data_woodruff['text'])
+phrases_woodruff = DataUtil.split_string_into_list(text_woodruff, n = 15)
+print('woodruff phrase count:', len(phrases_woodruff))
 
-# filter down to only certain books
+phrases_woodruff
+
+#%%
 
 # clean scripture data
 data_scriptures['scripture_text'] = data_scriptures['scripture_text'].str.lower()
@@ -127,81 +145,79 @@ data_scriptures
 
 #%%
 
+# @jit(nopython=True, parallel=True)
 def extract_matches(phrases_woodruff, tfidf_matrix_woodruff, vectorizer, phrases_scriptures):
+    tfidf_matrix_scriptures = vectorizer.transform(phrases_scriptures)
+    similarity_matrix = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_scriptures)
+    # time.sleep(1)
+    threshold = 0.65  # Adjust this threshold based on your preference
+    similarity_scores = []
+    top_phrases_woodruff = []
+    top_phrases_scriptures = []
 
-        tfidf_matrix_scriptures = vectorizer.transform(phrases_scriptures)
+    for i, phrase_woodruff in enumerate(phrases_woodruff):
+        for j, phrase_scriptures in enumerate(phrases_scriptures):
+            similarity_score = similarity_matrix[i][j]
+            # print(similarity_score)
+            # print(phrase_scriptures)
+            # print(phrase_woodruff)
+            if similarity_score > threshold:
+                top_phrases_woodruff.append(phrase_woodruff)
+                top_phrases_scriptures.append(phrase_scriptures)
+                similarity_scores.append(similarity_score)
 
-        similarity_matrix = cosine_similarity(tfidf_matrix_woodruff, tfidf_matrix_scriptures)
-        # time.sleep(1)
-        threshold = 0.65  # Adjust this threshold based on your preference
-        similarity_scores = []
-        top_phrases_woodruff = []
-        top_phrases_scriptures = []
+    data = pd.DataFrame({
+            'phrase_woodruff':top_phrases_woodruff,
+            'phrases_scriptures':top_phrases_scriptures,
+            'similarity_scores' : similarity_scores}).sort_values(by='similarity_scores',ascending=False)
+    return data
 
-        for i, phrase_woodruff in enumerate(phrases_woodruff):
-            for j, phrase_scriptures in enumerate(phrases_scriptures):
-                similarity_score = similarity_matrix[i][j]
-                # print(similarity_score)
-                # print(phrase_scriptures)
-                # print(phrase_woodruff)
-                if similarity_score > threshold:
-                    top_phrases_woodruff.append(phrase_woodruff)
-                    top_phrases_scriptures.append(phrase_scriptures)
-                    similarity_scores.append(similarity_score)
-
-        data = pd.DataFrame({
-             'phrase_woodruff':top_phrases_woodruff,
-             'phrases_scriptures':top_phrases_scriptures,
-             'similarity_scores' : similarity_scores}).sort_values(by='similarity_scores',ascending=False)
-        return data
 
 #%%
-text_woodruff = DataUtil.combine_rows(data_woodruff['text'])
-phrases_woodruff = DataUtil.split_string_into_list(text_woodruff, n = 15)
-print('woodruff phrase count:', len(phrases_woodruff))
-
-phrases_woodruff
-#%%
-vectorizer = TfidfVectorizer()
-tfidf_matrix_woodruff = vectorizer.fit_transform(phrases_woodruff)
 
 # iterate through books and run model.
 volume_titles = [
-     'Old Testament',
+    #  'Old Testament',
      'New Testament',
      'Book of Mormon',
      'Doctrine and Covenants',
      'Pearl of Great Price',
      ]
+data_scriptures1 = data_scriptures.query("volume_title in @volume_titles")
+data_scriptures1
 
-for book in volume_titles:
-    print('finding',book, 'matches')
-    data_scriptures1 = data_scriptures.query("volume_title == @book")
-    # data_scriptures1 = data_scriptures
-    progress_bar = tqdm(total=len(data_scriptures1))
-    data_scriptures1
+#%%
+vectorizer = TfidfVectorizer()
+tfidf_matrix_woodruff = vectorizer.fit_transform(phrases_woodruff)
 
-    total_matches = pd.DataFrame()
-    for i in range(len(data_scriptures1)):
-        row = list(data_scriptures1.iloc[i])
-        volume_title = row[0]
-        book_title = row[1]
-        verse_title = row[2]
-        phrase_scripture = [row[3]]
+progress_bar = tqdm(total=len(data_scriptures1))
+total_matches = pd.DataFrame()
+# loop through each 15 word phrase of scriptures dataset and run algorithm against it.
+for i in range(len(data_scriptures1)):
+    row = list(data_scriptures1.iloc[i])
+    volume_title = row[0]
+    book_title = row[1]
+    verse_title = row[2]
+    phrase_scripture = [row[3]]
 
-        top_matches = extract_matches(phrases_woodruff, tfidf_matrix_woodruff, vectorizer, phrase_scripture)
-        top_matches['verse_title'] = verse_title
-        total_matches = pd.concat([total_matches, top_matches]).sort_values(by = 'similarity_scores',ascending=False)
-        path_matches = '../matches/top_matches_'+book+'.csv'
-        total_matches.to_csv(path_matches, index = False)
+    # tfidf_matrix_type = typeof(tfidf_matrix_woodruff)
+    # vectorizer_type = typeof(vectorizer)
+    # extract_matches(phrases_woodruff, tfidf_matrix_woodruff.astype(tfidf_matrix_type), vectorizer.astype(vectorizer_type), phrase_scripture)
 
-        progress_bar.update(1)
-        description = verse_title + ' total match count: ' + str(len(total_matches))# + 'verse length: ' + str(len(phrases_scriptures[0]))
-        progress_bar.set_description(description)
+    # extract scripture phrase matches from woodruff journal entry list of phrases
+    top_matches = extract_matches(phrases_woodruff, tfidf_matrix_woodruff, vectorizer, phrase_scripture)
+    top_matches['verse_title'] = verse_title
+    top_matches['book_title'] = book_title
+    total_matches = pd.concat([total_matches, top_matches]).sort_values(by = 'similarity_scores',ascending=False)
+    total_matches.to_csv(path_matches, index = False)
 
-    progress_bar.close()
+    progress_bar.update(1)
+    description = verse_title + ' total match count: ' + str(len(total_matches))# + 'verse length: ' + str(len(phrases_scriptures[0]))
+    progress_bar.set_description(description)
 
-    total_matches
+progress_bar.close()
+
+total_matches
 
 
 
