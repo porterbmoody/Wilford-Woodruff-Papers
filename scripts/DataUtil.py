@@ -88,6 +88,8 @@ class DataUtil:
 
     @staticmethod
     def str_replace_list(string, regex_list, replacement):
+        """Pass in a string, a list of regex patterns, and a single replacement string. It loops through each regex pattern and replaces it with the given replacement pattern
+        """
         for regex in regex_list:
             if regex == r'\s\d+\s' and DataUtil.str_detect(string, regex):
                 # print("PIZZA")
@@ -98,7 +100,6 @@ class DataUtil:
 
     @staticmethod
     def remove_stop_words(string):
-
         return DataUtil.str_replace_list(string, regex_list = stop_words, replacement = ' ')
 
     @staticmethod
