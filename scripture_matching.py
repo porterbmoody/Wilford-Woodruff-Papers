@@ -1,12 +1,8 @@
 #%%
 import pandas as pd
 import numpy as np
-import plotly.express as px
 from termcolor import colored
-from WoodruffData import WoodruffData
-from ScriptureData import ScriptureData
 from DataUtil import DataUtil
-# from AISwag import AISwag
 from multiprocessing import Pool
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -15,7 +11,6 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from tqdm import tqdm
-import time
 pd.set_option('display.max_colwidth', None)
 
 # nltk.download('stopwords')
@@ -118,9 +113,6 @@ data_scriptures = pd.read_csv(path_scriptures)
 
 # filter down to only certain books
 
-# volumes = ['Old Testament', 'New Testament', 'Book of Mormon', 'Doctrine and Covenants', 'Pearl of Great Price']
-# book = volumes[2]
-# data_scriptures = data_scriptures[data_scriptures['volume_title'].isin([book])]
 # clean scripture data
 data_scriptures['scripture_text'] = data_scriptures['scripture_text'].str.lower()
 data_scriptures['scripture_text'] = data_scriptures['scripture_text'].replace(replacements, regex=True)
@@ -132,9 +124,6 @@ data_scriptures = data_scriptures[['volume_title', 'book_title', 'verse_title', 
 data_scriptures['scripture_text'] = data_scriptures['scripture_text'].apply(lambda x: DataUtil.split_string_into_list(x, 15))
 data_scriptures = data_scriptures.explode('scripture_text')
 data_scriptures
-
-# data_scriptures['word_count'] = data_scriptures['scripture_text'].apply(lambda x: DataUtil.count_words(x))
-# data_scriptures
 
 #%%
 
@@ -179,10 +168,10 @@ tfidf_matrix_woodruff = vectorizer.fit_transform(phrases_woodruff)
 # iterate through books and run model.
 volume_titles = [
      'Old Testament',
-    #  'New Testament',
-    #  'Book of Mormon',
-    #  'Doctrine and Covenants',
-    #  'Pearl of Great Price',
+     'New Testament',
+     'Book of Mormon',
+     'Doctrine and Covenants',
+     'Pearl of Great Price',
      ]
 
 for book in volume_titles:
