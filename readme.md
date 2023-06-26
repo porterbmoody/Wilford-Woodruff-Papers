@@ -6,10 +6,10 @@
 - [Raw journal entries](raw_entries.csv)
 
 ### Scriture matches
-- [Book of Mormon Matches](matches/top_matches_Book of Mormon.csv)
-- [Doctrine and Covenants Matches](matches/top_matches_Doctrine and Covenants.csv)
-- [New Testament Matches](matches/top_matches_New Testament.csv)
-- [Pearl of Great Price Matches](matches/top_matches_Pearl of Great Price.csv)
+- [Book of Mormon Matches](./top_matches/top_matches_Book of Mormon.csv)
+- [Doctrine and Covenants Matches](./top_matches/top_matches_Doctrine and Covenants.csv)
+- [New Testament Matches](./top_matches/top_matches_New Testament.csv)
+- [Pearl of Great Price Matches](./top_matches/top_matches_Pearl of Great Price.csv)
 
 
 
