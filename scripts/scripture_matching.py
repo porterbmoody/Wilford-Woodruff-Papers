@@ -11,7 +11,6 @@ from numba import jit, float64, typeof
 import os
 pd.set_option('display.max_colwidth', None)
 
-# nltk.download('stopwords')
 
 entries_to_remove = [
     r'WW 1841-2',
