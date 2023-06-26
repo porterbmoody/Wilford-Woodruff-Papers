@@ -3,7 +3,7 @@
 
 
 ### Original Data
-- [Raw journal entries](raw_entries.csv)
+- [Raw journal entries](data_woodruff_raw_entries.csv)
 
 
 ### Scriture matches
