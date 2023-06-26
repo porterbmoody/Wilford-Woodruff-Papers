@@ -325,3 +325,76 @@ for woodruff_phrase in woodruff_words[:2]:
 
 #%%
 # testing
+
+######### broooooooo
+#%%
+
+
+    # print(list(row))
+    # print('verse_title:', verse_title)
+    # text_scriptures = DataUtil.combine_rows(data_scriptures1[data_scriptures1['verse_title'].isin([verse_titles])]['scripture_text'])
+    # splitting verse into 15 word phrases
+    # print('woodruff phrase count:', len(phrases_scriptures))
+    # for n in range(0, len(phrases_scriptures), increment):
+        # min, max = n, n + increment
+        # if max > len(phrases_scriptures):
+            # min, max = n, len(phrases_scriptures)
+        # print('batch', min, max)
+        # path_matches
+
+        # print('total matches found:', len(total_matches))
+
+# progress_bar = tqdm(total=len(data_scriptures1), unit='item')
+
+# # for index, row in data_scriptures1.iterrows():
+# for i in tqdm(range(len(data_scriptures1))):
+#     # get ith row of scripture data
+#     row = list(data_scriptures1.iloc[i])
+#     verse_title = row[1]
+#     single_verse = row[2]
+#     vector_length = len(single_verse.split())
+
+
+
+#     description = verse_title + ' scripture phrase length: ' + str(len(phrases_scriptures))
+#     progress_bar.set_description(description)
+#     progress_bar.update(1)
+
+#     top_matches = extract_matches(phrases_woodruff, phrases_scriptures)
+#     top_matches['verse_title'] = verse_title
+
+# progress_bar.close()
+
+# top_matches
+
+
+
+# from numba import jit, cuda
+# import numpy as np
+# # to measure exec time
+# from timeit import default_timer as timer
+
+# # normal function to run on cpu
+# def func(a):
+#     for i in range(100000000):
+#         a[i]+= 1
+
+# # function optimized to run on gpu
+# @jit(target_backend='cuda')
+# def func2(a):
+#     for i in range(100000000):
+#         a[i]+= 1
+# if __name__=="__main__":
+#     n = 100000000
+#     a = np.ones(n, dtype = np.float64)
+
+#     start = timer()
+#     func(a)
+#     print("without GPU:", timer()-start)
+
+#     start = timer()
+#     func2(a)
+#     print("with GPU:", timer()-start)
+
+
+# %%
