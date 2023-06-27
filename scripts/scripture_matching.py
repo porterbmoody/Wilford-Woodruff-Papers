@@ -176,7 +176,7 @@ def extract_matches(phrases_woodruff, tfidf_matrix_woodruff, vectorizer, phrases
 
 # iterate through books and run model.
 volume_titles = [
-    #  'Old Testament',
+     'Old Testament',
      'New Testament',
      'Book of Mormon',
      'Doctrine and Covenants',
