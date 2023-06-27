@@ -1,38 +1,85 @@
+---
+title: "Woodruff papers scripture matches"
+jupyter: python3
+code-fold: true
+---
 
-## Woodruff papers scripture matches
 
-
-<!-- ### Original Data -->
-<!-- - [Raw journal entries](raw_entries.csv) -->
-
-
-### Top matches
+### Matches per volume
 
 ```{python}
-#| label: tbl-planets
-#| tbl-cap: Planets
 from IPython.display import Markdown
 from tabulate import tabulate
 import pandas as pd
 
-top_matches = pd.read_csv("../data/matches/top_matches.csv").sort_values(by='similarity_score')
+number_of_rows = 50
+
+top_matches = pd.read_csv("../data/matches/top_matches.csv").sort_values(by='similarity_score',ascending=False)
+
+matches_counts = top_matches.groupby(['volume_title']).count().reset_index()[['volume_title', 'phrase_woodruff']]
+matches_counts
+# match count/volume
 Markdown(tabulate(
-  top_matches,
-  headers=list(top_matches)
+  matches_counts,
+  headers=list(matches_counts)
+))
+```
+
+
+### Old Testament Matches
+
+```{python}
+data = top_matches.query('volume_title == "Old Testament"')
+Markdown(tabulate(
+  data.head(number_of_rows),
+  headers=list(data)
 ))
 
 ```
 
-: Demonstration of pipe table syntax
+### New Testament Matches
 
-<!-- - [Book of Mormon Matches](data/top_matches/Book%20of%20Mormon.csv)
-- [Doctrine and Covenants Matches](data/top_matches/Doctrine%20and%20Covenants.csv)
-- [New Testament Matches](data/top_matches/top_matches_New%20Testament.csv)
-- [Pearl of Great Price Matches](data/top_matches/Pearl%20of%20Great%20Price.csv) -->
+```{python}
+data = top_matches.query('volume_title == "New Testament"')
+Markdown(tabulate(
+  data.head(number_of_rows),
+  headers=list(data)
+))
+
+```
 
 
-<!-- ### Code
-- [Python matching script](scripture_matching.py)
-- [DataUtil](DataUtil.py) python utility class with a few data wrangling and general python utility functions. -->
+### Book of Mormon Matches
+
+```{python}
+data = top_matches.query('volume_title == "Book of Mormon"')
+Markdown(tabulate(
+  data.head(number_of_rows),
+  headers=list(data)
+))
+
+```
+
+### Doctrine and Covenants Matches
+
+```{python}
+data = top_matches.query('volume_title == "Doctrine and Covenants"')
+Markdown(tabulate(
+  data.head(number_of_rows),
+  headers=list(data)
+))
+
+```
+
+### Other Matches
+
+```{python}
+data = top_matches.query('volume_title == "Pearl of Great Price"')
+Markdown(tabulate(
+  data.head(number_of_rows),
+  headers=list(data)
+))
+
+```
 
 
