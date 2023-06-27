@@ -6,7 +6,7 @@
 - [Top standard works matches](data/matches/top_matches.csv)
 
 ### Original Data
-- [Raw journal entries](data/matches/data_woodruff_raw_entries.csv)
+- [Raw journal entries](data/raw/data_woodruff_raw.csv)
 <!-- - [Book of Mormon Matches](top_matches/Book%20of%20Mormon.csv) -->
 <!-- - [Doctrine and Covenants Matches](./top_matches/Doctrine%20and%20Covenants.csv) -->
 <!-- - [New Testament Matches](./top_matches/top_matches_New%20Testament.csv) -->
