@@ -11,7 +11,6 @@ from numba import jit, float64, typeof
 import os
 pd.set_option('display.max_colwidth', None)
 
-
 entries_to_remove = [
     r'WW 1841-2',
     r'Front cover',
@@ -26,65 +25,66 @@ entries_to_remove = [
     ]
 
 replacements = {
-        r'(, b\.)'              : r'',
-        r'\<U\+25CA\>'          : r'',
-        r'\&amp;c?'             : r"and",
-        r'\&apos;'              : r"'",
-        r"(\^?FIGURES?\^?)"     : r'',
-        r'[\{\}\~]'             : r'',
-        r'\s{2}'                : r' ',
-        r','                    : r'',
-        # r'\[(\w+)\]'            : r'',
-        r'\n'                   : r' ',
-        r'\[\[(.*?)\|(.*?)\]\]' : r'\1',
-        r'\-\s'                  : r'',
-        # r'- ng '                 : r'ng ',
-        # r' ng '                 : r'ng ',
-        # r' ed '                 : r'ed ',
-        r'\n'                 : r' ',
-        r'\s+'                 : r' ',
-        r'\.'                 : r'',
-        r'\.|\:|\;|\,|\-|\(|\)|\?' : r'',
-        r'sacrafice'    : r'sacrifice',
-        r'discours'     : r'discourse',
-        r'travling'      : r'traveling',
-        r'oclock'       : r'oclock',
-        r'[Ww]\. [Ww]oodruff' : r'Wilford Woodruff',
-        r'any\s?whare'    : r'anywhere',
-        r'some\s?whare'     : r'somewhere',
-        r'whare'         : r'where',
-        r'sumthing'      : r'something',
-        r' els '         : r' else ',
-        r' wil '         : r' will ',
-        r'savio saviour' : r'saviour',
-        r'arived' : r'arrived',
-        r'intirely    ' : r'entirely',
-        r'phylosophers' : r'philosophers',
-        r'baptised'     : r'baptized',
-        r'benef\- it'   : r'benefit',
-        r'preachi \-ng'      : r'preaching',
-        r'oppor- tunities' : r'opportunities',
-        r'vary'         : r'very',
-        r'Councellor'   : r'Counselor',
-        r'councellor'   : r'counselor',
-        r'sircumstances' : r'circumstances',
-        r'Preasent'    : r'present',
-        r'Sept\.'      : r'September',
-        r'Sacramento Sacramento' : r'Sacramento',
-        r'tryed'       : r'tried',
-        r'fals'        : r'false',
-        r'Aprail'      : r'April',
-        r'untill'      : r'until',
-        r'sumwhat'      : r'somewhat',
-        r'joseph smith jun' : r'joseph smith jr',
-        r'miricle' : r'miracle',
-        r'procedings' : r'proceedings',
-        r'w odruff' : r'woodruff',
-        r'prefered' : r'preferred',
-        r'traveling' : r'pizza',
-        r'esspecially' : r'especially',
-        r'ownly' : r'only',
-        }
+    r'(, b\.)'              : r'',
+    r'\<U\+25CA\>'          : r'',
+    r'\&amp;c?'             : r"and",
+    r'\&apos;'              : r"'",
+    r"(\^?FIGURES?\^?)"     : r'',
+    r'[\{\}\~]'             : r'',
+    r'\s{2}'                : r' ',
+    r','                    : r'',
+    # r'\[(\w+)\]'            : r'',
+    r'\n'                   : r' ',
+    r'\[\[(.*?)\|(.*?)\]\]' : r'\1',
+    r'\-\s'                  : r'',
+    # r'- ng '                 : r'ng ',
+    # r' ng '                 : r'ng ',
+    # r' ed '                 : r'ed ',
+    r'\n'                 : r' ',
+    r'\s+'                 : r' ',
+    r'\.'                 : r'',
+    r'\.|\:|\;|\,|\-|\(|\)|\?' : r'',
+    r'sacrafice'    : r'sacrifice',
+    r'discours'     : r'discourse',
+    r'travling'      : r'traveling',
+    r'oclock'       : r'oclock',
+    r'w\. woodruff' : r'wilford woodruff',
+    r'any\s?whare'    : r'anywhere',
+    r'some\s?whare'     : r'somewhere',
+    r'whare'         : r'where',
+    r'sumthing'      : r'something',
+    r' els '         : r' else ',
+    r' wil '         : r' will ',
+    r'savio saviour' : r'saviour',
+    r'arived'       : r'arrived',
+    r'intirely    ' : r'entirely',
+    r'phylosophers' : r'philosophers',
+    r'baptised'     : r'baptized',
+    r'benef\- it'   : r'benefit',
+    r'preachi \-ng'      : r'preaching',
+    r'oppor- tunities' : r'opportunities',
+    r'vary'         : r'very',
+    r'councellor'   : r'counselor',
+    r'sircumstances' : r'circumstances',
+    r'Preasent'    : r'present',
+    r'sept\.'      : r'september',
+    r'Sacramento Sacramento' : r'Sacramento',
+    r'tryed'       : r'tried',
+    r'fals'        : r'false',
+    r'aprail'      : r'april',
+    r'untill'      : r'until',
+    r'sumwhat'      : r'somewhat',
+    r'joseph smith jun' : r'joseph smith jr',
+    r'miricle' : r'miracle',
+    r'procedings' : r'proceedings',
+    r'w odruff' : r'woodruff',
+    r'prefered' : r'preferred',
+    r'traveling' : r'pizza',
+    r'esspecially' : r'especially',
+    r'ownly' : r'only',
+    }
+
+weird_facsimile_thingy = r'a – b – c d – e f – g – – h i j – – k – – l — m – – n – o p q – r s t – u – v – w – – x – y z and 1 – – 2 – 3 – 4 – 5 – – – 6 7 – – 8 – 9 – – 0 ——— – – — – – – – – – –'
 
 #%%
 os.chdir('C:/Users/porte/Desktop/coding/Wilford-Woodruff-Papers/')
@@ -107,21 +107,25 @@ data_scriptures = pd.read_csv(path_data_scriptures)
 data_scriptures
 
 
+
 #%%
 # lowercase all text
 data_woodruff['text'] = data_woodruff['text'].str.lower()
 
 # clean woodruff data
 data_woodruff['text'] = data_woodruff['text'].replace(replacements, regex=True)
-
+# remove the single weird facsimile thingy its screwing everything up
+data_woodruff['text'] = data_woodruff['text'].apply(lambda x: DataUtil.str_remove(x, regex = weird_facsimile_thingy))
 # loop through entries and remove rows that have regex match in entry
 for entry in entries_to_remove:
     data_woodruff = DataUtil.regex_filter(data_woodruff, 'text', entry)
 
-# output this just to check if cleaned data is really clean
 data_woodruff.to_csv(path_data_woodruff_clean, index = False)
-data_woodruff
+# DataUtil.regex_filter(data_woodruff, 'text', )
 
+# output this just to check if cleaned data is really clean
+
+#%%
 text_woodruff = DataUtil.combine_rows(data_woodruff['text'])
 phrases_woodruff = DataUtil.split_string_into_list(text_woodruff, n = 15)
 print('woodruff phrase count:', len(phrases_woodruff))
@@ -167,8 +171,8 @@ def extract_matches(phrases_woodruff, tfidf_matrix_woodruff, vectorizer, phrases
 
     data = pd.DataFrame({
             'phrase_woodruff':top_phrases_woodruff,
-            'phrases_scriptures':top_phrases_scriptures,
-            'similarity_scores' : similarity_scores}).sort_values(by='similarity_scores',ascending=False)
+            'phrase_scripture':top_phrases_scriptures,
+            'similarity_score' : similarity_scores}).sort_values(by='similarity_score',ascending=False)
     return data
 
 
@@ -206,8 +210,8 @@ for i in range(len(data_scriptures1)):
     # extract scripture phrase matches from woodruff journal entry list of phrases
     top_matches = extract_matches(phrases_woodruff, tfidf_matrix_woodruff, vectorizer, phrase_scripture)
     top_matches['verse_title'] = verse_title
-    top_matches['book_title'] = book_title
-    total_matches = pd.concat([total_matches, top_matches]).sort_values(by = 'similarity_scores',ascending=False)
+    top_matches['volume_title'] = volume_title
+    total_matches = pd.concat([total_matches, top_matches]).sort_values(by = 'similarity_score',ascending=False)
     total_matches.to_csv(path_matches, index = False)
 
     progress_bar.update(1)

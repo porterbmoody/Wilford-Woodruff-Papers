@@ -1,12 +1,12 @@
 
-## Woodruff Papers Scripture Matches
+## Woodruff papers scripture matches
 
 
 <!-- ### Original Data -->
 <!-- - [Raw journal entries](raw_entries.csv) -->
 
 
-### Scripture matches
+### Top matches
 
 ```{python}
 #| label: tbl-planets
@@ -15,7 +15,7 @@ from IPython.display import Markdown
 from tabulate import tabulate
 import pandas as pd
 
-top_matches = pd.read_csv("data/matches/top_matches.csv").head(10)
+top_matches = pd.read_csv("../data/matches/top_matches.csv").sort_values(by='similarity_score')
 Markdown(tabulate(
   top_matches,
   headers=list(top_matches)
