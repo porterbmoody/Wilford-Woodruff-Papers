@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(matches_counts)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <table class="table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -128,446 +128,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>0</td>
 <td style="text-align: left;">Book of Mormon</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">143</td>
 </tr>
 <tr class="even">
 <td>1</td>
-<td style="text-align: left;">New Testament</td>
-<td style="text-align: right;">178</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+<td style="text-align: right;">356</td>
 </tr>
 <tr class="odd">
 <td>2</td>
+<td style="text-align: left;">New Testament</td>
+<td style="text-align: right;">178</td>
+</tr>
+<tr class="even">
+<td>3</td>
 <td style="text-align: left;">Old Testament</td>
 <td style="text-align: right;">446</td>
 </tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="old-testament-matches" class="level3">
-<h3 class="anchored" data-anchor-id="old-testament-matches">Old Testament Matches</h3>
-<div class="cell" data-execution_count="2">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "Old Testament"'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  data.head(number_of_rows),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="20">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th></th>
-<th style="text-align: left;">phrase_woodruff</th>
-<th style="text-align: left;">phrase_scripture</th>
-<th style="text-align: right;">similarity_score</th>
-<th style="text-align: left;">verse_title</th>
-<th style="text-align: left;">volume_title</th>
-</tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td>7</td>
-<td style="text-align: left;">it is better to go to the house of mourning than to the house of</td>
-<td style="text-align: left;">it is better to go to the house of mourning than to go to the</td>
-<td style="text-align: right;">0.929449</td>
-<td style="text-align: left;">Ecclesiastes 7:2</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td style="text-align: left;">apostle said we have precept upon precept line upon line here a little and there</td>
-<td style="text-align: left;">for precept must be upon precept precept upon precept line upon line line upon line here a little and there a little</td>
-<td style="text-align: right;">0.927828</td>
-<td style="text-align: left;">Isaiah 28:10</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>12</td>
-<td style="text-align: left;">that it is a son for unto us a child is born unto us a</td>
-<td style="text-align: left;">for unto us a child is born unto us a son is given and the</td>
-<td style="text-align: right;">0.920117</td>
-<td style="text-align: left;">Isaiah 9:6</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>15</td>
-<td style="text-align: left;">feasting for that is the end of all men and the living will lay it</td>
-<td style="text-align: left;">house of feasting for that is the end of all men and the living will lay it to his heart</td>
-<td style="text-align: right;">0.896123</td>
-<td style="text-align: left;">Ecclesiastes 7:2</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>19</td>
-<td style="text-align: left;">the lord gave and the lord hath taken away and blessed be the name of</td>
-<td style="text-align: left;">thither the lord gave and the lord hath taken away blessed be the name of the lord</td>
-<td style="text-align: right;">0.86819</td>
-<td style="text-align: left;">Job 1:21</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>20</td>
-<td style="text-align: left;">to their fathers lest i come and smite the earth with a curse” abram received</td>
-<td style="text-align: left;">of the children to their fathers lest i come and smite the earth with a curse</td>
-<td style="text-align: right;">0.865299</td>
-<td style="text-align: left;">Malachi 4:6</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>24</td>
-<td style="text-align: left;">we will not serve thy gods men worship the golden image which thou hast set</td>
-<td style="text-align: left;">not thy gods nor worship the golden image which thou hast set up</td>
-<td style="text-align: right;">0.840606</td>
-<td style="text-align: left;">Daniel 3:12</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>29</td>
-<td style="text-align: left;">we will not serve thy gods men worship the golden image which thou hast set</td>
-<td style="text-align: left;">thy gods nor worship the golden image which thou hast set up</td>
-<td style="text-align: right;">0.82716</td>
-<td style="text-align: left;">Daniel 3:18</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>35</td>
-<td style="text-align: left;">the hearts of the children to the fathers lest i come and smite the earth</td>
-<td style="text-align: left;">of the children to their fathers lest i come and smite the earth with a curse</td>
-<td style="text-align: right;">0.814816</td>
-<td style="text-align: left;">Malachi 4:6</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>36</td>
-<td style="text-align: left;">so with jesus he said my god my god why hast thou forsaken me in</td>
-<td style="text-align: left;">my god my god why hast thou forsaken me why art thou so far from</td>
-<td style="text-align: right;">0.812966</td>
-<td style="text-align: left;">Psalms 22:1</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>38</td>
-<td style="text-align: left;">unto us a child is given! unto us a daughter is born phebe whittemore carter</td>
-<td style="text-align: left;">for unto us a child is born unto us a son is given and the</td>
-<td style="text-align: right;">0.810616</td>
-<td style="text-align: left;">Isaiah 9:6</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>39</td>
-<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
-<td style="text-align: left;">will i give him a charge to take the spoil and to take the prey</td>
-<td style="text-align: right;">0.807215</td>
-<td style="text-align: left;">Isaiah 10:6</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>40</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">son and zichri his son and shelomith his son</td>
-<td style="text-align: right;">0.80461</td>
-<td style="text-align: left;">1 Chronicles 26:25</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>41</td>
-<td style="text-align: left;">my son thou hast spoken well i have all thou hast said in my heart</td>
-<td style="text-align: left;">thou hast ravished my heart my sister my spouse thou hast ravished my heart with</td>
-<td style="text-align: right;">0.804307</td>
-<td style="text-align: left;">Song of Solomon 4:9</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>42</td>
-<td style="text-align: left;">the text “what is man that thou art mindful of him” it was one of</td>
-<td style="text-align: left;">what is man that thou art mindful of him and the son of man that thou visitest him</td>
-<td style="text-align: right;">0.80308</td>
-<td style="text-align: left;">Psalms 8:4</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>44</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">elkanah his son and ebiasaph his son and assir his son</td>
-<td style="text-align: right;">0.793349</td>
-<td style="text-align: left;">1 Chronicles 6:23</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>49</td>
-<td style="text-align: left;">“and there nobles shall be of themselves and their governor shall procede out of the</td>
-<td style="text-align: left;">and their nobles shall be of themselves and their governor shall proceed from the midst</td>
-<td style="text-align: right;">0.788487</td>
-<td style="text-align: left;">Jeremiah 30:21</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>56</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">tahath his son uriel his son uzziah his son and shaul his son</td>
-<td style="text-align: right;">0.782427</td>
-<td style="text-align: left;">1 Chronicles 6:24</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>58</td>
-<td style="text-align: left;">that the nations of the earth that forget god will be turned into hell but</td>
-<td style="text-align: left;">the wicked shall be turned into hell and all the nations that forget god</td>
-<td style="text-align: right;">0.778134</td>
-<td style="text-align: left;">Psalms 9:17</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>59</td>
-<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
-<td style="text-align: left;">and women and to take the spoil of them for a prey</td>
-<td style="text-align: right;">0.776363</td>
-<td style="text-align: left;">Esther 8:11</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>60</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">and rephah was his son also resheph and telah his son and tahan his son</td>
-<td style="text-align: right;">0.772726</td>
-<td style="text-align: left;">1 Chronicles 7:25</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>66</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">zadok his son ahimaaz his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 6:53</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>70</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">eliab his son jeroham his son elkanah his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 6:27</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>68</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">meraioth his son amariah his son ahitub his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 6:52</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>67</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">shallum his son mibsam his son mishma his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 4:25</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>69</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">amaziah his son azariah his son jotham his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 3:12</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>65</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">laadan his son ammihud his son elishama his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 7:26</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>64</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">shimea his son haggiah his son asaiah his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 6:30</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>63</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">joram his son ahaziah his son joash his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 3:11</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>62</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">bukki his son uzzi his son zerahiah his son</td>
-<td style="text-align: right;">0.772339</td>
-<td style="text-align: left;">1 Chronicles 6:51</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>73</td>
-<td style="text-align: left;">her children and refused to be comforted because of her children which were taken away</td>
-<td style="text-align: left;">weeping for her children refused to be comforted for her children because they were not</td>
-<td style="text-align: right;">0.769791</td>
-<td style="text-align: left;">Jeremiah 31:15</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>74</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">of gershom libni his son jahath his son zimmah his son</td>
-<td style="text-align: right;">0.768916</td>
-<td style="text-align: left;">1 Chronicles 6:20</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>76</td>
-<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
-<td style="text-align: left;">the month adar and to take the spoil of them for a prey</td>
-<td style="text-align: right;">0.766079</td>
-<td style="text-align: left;">Esther 3:13</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>79</td>
-<td style="text-align: left;">days that god should set his hand again the second time to recover the remnant</td>
-<td style="text-align: left;">hand again the second time to recover the remnant of his people which shall be</td>
-<td style="text-align: right;">0.763519</td>
-<td style="text-align: left;">Isaiah 11:11</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>100</td>
-<td style="text-align: left;">own sake my sake and for the sake of christ and the kingdom of god</td>
-<td style="text-align: left;">this city for mine own sake and for my servant david’s sake</td>
-<td style="text-align: right;">0.745556</td>
-<td style="text-align: left;">2 Kings 20:6</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>101</td>
-<td style="text-align: left;">perry rockwood was appointed captains over a hundred and 4 captains of fifties and captains</td>
-<td style="text-align: left;">heads over you captains over thousands and captains over hundreds and captains over fifties and</td>
-<td style="text-align: right;">0.745241</td>
-<td style="text-align: left;">Deuteronomy 1:15</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>103</td>
-<td style="text-align: left;">thou shalt labour in the temple of the lord thy god thou shalt teach thy</td>
-<td style="text-align: left;">when thou shalt vow a vow unto the lord thy god thou shalt not slack</td>
-<td style="text-align: right;">0.742882</td>
-<td style="text-align: left;">Deuteronomy 23:21</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>105</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">joah his son iddo his son zerah his son jeaterai his son</td>
-<td style="text-align: right;">0.742385</td>
-<td style="text-align: left;">1 Chronicles 6:21</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>106</td>
-<td style="text-align: left;">unto thee thou shalt have part in the first resurrection and thou shalt come forth</td>
-<td style="text-align: left;">in travail for now shalt thou go forth out of the city and thou shalt</td>
-<td style="text-align: right;">0.741458</td>
-<td style="text-align: left;">Micah 4:10</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>107</td>
-<td style="text-align: left;">of devouring fire for by fire and the sword will the lord plead with all</td>
-<td style="text-align: left;">for by fire and by his sword will the lord plead with all flesh and</td>
-<td style="text-align: right;">0.741293</td>
-<td style="text-align: left;">Isaiah 66:16</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>108</td>
-<td style="text-align: left;">thou shalt be a comfort unto them thou shalt be baptized the day thou art</td>
-<td style="text-align: left;">in righteousness shalt thou be established thou shalt be far from oppression for thou shalt</td>
-<td style="text-align: right;">0.741073</td>
-<td style="text-align: left;">Isaiah 54:14</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>109</td>
-<td style="text-align: left;">thou shalt labour in the temple of the lord thy god thou shalt teach thy</td>
-<td style="text-align: left;">and thou shalt rejoice before the lord thy god thou and thy son and thy</td>
-<td style="text-align: right;">0.741066</td>
-<td style="text-align: left;">Deuteronomy 16:11</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>110</td>
-<td style="text-align: left;">upon the earth until the law shall go forth of zion and the word of</td>
-<td style="text-align: left;">of zion shall go forth the law and the word of the lord from jerusalem</td>
-<td style="text-align: right;">0.740751</td>
-<td style="text-align: left;">Isaiah 2:3</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>111</td>
-<td style="text-align: left;">a city and two of a family and bring them to zion and i will</td>
-<td style="text-align: left;">will take you one of a city and two of a family and i will bring you to zion</td>
-<td style="text-align: right;">0.740081</td>
-<td style="text-align: left;">Jeremiah 3:14</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>112</td>
-<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
-<td style="text-align: left;">and the sons of mishma hamuel his son zacchur his son shimei his son</td>
-<td style="text-align: right;">0.740059</td>
-<td style="text-align: left;">1 Chronicles 4:26</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>113</td>
-<td style="text-align: left;">states making a distance in all of five thousand three hundred and fifty one miles</td>
-<td style="text-align: left;">hundred thousand and three thousand and five hundred and fifty</td>
-<td style="text-align: right;">0.739275</td>
-<td style="text-align: left;">Numbers 2:32</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>114</td>
-<td style="text-align: left;">let us go up unto zion the city of the lord our god that the</td>
-<td style="text-align: left;">arise ye and let us go up to zion unto the lord our god</td>
-<td style="text-align: right;">0.738839</td>
-<td style="text-align: left;">Jeremiah 31:6</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>115</td>
-<td style="text-align: left;">thou shalt labour in the temple of the lord thy god thou shalt teach thy</td>
-<td style="text-align: left;">thou shalt not abhor an edomite for he is thy brother thou shalt not abhor</td>
-<td style="text-align: right;">0.73775</td>
-<td style="text-align: left;">Deuteronomy 23:7</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="odd">
-<td>116</td>
-<td style="text-align: left;">my son thou hast spoken well i have all thou hast said in my heart</td>
-<td style="text-align: left;">thou hast proved mine heart thou hast visited me in the night thou hast tried</td>
-<td style="text-align: right;">0.737174</td>
-<td style="text-align: left;">Psalms 17:3</td>
-<td style="text-align: left;">Old Testament</td>
-</tr>
-<tr class="even">
-<td>117</td>
-<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
-<td style="text-align: left;">to take a spoil and to take a prey to turn thine hand upon the</td>
-<td style="text-align: right;">0.737033</td>
-<td style="text-align: left;">Ezekiel 38:12</td>
-<td style="text-align: left;">Old Testament</td>
+<td>4</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+<td style="text-align: right;">38</td>
 </tr>
 </tbody>
 </table>
@@ -576,16 +157,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="new-testament-matches" class="level3">
 <h3 class="anchored" data-anchor-id="new-testament-matches">New Testament Matches</h3>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "New Testament"'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  data.head(number_of_rows),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "New Testament"'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  data.head(number_of_rows),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <table class="table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -599,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
+<td>5</td>
 <td style="text-align: left;">her sins have reached unto heaven and god hath remembered her iniquities and she will</td>
 <td style="text-align: left;">for her sins have reached unto heaven and god hath remembered her iniquities</td>
 <td style="text-align: right;">0.950748</td>
@@ -607,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>1</td>
+<td>6</td>
 <td style="text-align: left;">she shall be utterly burned with fire for strong is the lord god who judgeth</td>
 <td style="text-align: left;">shall be utterly burned with fire for strong is the lord god who judgeth her</td>
 <td style="text-align: right;">0.94799</td>
@@ -615,23 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>2</td>
-<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
-<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
-<td style="text-align: right;">0.943769</td>
-<td style="text-align: left;">Mark 13:31</td>
-<td style="text-align: left;">New Testament</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
-<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
-<td style="text-align: right;">0.943769</td>
-<td style="text-align: left;">Luke 21:33</td>
-<td style="text-align: left;">New Testament</td>
-</tr>
-<tr class="odd">
-<td>4</td>
+<td>8</td>
 <td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
 <td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
 <td style="text-align: right;">0.943769</td>
@@ -639,7 +204,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>5</td>
+<td>9</td>
+<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
+<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
+<td style="text-align: right;">0.943769</td>
+<td style="text-align: left;">Mark 13:31</td>
+<td style="text-align: left;">New Testament</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
+<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
+<td style="text-align: right;">0.943769</td>
+<td style="text-align: left;">Luke 21:33</td>
+<td style="text-align: left;">New Testament</td>
+</tr>
+<tr class="even">
+<td>15</td>
 <td style="text-align: left;">the saints and the beloved city and fire came down from heaven and devoured them</td>
 <td style="text-align: left;">the saints about and the beloved city and fire came down from god out of heaven and devoured them</td>
 <td style="text-align: right;">0.933148</td>
@@ -647,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>6</td>
+<td>17</td>
 <td style="text-align: left;">saying “ye are my friends if ye do whatsoever i command you[”] the house was</td>
 <td style="text-align: left;">ye are my friends if ye do whatsoever i command you</td>
 <td style="text-align: right;">0.93122</td>
@@ -655,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>9</td>
+<td>25</td>
 <td style="text-align: left;">says therefore shall her plagues come in one day death and mourning and famine and</td>
 <td style="text-align: left;">therefore shall her plagues come in one day death and mourning and famine and she</td>
 <td style="text-align: right;">0.926204</td>
@@ -663,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>10</td>
+<td>26</td>
 <td style="text-align: left;">we have a more sure word of prophecy where unto ye do well that ye</td>
 <td style="text-align: left;">we have also a more sure word of prophecy whereunto ye do well that ye</td>
 <td style="text-align: right;">0.925711</td>
@@ -671,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>11</td>
+<td>32</td>
 <td style="text-align: left;">i will build my church and th[e] gates of hell shall not prevail against it</td>
 <td style="text-align: left;">will build my church and the gates of hell shall not prevail against it</td>
 <td style="text-align: right;">0.92309</td>
@@ -679,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>13</td>
+<td>40</td>
 <td style="text-align: left;">upon that there should no sign be given but the sign of the prophet jonas</td>
 <td style="text-align: left;">sign and there shall no sign be given to it but the sign of the prophet jonas</td>
 <td style="text-align: right;">0.909964</td>
@@ -687,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>14</td>
+<td>45</td>
 <td style="text-align: left;">born this day in the city of david a saviour which is christ the lord”</td>
 <td style="text-align: left;">for unto you is born this day in the city of david a saviour which is christ the lord</td>
 <td style="text-align: right;">0.902117</td>
@@ -695,7 +276,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>16</td>
+<td>54</td>
 <td style="text-align: left;">prophets and thou hast given them blood to drink for they are worthy 6 v</td>
 <td style="text-align: left;">for they have shed the blood of saints and prophets and thou hast given them blood to drink for they are worthy</td>
 <td style="text-align: right;">0.883506</td>
@@ -703,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>17</td>
+<td>55</td>
 <td style="text-align: left;">word of god and tasted of the powers of the world to come if they</td>
 <td style="text-align: left;">and have tasted the good word of god and the powers of the world to come</td>
 <td style="text-align: right;">0.882839</td>
@@ -711,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>18</td>
+<td>56</td>
 <td style="text-align: left;">for the word of god and testimony of jesus christ and the wicked of this</td>
 <td style="text-align: left;">word of god and for the testimony of jesus christ</td>
 <td style="text-align: right;">0.875892</td>
@@ -719,23 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>21</td>
-<td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
-<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
-<td style="text-align: right;">0.853206</td>
-<td style="text-align: left;">Mark 13:31</td>
-<td style="text-align: left;">New Testament</td>
-</tr>
-<tr class="odd">
-<td>22</td>
-<td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
-<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
-<td style="text-align: right;">0.853206</td>
-<td style="text-align: left;">Matthew 24:35</td>
-<td style="text-align: left;">New Testament</td>
-</tr>
-<tr class="even">
-<td>23</td>
+<td>73</td>
 <td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
 <td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
 <td style="text-align: right;">0.853206</td>
@@ -743,7 +308,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>25</td>
+<td>72</td>
+<td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
+<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
+<td style="text-align: right;">0.853206</td>
+<td style="text-align: left;">Matthew 24:35</td>
+<td style="text-align: left;">New Testament</td>
+</tr>
+<tr class="even">
+<td>71</td>
+<td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
+<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
+<td style="text-align: right;">0.853206</td>
+<td style="text-align: left;">Mark 13:31</td>
+<td style="text-align: left;">New Testament</td>
+</tr>
+<tr class="odd">
+<td>84</td>
 <td style="text-align: left;">shall they that have riches enter into the kingdom of god” for while one and</td>
 <td style="text-align: left;">that have riches enter into the kingdom of god!</td>
 <td style="text-align: right;">0.840228</td>
@@ -751,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>26</td>
+<td>87</td>
 <td style="text-align: left;">so with jesus he said my god my god why hast thou forsaken me in</td>
 <td style="text-align: left;">sabachthani that is to say my god my god why hast thou forsaken me</td>
 <td style="text-align: right;">0.837704</td>
@@ -759,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>27</td>
+<td>88</td>
 <td style="text-align: left;">upon that there should no sign be given but the sign of the prophet jonas</td>
 <td style="text-align: left;">evil generation they seek a sign and there shall no sign be given it but the sign of jonas the prophet</td>
 <td style="text-align: right;">0.833665</td>
@@ -767,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>28</td>
+<td>91</td>
 <td style="text-align: left;">in 1838 for the word of god and the testimony of jesus christ he was</td>
 <td style="text-align: left;">word of god and for the testimony of jesus christ</td>
 <td style="text-align: right;">0.829464</td>
@@ -775,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>30</td>
+<td>95</td>
 <td style="text-align: left;">the following words “there remaineth therefore a rest for the people of god” after he</td>
 <td style="text-align: left;">there remaineth therefore a rest to the people of god</td>
 <td style="text-align: right;">0.826745</td>
@@ -783,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>31</td>
+<td>98</td>
 <td style="text-align: left;">shall they that have riches enter into the kingdom of god” for while one and</td>
 <td style="text-align: left;">have riches enter into the kingdom of god!</td>
 <td style="text-align: right;">0.820194</td>
@@ -791,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>32</td>
+<td>100</td>
 <td style="text-align: left;">hundred and forty four thousand sealed out of the twelve tribes of israel also spoke</td>
 <td style="text-align: left;">hundred and forty and four thousand of all the tribes of the children of israel</td>
 <td style="text-align: right;">0.81895</td>
@@ -799,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>33</td>
+<td>101</td>
 <td style="text-align: left;">into the world and men love darkness rather than light because their deeds are evil</td>
 <td style="text-align: left;">darkness rather than light because their deeds were evil</td>
 <td style="text-align: right;">0.817931</td>
@@ -807,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>34</td>
+<td>103</td>
 <td style="text-align: left;">son of god afresh and put him to an open frame shame so their is</td>
 <td style="text-align: left;">themselves the son of god afresh and put him to an open shame</td>
 <td style="text-align: right;">0.817058</td>
@@ -815,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>37</td>
+<td>108</td>
 <td style="text-align: left;">man and woman had a head the presidency of the church is the head of</td>
 <td style="text-align: left;">the head of the woman is the man and the head of christ is god</td>
 <td style="text-align: right;">0.812873</td>
@@ -823,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>43</td>
+<td>133</td>
 <td style="text-align: left;">be saved in the day of the lord jesus they were sealed by the spirit</td>
 <td style="text-align: left;">spirit may be saved in the day of the lord jesus</td>
 <td style="text-align: right;">0.800598</td>
@@ -831,7 +412,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>45</td>
+<td>148</td>
 <td style="text-align: left;">through much persecution for the word of god and the testimony of jesus christ in</td>
 <td style="text-align: left;">word of god and for the testimony of jesus christ</td>
 <td style="text-align: right;">0.791481</td>
@@ -839,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>46</td>
+<td>150</td>
 <td style="text-align: left;">should pass away my words shall not pass away if a man is born of</td>
 <td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
 <td style="text-align: right;">0.79071</td>
@@ -847,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>47</td>
+<td>151</td>
 <td style="text-align: left;">should pass away my words shall not pass away if a man is born of</td>
 <td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
 <td style="text-align: right;">0.79071</td>
@@ -855,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>48</td>
+<td>152</td>
 <td style="text-align: left;">should pass away my words shall not pass away if a man is born of</td>
 <td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
 <td style="text-align: right;">0.79071</td>
@@ -863,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>50</td>
+<td>157</td>
 <td style="text-align: left;">be blotted out when the times of refreshing shall come from the presence of the</td>
 <td style="text-align: left;">times of refreshing shall come from the presence of the lord</td>
 <td style="text-align: right;">0.787166</td>
@@ -871,7 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>51</td>
+<td>160</td>
 <td style="text-align: left;">from their labours and if their friends are faithful their works will follow them but</td>
 <td style="text-align: left;">from their labours and their works do follow them</td>
 <td style="text-align: right;">0.786122</td>
@@ -879,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>52</td>
+<td>161</td>
 <td style="text-align: left;">two divisions one on the right and the other on the left the right hand</td>
 <td style="text-align: left;">him and the malefactors one on the right hand and the other on the left</td>
 <td style="text-align: right;">0.78607</td>
@@ -887,7 +468,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>53</td>
+<td>164</td>
 <td style="text-align: left;">is the gate and narrow the way that leadeth unto eternal life and few there</td>
 <td style="text-align: left;">because strait is the gate and narrow is the way which leadeth unto life and few there be that find it</td>
 <td style="text-align: right;">0.785675</td>
@@ -895,7 +476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>54</td>
+<td>165</td>
 <td style="text-align: left;">if that sin is not unto death their is a sin unto death which we</td>
 <td style="text-align: left;">if any man see his brother sin a sin which is not unto death he</td>
 <td style="text-align: right;">0.785639</td>
@@ -903,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>55</td>
+<td>166</td>
 <td style="text-align: left;">of love what greater love hath any man than that he lay down his life</td>
 <td style="text-align: left;">greater love hath no man than this that a man lay down his life for his friends</td>
 <td style="text-align: right;">0.785035</td>
@@ -911,7 +492,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>57</td>
+<td>168</td>
 <td style="text-align: left;">ch of math agree with thine adversary quickly while thou art in the way with</td>
 <td style="text-align: left;">agree with thine adversary quickly whiles thou art in the way with him lest at</td>
 <td style="text-align: right;">0.781848</td>
@@ -919,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>61</td>
+<td>181</td>
 <td style="text-align: left;">let us have compassion on others as we wish god to have compassion on us</td>
 <td style="text-align: left;">and i will have compassion on whom i will have compassion</td>
 <td style="text-align: right;">0.77237</td>
@@ -927,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>71</td>
+<td>192</td>
 <td style="text-align: left;">the kingdom of god is set up for the last time to again restore israel</td>
 <td style="text-align: left;">this time restore again the kingdom to israel</td>
 <td style="text-align: right;">0.772134</td>
@@ -935,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>75</td>
+<td>198</td>
 <td style="text-align: left;">he says that while the bridegroom tarried they all slumbered and slep we have all</td>
 <td style="text-align: left;">while the bridegroom tarried they all slumbered and slept</td>
 <td style="text-align: right;">0.76814</td>
@@ -943,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>77</td>
+<td>204</td>
 <td style="text-align: left;">st luke “and the angel said unto them fear not for behold i bring you</td>
 <td style="text-align: left;">and the angel said unto them fear not for behold i bring you good tidings</td>
 <td style="text-align: right;">0.76526</td>
@@ -951,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>78</td>
+<td>205</td>
 <td style="text-align: left;">the coming of the son of man and i had the spirit and power of</td>
 <td style="text-align: left;">the coming of the son of man be</td>
 <td style="text-align: right;">0.763924</td>
@@ -959,23 +540,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>80</td>
-<td style="text-align: left;">though the heavens and [earth] pass away my words will not pass away but but</td>
-<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
-<td style="text-align: right;">0.763195</td>
-<td style="text-align: left;">Luke 21:33</td>
-<td style="text-align: left;">New Testament</td>
-</tr>
-<tr class="odd">
-<td>81</td>
+<td>210</td>
 <td style="text-align: left;">though the heavens and [earth] pass away my words will not pass away but but</td>
 <td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
 <td style="text-align: right;">0.763195</td>
 <td style="text-align: left;">Matthew 24:35</td>
 <td style="text-align: left;">New Testament</td>
 </tr>
+<tr class="odd">
+<td>211</td>
+<td style="text-align: left;">though the heavens and [earth] pass away my words will not pass away but but</td>
+<td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
+<td style="text-align: right;">0.763195</td>
+<td style="text-align: left;">Luke 21:33</td>
+<td style="text-align: left;">New Testament</td>
+</tr>
 <tr class="even">
-<td>82</td>
+<td>212</td>
 <td style="text-align: left;">though the heavens and [earth] pass away my words will not pass away but but</td>
 <td style="text-align: left;">heaven and earth shall pass away but my words shall not pass away</td>
 <td style="text-align: right;">0.763195</td>
@@ -983,7 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="odd">
-<td>83</td>
+<td>215</td>
 <td style="text-align: left;">the days of the coming of the son of man first to the saints of</td>
 <td style="text-align: left;">the coming of the son of man be</td>
 <td style="text-align: right;">0.76259</td>
@@ -991,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">New Testament</td>
 </tr>
 <tr class="even">
-<td>84</td>
+<td>217</td>
 <td style="text-align: left;">from the east and from the west and that that the north shall give up</td>
 <td style="text-align: left;">and they shall come from the east and from the west and from the north</td>
 <td style="text-align: right;">0.762025</td>
@@ -1005,16 +586,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="book-of-mormon-matches" class="level3">
 <h3 class="anchored" data-anchor-id="book-of-mormon-matches">Book of Mormon Matches</h3>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "Book of Mormon"'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  data.head(number_of_rows),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "Book of Mormon"'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  data.head(number_of_rows),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <table class="table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -1028,7 +609,199 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>72</td>
+<td>21</td>
+<td style="text-align: left;">the eternal father we ask thee in the name of thy son jesus christ to</td>
+<td style="text-align: left;">o god the eternal father we ask thee in the name of thy son jesus</td>
+<td style="text-align: right;">0.928699</td>
+<td style="text-align: left;">Moroni 5:2</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td style="text-align: left;">the eternal father we ask thee in the name of thy son jesus christ to</td>
+<td style="text-align: left;">o god the eternal father we ask thee in the name of thy son jesus</td>
+<td style="text-align: right;">0.928699</td>
+<td style="text-align: left;">Moroni 4:3</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>33</td>
+<td style="text-align: left;">that it is a son for unto us a child is born unto us a</td>
+<td style="text-align: left;">for unto us a child is born unto us a son is given and the</td>
+<td style="text-align: right;">0.920117</td>
+<td style="text-align: left;">2 Nephi 19:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>38</td>
+<td style="text-align: left;">had “adam fell that men might be men are that they may have joy but</td>
+<td style="text-align: left;">adam fell that men might be and men are that they might have joy</td>
+<td style="text-align: right;">0.911256</td>
+<td style="text-align: left;">2 Nephi 2:25</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>41</td>
+<td style="text-align: left;">apostle said we have precept upon precept line upon line here a little and there</td>
+<td style="text-align: left;">line upon line precept upon precept here a little and there a little and blessed</td>
+<td style="text-align: right;">0.909438</td>
+<td style="text-align: left;">2 Nephi 28:30</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>49</td>
+<td style="text-align: left;">the spirit and power of god and the gift of the holy ghost that they</td>
+<td style="text-align: left;">power of god and the gift of the holy ghost!</td>
+<td style="text-align: right;">0.897665</td>
+<td style="text-align: left;">2 Nephi 28:26</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>63</td>
+<td style="text-align: left;">to their fathers lest i come and smite the earth with a curse” abram received</td>
+<td style="text-align: left;">of the children to their fathers lest i come and smite the earth with a curse</td>
+<td style="text-align: right;">0.865299</td>
+<td style="text-align: left;">3 Nephi 25:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>79</td>
+<td style="text-align: left;">on the north west and 7 on the south east one on the south the</td>
+<td style="text-align: left;">yea on the north and on the south on the east and on the west</td>
+<td style="text-align: right;">0.843354</td>
+<td style="text-align: left;">Mosiah 27:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>86</td>
+<td style="text-align: left;">spirit of inspiration the power of god and the gift of the holy ghost the</td>
+<td style="text-align: left;">power of god and the gift of the holy ghost!</td>
+<td style="text-align: right;">0.837941</td>
+<td style="text-align: left;">2 Nephi 28:26</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>99</td>
+<td style="text-align: left;">god inspired by the power of god and the gift of the holy ghost such</td>
+<td style="text-align: left;">power of god and the gift of the holy ghost!</td>
+<td style="text-align: right;">0.819539</td>
+<td style="text-align: left;">2 Nephi 28:26</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>105</td>
+<td style="text-align: left;">the hearts of the children to the fathers lest i come and smite the earth</td>
+<td style="text-align: left;">of the children to their fathers lest i come and smite the earth with a curse</td>
+<td style="text-align: right;">0.814816</td>
+<td style="text-align: left;">3 Nephi 25:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>111</td>
+<td style="text-align: left;">unto us a child is given! unto us a daughter is born phebe whittemore carter</td>
+<td style="text-align: left;">for unto us a child is born unto us a son is given and the</td>
+<td style="text-align: right;">0.810616</td>
+<td style="text-align: left;">2 Nephi 19:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>116</td>
+<td style="text-align: left;">calling and the gift of the holy ghost ^and power^ of the holy ghost agreeable</td>
+<td style="text-align: left;">power of god and the gift of the holy ghost!</td>
+<td style="text-align: right;">0.808047</td>
+<td style="text-align: left;">2 Nephi 28:26</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>117</td>
+<td style="text-align: left;">the gift of the holy ghost and in no other way is the gift of</td>
+<td style="text-align: left;">the gift of preaching and the gift of the holy ghost and the gift of translation</td>
+<td style="text-align: right;">0.80742</td>
+<td style="text-align: left;">Alma 9:21</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>118</td>
+<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
+<td style="text-align: left;">will i give him a charge to take the spoil and to take the prey</td>
+<td style="text-align: right;">0.807215</td>
+<td style="text-align: left;">2 Nephi 20:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>122</td>
+<td style="text-align: left;">ch of math agree with thine adversary quickly while thou art in the way with</td>
+<td style="text-align: left;">agree with thine adversary quickly while thou art in the way with him lest at</td>
+<td style="text-align: right;">0.805539</td>
+<td style="text-align: left;">3 Nephi 12:25</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>129</td>
+<td style="text-align: left;">the power of god and the gift of the holy ghost until they have gatherd</td>
+<td style="text-align: left;">power of god and the gift of the holy ghost!</td>
+<td style="text-align: right;">0.802039</td>
+<td style="text-align: left;">2 Nephi 28:26</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>137</td>
+<td style="text-align: left;">[figure] o god our eternal father we ask thee in the name of jesus christ</td>
+<td style="text-align: left;">o god the eternal father we ask thee in the name of thy son jesus</td>
+<td style="text-align: right;">0.799964</td>
+<td style="text-align: left;">Moroni 4:3</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>136</td>
+<td style="text-align: left;">[figure] o god our eternal father we ask thee in the name of jesus christ</td>
+<td style="text-align: left;">o god the eternal father we ask thee in the name of thy son jesus</td>
+<td style="text-align: right;">0.799964</td>
+<td style="text-align: left;">Moroni 5:2</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>143</td>
+<td style="text-align: left;">by you will understand and see that all is right wo wo wo unto all</td>
+<td style="text-align: left;">wo wo wo unto this people wo unto the inhabitants of the whole earth except</td>
+<td style="text-align: right;">0.797048</td>
+<td style="text-align: left;">3 Nephi 9:2</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>154</td>
+<td style="text-align: left;">enjoyed the spirit and power of god the holy ghost and the gift of eternal</td>
+<td style="text-align: left;">power of god and the gift of the holy ghost!</td>
+<td style="text-align: right;">0.788325</td>
+<td style="text-align: left;">2 Nephi 28:26</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>163</td>
+<td style="text-align: left;">is the gate and narrow the way that leadeth unto eternal life and few there</td>
+<td style="text-align: left;">because strait is the gate and narrow is the way which leadeth unto life and few there be that find it</td>
+<td style="text-align: right;">0.785675</td>
+<td style="text-align: left;">3 Nephi 14:14</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>170</td>
+<td style="text-align: left;">ask in the name of jesus christ the son of the living god that the</td>
+<td style="text-align: left;">in the name of jesus christ the son of the living god and if ye</td>
+<td style="text-align: right;">0.780191</td>
+<td style="text-align: left;">Mormon 9:29</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>191</td>
+<td style="text-align: left;">see it and know that i an god ye latter day saints do ye not</td>
+<td style="text-align: left;">know ye not that ye are in the hands of god know ye not that</td>
+<td style="text-align: right;">0.77223</td>
+<td style="text-align: left;">Mormon 5:23</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>193</td>
 <td style="text-align: left;">the spirit and power of god and the gift of the holy ghost that they</td>
 <td style="text-align: left;">for they shall have the gift and the power of the holy ghost and if</td>
 <td style="text-align: right;">0.771901</td>
@@ -1036,23 +809,151 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 <tr class="even">
-<td>94</td>
+<td>194</td>
+<td style="text-align: left;">“i have other sheep which are not of this fold and” he says that is</td>
+<td style="text-align: left;">that other sheep i have which are not of this fold them also i must</td>
+<td style="text-align: right;">0.771403</td>
+<td style="text-align: left;">3 Nephi 15:17</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>199</td>
+<td style="text-align: left;">thy head in the name of jesus christ the son of the living god and</td>
+<td style="text-align: left;">in the name of jesus christ the son of the living god and if ye</td>
+<td style="text-align: right;">0.767075</td>
+<td style="text-align: left;">Mormon 9:29</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>200</td>
+<td style="text-align: left;">by you will understand and see that all is right wo wo wo unto all</td>
+<td style="text-align: left;">commit whoredoms and pervert the right way of the lord wo wo wo be unto</td>
+<td style="text-align: right;">0.767054</td>
+<td style="text-align: left;">2 Nephi 28:15</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>208</td>
+<td style="text-align: left;">days that god should set his hand again the second time to recover the remnant</td>
+<td style="text-align: left;">hand again the second time to recover the remnant of his people which shall be</td>
+<td style="text-align: right;">0.763519</td>
+<td style="text-align: left;">2 Nephi 21:11</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>232</td>
+<td style="text-align: left;">hen gathereth her chickens under her wings but they would not god and angels dont</td>
+<td style="text-align: left;">a hen gathereth her chickens under her wings and have nourished you</td>
+<td style="text-align: right;">0.754062</td>
+<td style="text-align: left;">3 Nephi 10:4</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>236</td>
 <td style="text-align: left;">the spirit and power of god and the gift of the holy ghost that they</td>
 <td style="text-align: left;">by the power of the holy ghost which is the gift of god unto all</td>
 <td style="text-align: right;">0.753476</td>
 <td style="text-align: left;">1 Nephi 10:17</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
+<tr class="even">
+<td>244</td>
+<td style="text-align: left;">the gift of the holy ghost and in no other way is the gift of</td>
+<td style="text-align: left;">power of god and the gift of the holy ghost!</td>
+<td style="text-align: right;">0.749682</td>
+<td style="text-align: left;">2 Nephi 28:26</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
 <tr class="odd">
-<td>122</td>
+<td>245</td>
+<td style="text-align: left;">on the east north and west and by the mountain on the south it is</td>
+<td style="text-align: left;">yea on the north and on the south on the east and on the west</td>
+<td style="text-align: right;">0.749401</td>
+<td style="text-align: left;">Mosiah 27:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>252</td>
+<td style="text-align: left;">head in the name of jesus christ the son of the living god and seal</td>
+<td style="text-align: left;">in the name of jesus christ the son of the living god and if ye</td>
+<td style="text-align: right;">0.74691</td>
+<td style="text-align: left;">Mormon 9:29</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>272</td>
+<td style="text-align: left;">thou shalt be a comfort unto them thou shalt be baptized the day thou art</td>
+<td style="text-align: left;">in righteousness shalt thou be established thou shalt be far from oppression for thou shalt</td>
+<td style="text-align: right;">0.741073</td>
+<td style="text-align: left;">3 Nephi 22:14</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>276</td>
+<td style="text-align: left;">upon the earth until the law shall go forth of zion and the word of</td>
+<td style="text-align: left;">of zion shall go forth the law and the word of the lord from jerusalem</td>
+<td style="text-align: right;">0.740751</td>
+<td style="text-align: left;">2 Nephi 12:3</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>280</td>
+<td style="text-align: left;">as a hen gathereth her chickens under wings but ye would not and he then</td>
+<td style="text-align: left;">a hen gathereth her chickens under her wings and have nourished you</td>
+<td style="text-align: right;">0.739576</td>
+<td style="text-align: left;">3 Nephi 10:4</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>287</td>
+<td style="text-align: left;">see it and know that i an god ye latter day saints do ye not</td>
+<td style="text-align: left;">ye know that ye do transgress the laws of god and ye do know that</td>
+<td style="text-align: right;">0.737574</td>
+<td style="text-align: left;">Alma 60:33</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>302</td>
+<td style="text-align: left;">goodness of god neither have ye sought to recover israel wo wo wo unto you</td>
+<td style="text-align: left;">wo wo wo unto this people wo unto the inhabitants of the whole earth except</td>
+<td style="text-align: right;">0.733349</td>
+<td style="text-align: left;">3 Nephi 9:2</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>304</td>
 <td style="text-align: left;">god inspired by the power of god and the gift of the holy ghost such</td>
 <td style="text-align: left;">by the power of the holy ghost which is the gift of god unto all</td>
 <td style="text-align: right;">0.732336</td>
 <td style="text-align: left;">1 Nephi 10:17</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
+<tr class="odd">
+<td>306</td>
+<td style="text-align: left;">on the north west and 7 on the south east one on the south the</td>
+<td style="text-align: left;">them on the east and on the south of the hill riplah</td>
+<td style="text-align: right;">0.730136</td>
+<td style="text-align: left;">Alma 43:31</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
 <tr class="even">
-<td>130</td>
+<td>314</td>
+<td style="text-align: left;">we say unto you that you shall have power over your enemies and you shall</td>
+<td style="text-align: left;">shall be delivered unto you by him ye shall prosper in the land and your enemies shall have no power over you</td>
+<td style="text-align: right;">0.72827</td>
+<td style="text-align: left;">Mosiah 2:31</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="odd">
+<td>320</td>
+<td style="text-align: left;">as a hen gathereth her chickens under wings but ye would not and he then</td>
+<td style="text-align: left;">as a hen gathereth her chickens under her wings if ye will repent and return unto me with full purpose of heart</td>
+<td style="text-align: right;">0.727548</td>
+<td style="text-align: left;">3 Nephi 10:6</td>
+<td style="text-align: left;">Book of Mormon</td>
+</tr>
+<tr class="even">
+<td>321</td>
 <td style="text-align: left;">the power of god and the gift of the holy ghost until they have gatherd</td>
 <td style="text-align: left;">for they shall have the gift and the power of the holy ghost and if</td>
 <td style="text-align: right;">0.727529</td>
@@ -1060,75 +961,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 <tr class="odd">
-<td>158</td>
-<td style="text-align: left;">spirit of inspiration the power of god and the gift of the holy ghost the</td>
-<td style="text-align: left;">by the power of the holy ghost which is the gift of god unto all</td>
-<td style="text-align: right;">0.716885</td>
-<td style="text-align: left;">1 Nephi 10:17</td>
+<td>325</td>
+<td style="text-align: left;">thy body be changed in the twinkling of an eye from mortality to immortality and</td>
+<td style="text-align: left;">my glory ye shall be changed in the twinkling of an eye from mortality to</td>
+<td style="text-align: right;">0.727053</td>
+<td style="text-align: left;">3 Nephi 28:8</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 <tr class="even">
-<td>209</td>
-<td style="text-align: left;">calling and the gift of the holy ghost ^and power^ of the holy ghost agreeable</td>
-<td style="text-align: left;">for they shall have the gift and the power of the holy ghost and if</td>
-<td style="text-align: right;">0.700048</td>
-<td style="text-align: left;">1 Nephi 13:37</td>
+<td>331</td>
+<td style="text-align: left;">lest i come and smite the whole earth with a curse the answer is right</td>
+<td style="text-align: left;">of the children to their fathers lest i come and smite the earth with a curse</td>
+<td style="text-align: right;">0.725841</td>
+<td style="text-align: left;">3 Nephi 25:6</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 <tr class="odd">
-<td>312</td>
-<td style="text-align: left;">the power of god and the gift of the holy ghost until they have gatherd</td>
-<td style="text-align: left;">by the power of the holy ghost which is the gift of god unto all</td>
-<td style="text-align: right;">0.681198</td>
-<td style="text-align: left;">1 Nephi 10:17</td>
+<td>336</td>
+<td style="text-align: left;">days that god should set his hand again the second time to recover the remnant</td>
+<td style="text-align: left;">and the day that he shall set his hand again the second time to recover</td>
+<td style="text-align: right;">0.725139</td>
+<td style="text-align: left;">Jacob 6:2</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 <tr class="even">
-<td>333</td>
-<td style="text-align: left;">calling and the gift of the holy ghost ^and power^ of the holy ghost agreeable</td>
-<td style="text-align: left;">by the power of the holy ghost which is the gift of god unto all</td>
-<td style="text-align: right;">0.677977</td>
-<td style="text-align: left;">1 Nephi 10:17</td>
+<td>340</td>
+<td style="text-align: left;">and the love of god our father and the grace of jesus christ our lord</td>
+<td style="text-align: left;">grace of god the father and our lord jesus christ and his holy will because</td>
+<td style="text-align: right;">0.724776</td>
+<td style="text-align: left;">Moroni 7:2</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 <tr class="odd">
-<td>334</td>
-<td style="text-align: left;">written by the hand of mormon upon plates taken from the plates of nephi translated</td>
-<td style="text-align: left;">and these plates also are called the plates of nephi</td>
-<td style="text-align: right;">0.677937</td>
-<td style="text-align: left;">1 Nephi 9:2</td>
+<td>343</td>
+<td style="text-align: left;">of this nation all their sins wickedness and abominations are open before thy face they</td>
+<td style="text-align: left;">hide their sins and wickedness and abominations from before thy face!</td>
+<td style="text-align: right;">0.724545</td>
+<td style="text-align: left;">Moroni 9:15</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 <tr class="even">
-<td>396</td>
-<td style="text-align: left;">the gift of the holy ghost and in no other way is the gift of</td>
-<td style="text-align: left;">by the power of the holy ghost which is the gift of god unto all</td>
-<td style="text-align: right;">0.670765</td>
-<td style="text-align: left;">1 Nephi 10:17</td>
-<td style="text-align: left;">Book of Mormon</td>
-</tr>
-<tr class="odd">
-<td>455</td>
-<td style="text-align: left;">and prepare for the day of thy visit ation thy mourning thy calamity and thy</td>
-<td style="text-align: left;">the lord thy god and honor thy father and thy mother that thy days may</td>
-<td style="text-align: right;">0.664058</td>
-<td style="text-align: left;">1 Nephi 17:55</td>
-<td style="text-align: left;">Book of Mormon</td>
-</tr>
-<tr class="even">
-<td>483</td>
-<td style="text-align: left;">spirit of inspiration the power of god and the gift of the holy ghost the</td>
-<td style="text-align: left;">for they shall have the gift and the power of the holy ghost and if</td>
-<td style="text-align: right;">0.66211</td>
-<td style="text-align: left;">1 Nephi 13:37</td>
-<td style="text-align: left;">Book of Mormon</td>
-</tr>
-<tr class="odd">
-<td>490</td>
-<td style="text-align: left;">enjoyed the spirit and power of god the holy ghost and the gift of eternal</td>
-<td style="text-align: left;">by the power of the holy ghost which is the gift of god unto all</td>
-<td style="text-align: right;">0.6617</td>
-<td style="text-align: left;">1 Nephi 10:17</td>
+<td>348</td>
+<td style="text-align: left;">is power in the charters of nauvoo shall be saved he that believeth not shall</td>
+<td style="text-align: left;">and he that believeth and is baptized shall be saved but he that believeth not shall be damned</td>
+<td style="text-align: right;">0.723894</td>
+<td style="text-align: left;">Mormon 9:23</td>
 <td style="text-align: left;">Book of Mormon</td>
 </tr>
 </tbody>
@@ -1138,17 +1015,859 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="doctrine-and-covenants-matches" class="level3">
 <h3 class="anchored" data-anchor-id="doctrine-and-covenants-matches">Doctrine and Covenants Matches</h3>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "Doctrine and Covenants"'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  data.head(number_of_rows),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">phrase_woodruff</th>
+<th style="text-align: left;">phrase_scripture</th>
+<th style="text-align: right;">similarity_score</th>
+<th style="text-align: left;">verse_title</th>
+<th style="text-align: left;">volume_title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: left;">rights of the priesthood are inseparably connected with the powers of heaven and that the</td>
+<td style="text-align: left;">that the rights of the priesthood are inseparably connected with the powers of heaven and</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Doctrine and Covenants 121:36</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: left;">let no man be afraid to lay down his life for my sake for he</td>
+<td style="text-align: left;">let no man be afraid to lay down his life for my sake for whoso</td>
+<td style="text-align: right;">0.98518</td>
+<td style="text-align: left;">Doctrine and Covenants 103:27</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: left;">and appoint presidents and captains of hundreds and of fifties and of tens and let</td>
+<td style="text-align: left;">and appoint presidents and captains of hundreds and of fifties and of tens</td>
+<td style="text-align: right;">0.968934</td>
+<td style="text-align: left;">Doctrine and Covenants 136:15</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: left;">sins and the gift of the holy ghost by the laying on of hands when</td>
+<td style="text-align: left;">sins the gift of the holy ghost by the laying on of hands</td>
+<td style="text-align: right;">0.963915</td>
+<td style="text-align: left;">Doctrine and Covenants 138:33</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: left;">powers of heaven cannot be controlled nor handled only upon the principles of righteousness such</td>
+<td style="text-align: left;">that the powers of heaven cannot be controlled nor handled only upon the principles of righteousness</td>
+<td style="text-align: right;">0.960723</td>
+<td style="text-align: left;">Doctrine and Covenants 121:36</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td style="text-align: left;">turn the hearts of the children to their fathers and the fathers to the children</td>
+<td style="text-align: left;">children to their fathers and the hearts of the fathers to the children</td>
+<td style="text-align: right;">0.943076</td>
+<td style="text-align: left;">Doctrine and Covenants 98:16</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td style="text-align: left;">turn the hearts of the fathers to the children and the hearts of the children</td>
+<td style="text-align: left;">the hearts of the fathers to the children and the hearts of the children to</td>
+<td style="text-align: right;">0.941435</td>
+<td style="text-align: left;">Doctrine and Covenants 27:9</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td style="text-align: left;">as a hen gathereth her chickens under wings but ye would not and he then</td>
+<td style="text-align: left;">a hen gathereth her chickens under her wings but ye would not!</td>
+<td style="text-align: right;">0.93904</td>
+<td style="text-align: left;">Doctrine and Covenants 43:24</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td style="text-align: left;">concerning his people let every man use all his influence and property to remove this</td>
+<td style="text-align: left;">let every man use all his influence and property to remove this people to the</td>
+<td style="text-align: right;">0.938395</td>
+<td style="text-align: left;">Doctrine and Covenants 136:10</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
+<td style="text-align: left;">and though the heaven and the earth pass away these words shall not pass away but shall be fulfilled</td>
+<td style="text-align: right;">0.934828</td>
+<td style="text-align: left;">Doctrine and Covenants 56:11</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td style="text-align: left;">full of the holy ghost predicted whatsoever should befall his posterity unto the latest generation”</td>
+<td style="text-align: left;">down with age being full of the holy ghost predicted whatsoever should befall his posterity unto the latest generation</td>
+<td style="text-align: right;">0.932572</td>
+<td style="text-align: left;">Doctrine and Covenants 107:56</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td style="text-align: left;">the eternal father we ask thee in the name of thy son jesus christ to</td>
+<td style="text-align: left;">o god the eternal father we ask thee in the name of thy son jesus</td>
+<td style="text-align: right;">0.928699</td>
+<td style="text-align: left;">Doctrine and Covenants 20:77</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td style="text-align: left;">the eternal father we ask thee in the name of thy son jesus christ to</td>
+<td style="text-align: left;">o god the eternal father we ask thee in the name of thy son jesus</td>
+<td style="text-align: right;">0.928699</td>
+<td style="text-align: left;">Doctrine and Covenants 20:79</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>23</td>
+<td style="text-align: left;">turn the hearts of the fathers to the children and the hearts of the children</td>
+<td style="text-align: left;">to turn the hearts of the fathers to the children and the children to the</td>
+<td style="text-align: right;">0.92836</td>
+<td style="text-align: left;">Doctrine and Covenants 110:15</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>27</td>
+<td style="text-align: left;">ye do this with a pure heart in all faithfulness ye shall be blessed you</td>
+<td style="text-align: left;">and if ye do this with a pure heart in all faithfulness ye shall be</td>
+<td style="text-align: right;">0.925279</td>
+<td style="text-align: left;">Doctrine and Covenants 136:11</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td style="text-align: left;">turn the hearts of the children to their fathers and the fathers to the children</td>
+<td style="text-align: left;">fathers and the hearts of the children shall turn to their fathers</td>
+<td style="text-align: right;">0.924062</td>
+<td style="text-align: left;">Doctrine and Covenants 2:2</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>29</td>
+<td style="text-align: left;">people to the place where the lord shall locate a stake of zion and if</td>
+<td style="text-align: left;">place where the lord shall locate a stake of zion</td>
+<td style="text-align: right;">0.923728</td>
+<td style="text-align: left;">Doctrine and Covenants 136:10</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>30</td>
+<td style="text-align: left;">will 13 what i have spoken i have spoken and i excuse not myself and</td>
+<td style="text-align: left;">what i the lord have spoken i have spoken and i excuse not myself and</td>
+<td style="text-align: right;">0.923474</td>
+<td style="text-align: left;">Doctrine and Covenants 1:38</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>31</td>
+<td style="text-align: left;">turn the hearts of the children to their fathers and the fathers to the children</td>
+<td style="text-align: left;">to turn the hearts of the fathers to the children and the children to the</td>
+<td style="text-align: right;">0.92342</td>
+<td style="text-align: left;">Doctrine and Covenants 110:15</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>35</td>
+<td style="text-align: left;">before the coming of the great and dreadful day of the lord” “and he shall</td>
+<td style="text-align: left;">before the coming of the great and dreadful day of the lord</td>
+<td style="text-align: right;">0.919138</td>
+<td style="text-align: left;">Doctrine and Covenants 2:1</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>36</td>
+<td style="text-align: left;">that layeth down his life for my sake shall find it again and have eternal</td>
+<td style="text-align: left;">layeth down his life for my sake shall find it again</td>
+<td style="text-align: right;">0.914947</td>
+<td style="text-align: left;">Doctrine and Covenants 103:27</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>37</td>
+<td style="text-align: left;">my servants that have been appointed go and teach this my will to the saints</td>
+<td style="text-align: left;">and let my servants that have been appointed go and teach this my will to</td>
+<td style="text-align: right;">0.91483</td>
+<td style="text-align: left;">Doctrine and Covenants 136:16</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>39</td>
+<td style="text-align: left;">is the free gift of the lord thy god and thou art his steward if</td>
+<td style="text-align: left;">steward for it is the free gift of the lord thy god and thou art his steward</td>
+<td style="text-align: right;">0.910324</td>
+<td style="text-align: left;">Doctrine and Covenants 136:27</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>42</td>
+<td style="text-align: left;">and your enemies triumph over you so no more at present amen and amen friday</td>
+<td style="text-align: left;">fail you and your enemies triumph over you so no more at present amen and amen</td>
+<td style="text-align: right;">0.908946</td>
+<td style="text-align: left;">Doctrine and Covenants 136:42</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>43</td>
+<td style="text-align: left;">shall be blessed in your flocks and in your herds and in your fields and</td>
+<td style="text-align: left;">blessed you shall be blessed in your flocks and in your herds and in your</td>
+<td style="text-align: right;">0.906504</td>
+<td style="text-align: left;">Doctrine and Covenants 136:11</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>44</td>
+<td style="text-align: left;">with them be organized into companies with a covenant and promise to keep all the</td>
+<td style="text-align: left;">who journey with them be organized into companies with a covenant and promise to keep</td>
+<td style="text-align: right;">0.906463</td>
+<td style="text-align: left;">Doctrine and Covenants 136:2</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>46</td>
+<td style="text-align: left;">ye and keep all your pledges one with another and covet not that which is</td>
+<td style="text-align: left;">seek ye and keep all your pledges one with another and covet not that which is thy brother’s</td>
+<td style="text-align: right;">0.902056</td>
+<td style="text-align: left;">Doctrine and Covenants 136:20</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>47</td>
+<td style="text-align: left;">the wicked and unjust stewards and appoint them their portion with hypocrites and unbelievers let</td>
+<td style="text-align: left;">off those wicked unfaithful and unjust stewards and appoint them their portion among hypocrites and unbelievers</td>
+<td style="text-align: right;">0.901663</td>
+<td style="text-align: left;">Doctrine and Covenants 101:90</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>48</td>
+<td style="text-align: left;">thou art merry praise the lord with singing with music with dancing and with a</td>
+<td style="text-align: left;">if thou art merry praise the lord with singing with music with dancing and with a prayer of praise and thanksgiving</td>
+<td style="text-align: right;">0.899363</td>
+<td style="text-align: left;">Doctrine and Covenants 136:28</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>51</td>
+<td style="text-align: left;">company also let my servants amasa mason lyman and george albert smith organize a company</td>
+<td style="text-align: left;">also let my servants amasa lyman and george a smith organize a company</td>
+<td style="text-align: right;">0.896111</td>
+<td style="text-align: left;">Doctrine and Covenants 136:14</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>52</td>
+<td style="text-align: left;">against this people let each company prepare houses and fields for raising grain for those</td>
+<td style="text-align: left;">let each company prepare houses and fields for raising grain for those who are to</td>
+<td style="text-align: right;">0.895421</td>
+<td style="text-align: left;">Doctrine and Covenants 136:9</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>53</td>
+<td style="text-align: left;">evening 4 man be afraid to lay down his life for my sake for he</td>
+<td style="text-align: left;">let no man be afraid to lay down his life for my sake for whoso</td>
+<td style="text-align: right;">0.889612</td>
+<td style="text-align: left;">Doctrine and Covenants 103:27</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>57</td>
+<td style="text-align: left;">though the heavens and [earth] pass away my words will not pass away but but</td>
+<td style="text-align: left;">though the heavens and the earth pass away my word shall not pass away but</td>
+<td style="text-align: right;">0.875</td>
+<td style="text-align: left;">Doctrine and Covenants 1:38</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>58</td>
+<td style="text-align: left;">diligent in preserving what thou hast that thou mayest be a wise steward for it</td>
+<td style="text-align: left;">thou shalt be diligent in preserving what thou hast that thou mayest be a wise</td>
+<td style="text-align: right;">0.872691</td>
+<td style="text-align: left;">Doctrine and Covenants 136:27</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>59</td>
+<td style="text-align: left;">the lamanites shall blossom as the rose in the wilderness now we know that this</td>
+<td style="text-align: left;">wilderness and the lamanites shall blossom as the rose</td>
+<td style="text-align: right;">0.872449</td>
+<td style="text-align: left;">Doctrine and Covenants 49:24</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>60</td>
+<td style="text-align: left;">to their fathers lest i come and smite the earth with a curse” abram received</td>
+<td style="text-align: left;">the children to their fathers lest i come and smite the earth with a curse</td>
+<td style="text-align: right;">0.869598</td>
+<td style="text-align: left;">Doctrine and Covenants 128:17</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>64</td>
+<td style="text-align: left;">ground against them therefore marvel not at these things for ye are not yet pure</td>
+<td style="text-align: left;">therefore marvel not at these things for ye are not yet pure ye can not</td>
+<td style="text-align: right;">0.863171</td>
+<td style="text-align: left;">Doctrine and Covenants 136:37</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>65</td>
+<td style="text-align: left;">lord concerning the camp of israel in their journeyings to the west let all the</td>
+<td style="text-align: left;">the word and will of the lord concerning the camp of israel in their journeyings to the west</td>
+<td style="text-align: right;">0.859315</td>
+<td style="text-align: left;">Doctrine and Covenants 136:1</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>66</td>
+<td style="text-align: left;">hen gathereth her chickens under her wings but they would not god and angels dont</td>
+<td style="text-align: left;">a hen gathereth her chickens under her wings but ye would not!</td>
+<td style="text-align: right;">0.859201</td>
+<td style="text-align: left;">Doctrine and Covenants 43:24</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>67</td>
+<td style="text-align: left;">before the coming of the great and dreadful day of the lord” “and he shall</td>
+<td style="text-align: left;">the prophet before the coming of the great and dreadful day of the lord and</td>
+<td style="text-align: right;">0.85872</td>
+<td style="text-align: left;">Doctrine and Covenants 128:17</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>68</td>
+<td style="text-align: left;">not forgive <sup>it</sup> for i cannot if the lord will forgive you i will forgive</td>
+<td style="text-align: left;">i the lord will forgive whom i will forgive but of you it is required to forgive all men</td>
+<td style="text-align: right;">0.858054</td>
+<td style="text-align: left;">Doctrine and Covenants 64:10</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>69</td>
+<td style="text-align: left;">presence and you shall fall down and be crowned with glory even in zion by</td>
+<td style="text-align: left;">and there shall they fall down and be crowned with glory even in zion by</td>
+<td style="text-align: right;">0.855085</td>
+<td style="text-align: left;">Doctrine and Covenants 133:32</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>70</td>
+<td style="text-align: left;">of heavens and that the powers of heaven cannot be controlled nor handled only upon</td>
+<td style="text-align: left;">that the powers of heaven cannot be controlled nor handled only upon the principles of righteousness</td>
+<td style="text-align: right;">0.854604</td>
+<td style="text-align: left;">Doctrine and Covenants 121:36</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>74</td>
+<td style="text-align: left;">to heaven to keep all the commandments and statutes of the lord our god and</td>
+<td style="text-align: left;">all the commandments and statutes of the lord our god</td>
+<td style="text-align: right;">0.850361</td>
+<td style="text-align: left;">Doctrine and Covenants 136:2</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>75</td>
+<td style="text-align: left;">time time and if any man shall seek to build up himself and seeketh not</td>
+<td style="text-align: left;">and if any man shall seek to build up himself and seeketh not my counsel</td>
+<td style="text-align: right;">0.849942</td>
+<td style="text-align: left;">Doctrine and Covenants 136:19</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>76</td>
+<td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
+<td style="text-align: left;">and though the heaven and the earth pass away these words shall not pass away but shall be fulfilled</td>
+<td style="text-align: right;">0.847639</td>
+<td style="text-align: left;">Doctrine and Covenants 56:11</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>77</td>
+<td style="text-align: left;">my servant john taylor 1808 and my servant wilford woodruff and my servant orson pratt</td>
+<td style="text-align: left;">let my servant orson hyde journey with my servant orson pratt whithersoever my servant joseph</td>
+<td style="text-align: right;">0.845749</td>
+<td style="text-align: left;">Doctrine and Covenants 103:40</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>78</td>
+<td style="text-align: left;">that layeth down his life for my sake shall find it again and have eternal</td>
+<td style="text-align: left;">and whoso layeth down his life in my cause for my name’s sake shall find it again even life eternal</td>
+<td style="text-align: right;">0.844841</td>
+<td style="text-align: left;">Doctrine and Covenants 98:13</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="odd">
+<td>80</td>
+<td style="text-align: left;">at the coming of the son of man what are the signs of the times</td>
+<td style="text-align: left;">the signs of the coming of the son of man</td>
+<td style="text-align: right;">0.843098</td>
+<td style="text-align: left;">Doctrine and Covenants 68:11</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+<tr class="even">
+<td>81</td>
+<td style="text-align: left;">when their prophets shall smite the rocks and the mountains of ice shall flow down</td>
+<td style="text-align: left;">shall smite the rocks and the ice shall flow down at their presence</td>
+<td style="text-align: right;">0.841944</td>
+<td style="text-align: left;">Doctrine and Covenants 133:26</td>
+<td style="text-align: left;">Doctrine and Covenants</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="old-testament-matches" class="level3">
+<h3 class="anchored" data-anchor-id="old-testament-matches">Old Testament Matches</h3>
 <div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "Doctrine and Covenants"'</span>)</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> top_matches.query(<span class="st">'volume_title == "Old Testament"'</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  data.head(number_of_rows),</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<p>phrase_woodruff phrase_scripture similarity_score verse_title volume_title —————– —————— —————— ————- ————–</p>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">phrase_woodruff</th>
+<th style="text-align: left;">phrase_scripture</th>
+<th style="text-align: right;">similarity_score</th>
+<th style="text-align: left;">verse_title</th>
+<th style="text-align: left;">volume_title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>18</td>
+<td style="text-align: left;">it is better to go to the house of mourning than to the house of</td>
+<td style="text-align: left;">it is better to go to the house of mourning than to go to the</td>
+<td style="text-align: right;">0.929449</td>
+<td style="text-align: left;">Ecclesiastes 7:2</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td style="text-align: left;">apostle said we have precept upon precept line upon line here a little and there</td>
+<td style="text-align: left;">for precept must be upon precept precept upon precept line upon line line upon line here a little and there a little</td>
+<td style="text-align: right;">0.927828</td>
+<td style="text-align: left;">Isaiah 28:10</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>34</td>
+<td style="text-align: left;">that it is a son for unto us a child is born unto us a</td>
+<td style="text-align: left;">for unto us a child is born unto us a son is given and the</td>
+<td style="text-align: right;">0.920117</td>
+<td style="text-align: left;">Isaiah 9:6</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td style="text-align: left;">feasting for that is the end of all men and the living will lay it</td>
+<td style="text-align: left;">house of feasting for that is the end of all men and the living will lay it to his heart</td>
+<td style="text-align: right;">0.896123</td>
+<td style="text-align: left;">Ecclesiastes 7:2</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>61</td>
+<td style="text-align: left;">the lord gave and the lord hath taken away and blessed be the name of</td>
+<td style="text-align: left;">thither the lord gave and the lord hath taken away blessed be the name of the lord</td>
+<td style="text-align: right;">0.86819</td>
+<td style="text-align: left;">Job 1:21</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>62</td>
+<td style="text-align: left;">to their fathers lest i come and smite the earth with a curse” abram received</td>
+<td style="text-align: left;">of the children to their fathers lest i come and smite the earth with a curse</td>
+<td style="text-align: right;">0.865299</td>
+<td style="text-align: left;">Malachi 4:6</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>82</td>
+<td style="text-align: left;">we will not serve thy gods men worship the golden image which thou hast set</td>
+<td style="text-align: left;">not thy gods nor worship the golden image which thou hast set up</td>
+<td style="text-align: right;">0.840606</td>
+<td style="text-align: left;">Daniel 3:12</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>94</td>
+<td style="text-align: left;">we will not serve thy gods men worship the golden image which thou hast set</td>
+<td style="text-align: left;">thy gods nor worship the golden image which thou hast set up</td>
+<td style="text-align: right;">0.82716</td>
+<td style="text-align: left;">Daniel 3:18</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>106</td>
+<td style="text-align: left;">the hearts of the children to the fathers lest i come and smite the earth</td>
+<td style="text-align: left;">of the children to their fathers lest i come and smite the earth with a curse</td>
+<td style="text-align: right;">0.814816</td>
+<td style="text-align: left;">Malachi 4:6</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>107</td>
+<td style="text-align: left;">so with jesus he said my god my god why hast thou forsaken me in</td>
+<td style="text-align: left;">my god my god why hast thou forsaken me why art thou so far from</td>
+<td style="text-align: right;">0.812966</td>
+<td style="text-align: left;">Psalms 22:1</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>112</td>
+<td style="text-align: left;">unto us a child is given! unto us a daughter is born phebe whittemore carter</td>
+<td style="text-align: left;">for unto us a child is born unto us a son is given and the</td>
+<td style="text-align: right;">0.810616</td>
+<td style="text-align: left;">Isaiah 9:6</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>119</td>
+<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
+<td style="text-align: left;">will i give him a charge to take the spoil and to take the prey</td>
+<td style="text-align: right;">0.807215</td>
+<td style="text-align: left;">Isaiah 10:6</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>124</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">son and zichri his son and shelomith his son</td>
+<td style="text-align: right;">0.80461</td>
+<td style="text-align: left;">1 Chronicles 26:25</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>125</td>
+<td style="text-align: left;">my son thou hast spoken well i have all thou hast said in my heart</td>
+<td style="text-align: left;">thou hast ravished my heart my sister my spouse thou hast ravished my heart with</td>
+<td style="text-align: right;">0.804307</td>
+<td style="text-align: left;">Song of Solomon 4:9</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>126</td>
+<td style="text-align: left;">the text “what is man that thou art mindful of him” it was one of</td>
+<td style="text-align: left;">what is man that thou art mindful of him and the son of man that thou visitest him</td>
+<td style="text-align: right;">0.80308</td>
+<td style="text-align: left;">Psalms 8:4</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>145</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">elkanah his son and ebiasaph his son and assir his son</td>
+<td style="text-align: right;">0.793349</td>
+<td style="text-align: left;">1 Chronicles 6:23</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>153</td>
+<td style="text-align: left;">“and there nobles shall be of themselves and their governor shall procede out of the</td>
+<td style="text-align: left;">and their nobles shall be of themselves and their governor shall proceed from the midst</td>
+<td style="text-align: right;">0.788487</td>
+<td style="text-align: left;">Jeremiah 30:21</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>167</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">tahath his son uriel his son uzziah his son and shaul his son</td>
+<td style="text-align: right;">0.782427</td>
+<td style="text-align: left;">1 Chronicles 6:24</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>174</td>
+<td style="text-align: left;">that the nations of the earth that forget god will be turned into hell but</td>
+<td style="text-align: left;">the wicked shall be turned into hell and all the nations that forget god</td>
+<td style="text-align: right;">0.778134</td>
+<td style="text-align: left;">Psalms 9:17</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>177</td>
+<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
+<td style="text-align: left;">and women and to take the spoil of them for a prey</td>
+<td style="text-align: right;">0.776363</td>
+<td style="text-align: left;">Esther 8:11</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>180</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">and rephah was his son also resheph and telah his son and tahan his son</td>
+<td style="text-align: right;">0.772726</td>
+<td style="text-align: left;">1 Chronicles 7:25</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>187</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">laadan his son ammihud his son elishama his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 7:26</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>190</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">amaziah his son azariah his son jotham his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 3:12</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>189</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">eliab his son jeroham his son elkanah his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 6:27</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>188</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">shimea his son haggiah his son asaiah his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 6:30</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>182</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">bukki his son uzzi his son zerahiah his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 6:51</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>186</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">shallum his son mibsam his son mishma his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 4:25</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>185</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">zadok his son ahimaaz his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 6:53</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>184</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">meraioth his son amariah his son ahitub his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 6:52</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>183</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">joram his son ahaziah his son joash his son</td>
+<td style="text-align: right;">0.772339</td>
+<td style="text-align: left;">1 Chronicles 3:11</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>196</td>
+<td style="text-align: left;">her children and refused to be comforted because of her children which were taken away</td>
+<td style="text-align: left;">weeping for her children refused to be comforted for her children because they were not</td>
+<td style="text-align: right;">0.769791</td>
+<td style="text-align: left;">Jeremiah 31:15</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>197</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">of gershom libni his son jahath his son zimmah his son</td>
+<td style="text-align: right;">0.768916</td>
+<td style="text-align: left;">1 Chronicles 6:20</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>202</td>
+<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
+<td style="text-align: left;">the month adar and to take the spoil of them for a prey</td>
+<td style="text-align: right;">0.766079</td>
+<td style="text-align: left;">Esther 3:13</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>207</td>
+<td style="text-align: left;">days that god should set his hand again the second time to recover the remnant</td>
+<td style="text-align: left;">hand again the second time to recover the remnant of his people which shall be</td>
+<td style="text-align: right;">0.763519</td>
+<td style="text-align: left;">Isaiah 11:11</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>258</td>
+<td style="text-align: left;">own sake my sake and for the sake of christ and the kingdom of god</td>
+<td style="text-align: left;">this city for mine own sake and for my servant david’s sake</td>
+<td style="text-align: right;">0.745556</td>
+<td style="text-align: left;">2 Kings 20:6</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>260</td>
+<td style="text-align: left;">perry rockwood was appointed captains over a hundred and 4 captains of fifties and captains</td>
+<td style="text-align: left;">heads over you captains over thousands and captains over hundreds and captains over fifties and</td>
+<td style="text-align: right;">0.745241</td>
+<td style="text-align: left;">Deuteronomy 1:15</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>265</td>
+<td style="text-align: left;">thou shalt labour in the temple of the lord thy god thou shalt teach thy</td>
+<td style="text-align: left;">when thou shalt vow a vow unto the lord thy god thou shalt not slack</td>
+<td style="text-align: right;">0.742882</td>
+<td style="text-align: left;">Deuteronomy 23:21</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>267</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">joah his son iddo his son zerah his son jeaterai his son</td>
+<td style="text-align: right;">0.742385</td>
+<td style="text-align: left;">1 Chronicles 6:21</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>270</td>
+<td style="text-align: left;">unto thee thou shalt have part in the first resurrection and thou shalt come forth</td>
+<td style="text-align: left;">in travail for now shalt thou go forth out of the city and thou shalt</td>
+<td style="text-align: right;">0.741458</td>
+<td style="text-align: left;">Micah 4:10</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>271</td>
+<td style="text-align: left;">of devouring fire for by fire and the sword will the lord plead with all</td>
+<td style="text-align: left;">for by fire and by his sword will the lord plead with all flesh and</td>
+<td style="text-align: right;">0.741293</td>
+<td style="text-align: left;">Isaiah 66:16</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>273</td>
+<td style="text-align: left;">thou shalt be a comfort unto them thou shalt be baptized the day thou art</td>
+<td style="text-align: left;">in righteousness shalt thou be established thou shalt be far from oppression for thou shalt</td>
+<td style="text-align: right;">0.741073</td>
+<td style="text-align: left;">Isaiah 54:14</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>274</td>
+<td style="text-align: left;">thou shalt labour in the temple of the lord thy god thou shalt teach thy</td>
+<td style="text-align: left;">and thou shalt rejoice before the lord thy god thou and thy son and thy</td>
+<td style="text-align: right;">0.741066</td>
+<td style="text-align: left;">Deuteronomy 16:11</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>277</td>
+<td style="text-align: left;">upon the earth until the law shall go forth of zion and the word of</td>
+<td style="text-align: left;">of zion shall go forth the law and the word of the lord from jerusalem</td>
+<td style="text-align: right;">0.740751</td>
+<td style="text-align: left;">Isaiah 2:3</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>278</td>
+<td style="text-align: left;">a city and two of a family and bring them to zion and i will</td>
+<td style="text-align: left;">will take you one of a city and two of a family and i will bring you to zion</td>
+<td style="text-align: right;">0.740081</td>
+<td style="text-align: left;">Jeremiah 3:14</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>279</td>
+<td style="text-align: left;">and son wilford woodruff jr and his son wilford smith woodruff and his son charles</td>
+<td style="text-align: left;">and the sons of mishma hamuel his son zacchur his son shimei his son</td>
+<td style="text-align: right;">0.740059</td>
+<td style="text-align: left;">1 Chronicles 4:26</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>281</td>
+<td style="text-align: left;">states making a distance in all of five thousand three hundred and fifty one miles</td>
+<td style="text-align: left;">hundred thousand and three thousand and five hundred and fifty</td>
+<td style="text-align: right;">0.739275</td>
+<td style="text-align: left;">Numbers 2:32</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>283</td>
+<td style="text-align: left;">let us go up unto zion the city of the lord our god that the</td>
+<td style="text-align: left;">arise ye and let us go up to zion unto the lord our god</td>
+<td style="text-align: right;">0.738839</td>
+<td style="text-align: left;">Jeremiah 31:6</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>286</td>
+<td style="text-align: left;">thou shalt labour in the temple of the lord thy god thou shalt teach thy</td>
+<td style="text-align: left;">thou shalt not abhor an edomite for he is thy brother thou shalt not abhor</td>
+<td style="text-align: right;">0.73775</td>
+<td style="text-align: left;">Deuteronomy 23:7</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="odd">
+<td>288</td>
+<td style="text-align: left;">my son thou hast spoken well i have all thou hast said in my heart</td>
+<td style="text-align: left;">thou hast proved mine heart thou hast visited me in the night thou hast tried</td>
+<td style="text-align: right;">0.737174</td>
+<td style="text-align: left;">Psalms 17:3</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+<tr class="even">
+<td>289</td>
+<td style="text-align: left;">to take a prey and to take a spoil which they will do for the</td>
+<td style="text-align: left;">to take a spoil and to take a prey to turn thine hand upon the</td>
+<td style="text-align: right;">0.737033</td>
+<td style="text-align: left;">Ezekiel 38:12</td>
+<td style="text-align: left;">Old Testament</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>
@@ -1163,8 +1882,325 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span><span class="bu">list</span>(data)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="24">
-<p>phrase_woodruff phrase_scripture similarity_score verse_title volume_title —————– —————— —————— ————- ————–</p>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;">phrase_woodruff</th>
+<th style="text-align: left;">phrase_scripture</th>
+<th style="text-align: right;">similarity_score</th>
+<th style="text-align: left;">verse_title</th>
+<th style="text-align: left;">volume_title</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>85</td>
+<td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
+<td style="text-align: left;">shall not pass away but all shall be fulfilled</td>
+<td style="text-align: right;">0.838724</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:35</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>89</td>
+<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
+<td style="text-align: left;">shall not pass away but all shall be fulfilled</td>
+<td style="text-align: right;">0.832914</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:35</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>130</td>
+<td style="text-align: left;">the order of aaron ot holds the priesthood keys of the ministering of angels will</td>
+<td style="text-align: left;">aaron which holds the keys of the ministering of angels and of the gospel of</td>
+<td style="text-align: right;">0.801526</td>
+<td style="text-align: left;">Joseph Smith–History 1:69</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>206</td>
+<td style="text-align: left;">the coming of the son of man and i had the spirit and power of</td>
+<td style="text-align: left;">the coming of the son of man be</td>
+<td style="text-align: right;">0.763924</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:43</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>216</td>
+<td style="text-align: left;">the days of the coming of the son of man first to the saints of</td>
+<td style="text-align: left;">the coming of the son of man be</td>
+<td style="text-align: right;">0.76259</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:43</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>225</td>
+<td style="text-align: left;">and received the gift of the holy ghost by the laying on of hands according</td>
+<td style="text-align: left;">fourth laying on of hands for the gift of the holy ghost</td>
+<td style="text-align: right;">0.758126</td>
+<td style="text-align: left;">Articles of Faith 1:4</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>234</td>
+<td style="text-align: left;">the redemption of zion and the coming of the son of man for his coming</td>
+<td style="text-align: left;">the coming of the son of man be</td>
+<td style="text-align: right;">0.753746</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:43</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>259</td>
+<td style="text-align: left;">sins and the gift of the holy ghost by the laying on of hands when</td>
+<td style="text-align: left;">fourth laying on of hands for the gift of the holy ghost</td>
+<td style="text-align: right;">0.745547</td>
+<td style="text-align: left;">Articles of Faith 1:4</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>263</td>
+<td style="text-align: left;">by you will understand and see that all is right wo wo wo unto all</td>
+<td style="text-align: left;">wo wo be unto the inhabitants of the earth</td>
+<td style="text-align: right;">0.743346</td>
+<td style="text-align: left;">Moses 7:25</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>282</td>
+<td style="text-align: left;">against god the father the son and the holy ghost that bears record of them</td>
+<td style="text-align: left;">the holy ghost which beareth record of the father and the son</td>
+<td style="text-align: right;">0.739135</td>
+<td style="text-align: left;">Moses 7:11</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>284</td>
+<td style="text-align: left;">turn the hearts of the fathers to the children and the hearts of the children</td>
+<td style="text-align: left;">the children the promises made to the fathers and the hearts of the children shall</td>
+<td style="text-align: right;">0.738594</td>
+<td style="text-align: left;">Joseph Smith–History 1:39</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>364</td>
+<td style="text-align: left;">and my wrath and indignation are about to be poured out upon them and the</td>
+<td style="text-align: left;">in torment for the fiery indignation of the wrath of god to be poured out upon them</td>
+<td style="text-align: right;">0.720115</td>
+<td style="text-align: left;">Moses 7:1</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>369</td>
+<td style="text-align: left;">earth pass away my words shall not pass away but shall all be fulfilled saith</td>
+<td style="text-align: left;">shall not pass away until all i have told you shall be fulfilled</td>
+<td style="text-align: right;">0.718793</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:34</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>377</td>
+<td style="text-align: left;">before the coming of the great and dreadful day of the lord” “and he shall</td>
+<td style="text-align: left;">priesthood by the hand of elijah the prophet before the coming of the great and dreadful day of the lord</td>
+<td style="text-align: right;">0.717439</td>
+<td style="text-align: left;">Joseph Smith–History 1:38</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>385</td>
+<td style="text-align: left;">turn the hearts of the children to their fathers and the fathers to the children</td>
+<td style="text-align: left;">the children the promises made to the fathers and the hearts of the children shall</td>
+<td style="text-align: right;">0.715762</td>
+<td style="text-align: left;">Joseph Smith–History 1:39</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>405</td>
+<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
+<td style="text-align: left;">shall not pass away until all i have told you shall be fulfilled</td>
+<td style="text-align: right;">0.712783</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:34</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>558</td>
+<td style="text-align: left;">my wrath and indignation are about to be poured out upon them and the wicked</td>
+<td style="text-align: left;">in torment for the fiery indignation of the wrath of god to be poured out upon them</td>
+<td style="text-align: right;">0.691788</td>
+<td style="text-align: left;">Moses 7:1</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>587</td>
+<td style="text-align: left;">thou shalt be a comfort unto them thou shalt be baptized the day thou art</td>
+<td style="text-align: left;">for from this time forth thou shalt be the father of his lies thou shalt</td>
+<td style="text-align: right;">0.688734</td>
+<td style="text-align: left;">Moses 5:24</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>600</td>
+<td style="text-align: left;">goodness of god neither have ye sought to recover israel wo wo wo unto you</td>
+<td style="text-align: left;">wo wo be unto the inhabitants of the earth</td>
+<td style="text-align: right;">0.686794</td>
+<td style="text-align: left;">Moses 7:25</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>612</td>
+<td style="text-align: left;">war against god and his church and kingdom upon the earth and wo wo is</td>
+<td style="text-align: left;">wo wo be unto the inhabitants of the earth</td>
+<td style="text-align: right;">0.685406</td>
+<td style="text-align: left;">Moses 7:25</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>640</td>
+<td style="text-align: left;">as it were in the days of noah and lot so shall it be in</td>
+<td style="text-align: left;">but as it was in the days of noah so it shall be also at the coming of the son of man</td>
+<td style="text-align: right;">0.68342</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:41</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>664</td>
+<td style="text-align: left;">unto thee thou shalt have part in the first resurrection and thou shalt come forth</td>
+<td style="text-align: left;">for from this time forth thou shalt be the father of his lies thou shalt</td>
+<td style="text-align: right;">0.681217</td>
+<td style="text-align: left;">Moses 5:24</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>700</td>
+<td style="text-align: left;">at the coming of the son of man what are the signs of the times</td>
+<td style="text-align: left;">the coming of the son of man be</td>
+<td style="text-align: right;">0.677412</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:43</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>757</td>
+<td style="text-align: left;">of the lord bring an offering to the lord i wil make an offering to</td>
+<td style="text-align: left;">of the ground an offering unto the lord</td>
+<td style="text-align: right;">0.67323</td>
+<td style="text-align: left;">Moses 5:19</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>785</td>
+<td style="text-align: left;">a man what to do for his own good but when i do it it</td>
+<td style="text-align: left;">to do but what he will do it</td>
+<td style="text-align: right;">0.671817</td>
+<td style="text-align: left;">Abraham 3:17</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>825</td>
+<td style="text-align: left;">spoke to him as one speaks to another face to face when he would not</td>
+<td style="text-align: left;">me even as a man talketh one with another face to face and he said</td>
+<td style="text-align: right;">0.66896</td>
+<td style="text-align: left;">Moses 7:4</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>834</td>
+<td style="text-align: left;">rise and progress of the church of jesus christ of latter day saints which closed</td>
+<td style="text-align: left;">persons in relation to the rise and progress of the church of jesus christ of</td>
+<td style="text-align: right;">0.668287</td>
+<td style="text-align: left;">Joseph Smith–History 1:1</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>876</td>
+<td style="text-align: left;">the young people are required to marry and multiply and replenish the earth this is</td>
+<td style="text-align: left;">began to multiply and to replenish the earth</td>
+<td style="text-align: right;">0.66517</td>
+<td style="text-align: left;">Moses 5:2</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>943</td>
+<td style="text-align: left;">the children and the hearts of the children to their fathers lest i come and</td>
+<td style="text-align: left;">the children the promises made to the fathers and the hearts of the children shall</td>
+<td style="text-align: right;">0.661852</td>
+<td style="text-align: left;">Joseph Smith–History 1:39</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>952</td>
+<td style="text-align: left;">upon the wicked in the last days before the coming of the son of man</td>
+<td style="text-align: left;">the coming of the son of man be</td>
+<td style="text-align: right;">0.661508</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:43</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>954</td>
+<td style="text-align: left;">never will be a time to all eternity but when all the gods of eternity</td>
+<td style="text-align: left;">end of years from all eternity to all eternity</td>
+<td style="text-align: right;">0.661445</td>
+<td style="text-align: left;">Moses 6:67</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>964</td>
+<td style="text-align: left;">took it out of my pocket and gave it to him i soon after found</td>
+<td style="text-align: left;">of my pocket and gave it to him when he took it and tore it</td>
+<td style="text-align: right;">0.660549</td>
+<td style="text-align: left;">Joseph Smith–History 1:65</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>970</td>
+<td style="text-align: left;">the word of god and the preparation for the coming of the son of man</td>
+<td style="text-align: left;">the coming of the son of man be</td>
+<td style="text-align: right;">0.660119</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:43</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>983</td>
+<td style="text-align: left;">to multiply and replenish the earth and to fill up the measure of there creation</td>
+<td style="text-align: left;">began to multiply and to replenish the earth</td>
+<td style="text-align: right;">0.659698</td>
+<td style="text-align: left;">Moses 5:2</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>1073</td>
+<td style="text-align: left;">thou shalt labour in the temple of the lord thy god thou shalt teach thy</td>
+<td style="text-align: left;">belly shalt thou go and dust shalt thou eat all the days of thy life</td>
+<td style="text-align: right;">0.653555</td>
+<td style="text-align: left;">Moses 4:20</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>1113</td>
+<td style="text-align: left;">the year of our lord one thousand eight hundred and thirty six joseph smith jr</td>
+<td style="text-align: left;">i was born in the year of our lord one thousand eight hundred and five</td>
+<td style="text-align: right;">0.652082</td>
+<td style="text-align: left;">Joseph Smith–History 1:3</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="odd">
+<td>1154</td>
+<td style="text-align: left;">that evry tree fruit or herb bearing seed should bring forth after its kind and</td>
+<td style="text-align: left;">the herb to bring forth herb from its own seed yielding seed after his kind</td>
+<td style="text-align: right;">0.650511</td>
+<td style="text-align: left;">Abraham 4:12</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+<tr class="even">
+<td>1160</td>
+<td style="text-align: left;">heaven and earth pass away my words shall not pass away but shall be fulfilled</td>
+<td style="text-align: left;">although the days will come that heaven and earth shall pass away yet my words</td>
+<td style="text-align: right;">0.650044</td>
+<td style="text-align: left;">Joseph Smith–Matthew 1:35</td>
+<td style="text-align: left;">Pearl of Great Price</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section>

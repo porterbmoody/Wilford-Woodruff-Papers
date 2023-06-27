@@ -26,16 +26,7 @@ Markdown(tabulate(
 ```
 
 
-### Old Testament Matches
 
-```{python}
-data = top_matches.query('volume_title == "Old Testament"')
-Markdown(tabulate(
-  data.head(number_of_rows),
-  headers=list(data)
-))
-
-```
 
 ### New Testament Matches
 
@@ -64,6 +55,17 @@ Markdown(tabulate(
 
 ```{python}
 data = top_matches.query('volume_title == "Doctrine and Covenants"')
+Markdown(tabulate(
+  data.head(number_of_rows),
+  headers=list(data)
+))
+
+```
+
+### Old Testament Matches
+
+```{python}
+data = top_matches.query('volume_title == "Old Testament"')
 Markdown(tabulate(
   data.head(number_of_rows),
   headers=list(data)
